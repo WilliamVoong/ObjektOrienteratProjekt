@@ -1,5 +1,32 @@
-package objektorienterat;
+package src.objektorienterat;
 
-public class GUI_GAME {
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
+
+import javax.swing.JPanel;
+
+
+public class GUI_GAME extends JPanel {
+    Cell[][] cells = new Cell[3][3];
+
+    public GUI_GAME() {
+        super();
+        setLayout(new GridLayout(3, 3));
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                this.cells[i][j] = new Cell(new Coordinate(i, j));
+                add(this.cells[i][j]);
+            }
+        }
+    }
+
+    public void setCellText(Coordinate c, String text) {
+        this.cells[c.getX()][c.getY()].setText(text);
+    }
+
+    public void addCellListener(Coordinate c, ActionListener cellListener) {
+        this.cells[c.getX()][c.getY()].addActionListener(cellListener);
+    }
 }
+
