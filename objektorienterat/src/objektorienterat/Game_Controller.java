@@ -27,10 +27,27 @@ public class Game_Controller{
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
                 theView.setCellText(coord, theModel.getMark(coord));
-                Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-                if(AIcoord != null) {
-                    theModel.mark(AIcoord);
-                    theView.setCellText(AIcoord, theModel.getMark(AIcoord));
+                switch(theModel.checkForWinner(coord)) {
+                case -1:
+                	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
+                    if(AIcoord != null) {
+                        theModel.mark(AIcoord);
+                        theView.setCellText(AIcoord, theModel.getMark(AIcoord));
+                        switch(theModel.checkForWinner(AIcoord)) {
+                        case -1: break;
+                        case 0:
+                        	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                        	break;
+                        case 1:
+                        	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                    break;
+                case 0:
+                	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                	break;
+                case 1:
+                	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
