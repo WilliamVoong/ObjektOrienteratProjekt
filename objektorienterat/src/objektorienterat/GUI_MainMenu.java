@@ -48,6 +48,20 @@ public class GUI_MainMenu extends DisplayScreen {
 			}
 			
 		});
+		goToGameHighscore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layoutManager.swap(LayoutManager.HIGHSCOREPANEL);
+			}
+			
+		});
+		
+		goToGamePlayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layoutManager.swap(LayoutManager.GAMEPANEL);
+			}
+			
+		});
+		
 		
 		
 
