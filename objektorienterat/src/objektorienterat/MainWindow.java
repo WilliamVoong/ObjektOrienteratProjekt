@@ -17,9 +17,11 @@ public class MainWindow extends JFrame {
 	MainWindow() {
 		super();
 		setVisible(true);
+		
 		LayoutManager manager= new LayoutManager(); 
 		manager.addComponentToPane(getContentPane());
 		pack();
+		setSize(900,900);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
