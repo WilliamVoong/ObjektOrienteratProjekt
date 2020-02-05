@@ -1,27 +1,27 @@
 package src.objektorienterat;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-public class ScreenButton extends JButton{
-	private JPanel panel= new JPanel();
+public class ScreenButton extends JButton {
 	
-	ScreenButton(String text, DisplayScreen panel){
-		super(text); 
+	
 
-		this.panel=panel;
+	ScreenButton(String text, DisplayScreen panel) {
+		super(text);
 		setVisible(true);
+		
 	}
 	
-	public void SwapPanel(JFrame mainWindow){
+	public void SwapPanel(JFrame mainWindow) {
 		mainWindow.removeAll();
-		mainWindow.add(panel);
 		mainWindow.validate();
 	}
 	
+
 
 }

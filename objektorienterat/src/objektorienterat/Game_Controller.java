@@ -4,6 +4,7 @@ package src.objektorienterat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class Game_Controller{
     private Game theModel;
     private GUI_GAME theView;
@@ -53,5 +54,6 @@ public class Game_Controller{
         }
 
     }
+
 
 }
