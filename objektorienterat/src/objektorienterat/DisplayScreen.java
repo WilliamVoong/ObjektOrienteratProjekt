@@ -1,6 +1,8 @@
 package src.objektorienterat;
 
 import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.util.*;
 /*
  * 
@@ -12,8 +14,10 @@ import java.util.*;
 
 public class DisplayScreen extends JPanel {
 	SwappableScreen layoutManager = new LayoutManager(); 
+	
 	DisplayScreen(SwappableScreen layoutManager){
 		this.layoutManager=layoutManager; 
+		setBackground(Color.ORANGE);
 	}
 
 }

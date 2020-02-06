@@ -1,11 +1,9 @@
 package src.objektorienterat;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-
 
 public class Game_Controller{
     private Game theModel;
@@ -22,7 +20,7 @@ public class Game_Controller{
     }
 
     class CellListener implements ActionListener {
-
+        /* kommer förbättra detta senare */
         @Override
         public void actionPerformed(ActionEvent e) {
             Cell c = (Cell)e.getSource();
