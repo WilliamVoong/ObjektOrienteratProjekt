@@ -25,12 +25,14 @@ public class LayoutManager implements SwappableScreen{
     public void addComponentToPane(Container pane) {
     	  cards.setVisible(true);
     	  GUI_GAME game= new GUI_GAME(this);
+    	  Game game_model=new Game();
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
           cards.add(new GUI_STATS(this), HIGHSCOREPANEL);
           cards.add(game, GAMEPANEL);
-          new Game_Controller(new Game(), game);
+          new Game_Controller(game_model,game);
           pane.add(cards);
+        System.out.println("hej");
     	
     }
     public void swap(String string) {

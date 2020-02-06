@@ -1,7 +1,9 @@
 package src.objektorienterat;
 
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
 	private String[][] marks;
 	private int markCount;
 
