@@ -3,12 +3,16 @@ package src.objektorienterat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
-public class Game_Controller{
-    private static Game theModel;
-    private GUI_GAME theView;
+public  class  Game_Controller   {
+    private  static Game theModel;
+    private  static GUI_GAME theView;
 
     public Game_Controller(Game theModel, GUI_GAME theView) {
          this.theModel = theModel;
@@ -20,17 +24,39 @@ public class Game_Controller{
         }
     }
 
-    public static void Save_game() throws Exception
-    {
-        FileHandler.Save_game(theModel,"test");
+    public Game getTheModel(){return theModel;}
+
+    public GUI_GAME getTheView(){return theView;
+
     }
+
+    public static void save_game(String filename) throws IOException
+    {
+        FileHandler.Save_game(theView,filename);
+    }
+
+    public static void save_game_model(String filename) throws IOException
+    {
+        FileHandler.Save_game_model(theModel,filename);
+    }
+
+
+
+    public Game_Controller(Game_Controller game_controller)
+    {
+        theView=game_controller.getTheView();
+        theModel=game_controller.getTheModel();
+    }
+
+
+
 
     class CellListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Cell c = (Cell)e.getSource();
-            if(c.getText() == "") {
+            if(c.getText().equals("")) {
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
                 theView.setCellText(coord, theModel.getMark(coord));
@@ -57,9 +83,9 @@ public class Game_Controller{
                 	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+           theView.repaint();
         }
 
     }
-
 
 }

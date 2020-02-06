@@ -5,7 +5,9 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.IIOException;
 import javax.swing.*;
 
 /*
@@ -14,10 +16,9 @@ import javax.swing.*;
 public class MainWindow extends JFrame {
 	private DisplayScreen currentlyDisplayed;
 
-	MainWindow()  {
+	MainWindow() throws Exception {
 		super();
 		setVisible(true);
-		
 		LayoutManager manager= new LayoutManager(); 
 		manager.addComponentToPane(getContentPane());
 		pack();
@@ -29,23 +30,20 @@ public class MainWindow extends JFrame {
 				System.out.println("Uncomment following to open another window!");
 				//MainPage m = new MainPage();
 				//m.setVisible(true);
-				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
-				try {
-					Game_Controller.Save_game();
-				}catch (Exception ex)
+				try{
+					Game_Controller.save_game("Save_Gui");
+					Game_Controller.save_game_model("Save_model");
+				}catch (IOException ex)
 				{
 					System.out.println(ex);
 				}
+
+				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
 				e.getWindow().dispose();
 				System.out.println("JFrame Closed!");
 			}
 		});
-		try {
-			FileHandler.load_game("test");
-		}catch (Exception e)
-		{
 
-		}
 	}
 
 
