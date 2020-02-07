@@ -29,5 +29,11 @@ public class GUI_GAME extends DisplayScreen implements Serializable{
 
 	public void addCellListener(Coordinate c, ActionListener cellListener) {
 		this.cells[c.getX()][c.getY()].addActionListener(cellListener);
+
+
+	}
+	public Cell getCorrdinate(Coordinate coordinate)
+	{
+		return cells[coordinate.getX()][coordinate.getY()];
 	}
 }
