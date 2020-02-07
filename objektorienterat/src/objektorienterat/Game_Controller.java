@@ -2,6 +2,7 @@ package src.objektorienterat;
 
 
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -53,7 +54,7 @@ public  class  Game_Controller   {
 
 
     class CellListener implements ActionListener {
-
+        /* kommer förbättra detta senare */
         @Override
         public void actionPerformed(ActionEvent e) {
             Sound_effect.playSound("buttonclick.wav");
@@ -74,7 +75,7 @@ public  class  Game_Controller   {
                         case -1: break;
                         case 0:
                             Sound_effect.playSound("win.wav");
-                        	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                          	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
 
                         	break;
                         case 1:
