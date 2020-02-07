@@ -59,7 +59,7 @@ public  class  Game_Controller   {
         public void actionPerformed(ActionEvent e) {
             Sound_effect.playSound("buttonclick.wav");
             Cell c = (Cell)e.getSource();
-            c.setBackground(new Color(0x6CCEAE));
+            theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
             if(c.getText().equals("")) {
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
@@ -70,7 +70,7 @@ public  class  Game_Controller   {
                     if(AIcoord != null) {
                         theModel.mark(AIcoord);
                         theView.setCellText(AIcoord, theModel.getMark(AIcoord));
-                        theView.getCorrdinate(AIcoord).setBackground(new Color(0xBC83CE));
+                        theView.Change_color(AIcoord,new Color(0xBC83CE));
                         switch(theModel.checkForWinner(AIcoord)) {
                         case -1: break;
                         case 0:
