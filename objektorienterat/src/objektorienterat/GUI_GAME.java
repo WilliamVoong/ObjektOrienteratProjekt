@@ -2,10 +2,11 @@ package src.objektorienterat;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
-public class GUI_GAME extends DisplayScreen {
+public class GUI_GAME extends DisplayScreen implements Serializable{
 	Cell[][] cells = new Cell[3][3];
 
 	public GUI_GAME(SwappableScreen layoutManager) {
