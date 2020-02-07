@@ -1,6 +1,6 @@
 package src.objektorienterat;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 
@@ -15,6 +15,9 @@ public class GUI_GAME extends DisplayScreen implements Serializable{
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				this.cells[i][j] = new Cell(new Coordinate(i, j));
+				this.cells[i][j].setFont(new Font("Calibri", Font.PLAIN, 75));
+				this.cells[i][j].setBackground(new Color(0x4988CE));
+				this.cells[i][j].setForeground(Color.white);
 				add(this.cells[i][j]);
 			}
 		}
@@ -26,5 +29,11 @@ public class GUI_GAME extends DisplayScreen implements Serializable{
 
 	public void addCellListener(Coordinate c, ActionListener cellListener) {
 		this.cells[c.getX()][c.getY()].addActionListener(cellListener);
+
+
+	}
+	public Cell getCorrdinate(Coordinate coordinate)
+	{
+		return cells[coordinate.getX()][coordinate.getY()];
 	}
 }
