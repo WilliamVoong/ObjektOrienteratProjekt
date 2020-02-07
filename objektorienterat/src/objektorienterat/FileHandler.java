@@ -32,8 +32,6 @@ public class FileHandler   {
         GUI_GAME test=(GUI_GAME)load_file.readObject();
             load_file.close();
             return test;
-
-
         }
 
 

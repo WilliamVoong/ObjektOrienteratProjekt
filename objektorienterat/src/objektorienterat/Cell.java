@@ -1,5 +1,4 @@
 package src.objektorienterat;
-
 import javax.swing.JButton;
 import java.io.Serializable;
 

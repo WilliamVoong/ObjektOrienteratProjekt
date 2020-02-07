@@ -1,6 +1,5 @@
 package src.objektorienterat;
 
-
 import java.awt.*;
 
 import java.awt.event.ActionEvent;
@@ -11,7 +10,6 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.swing.JOptionPane;
-
 public  class  Game_Controller   {
     private  static Game theModel;
     private  static GUI_GAME theView;
@@ -75,9 +73,10 @@ public  class  Game_Controller   {
                         case -1: break;
                         case 0:
                             Sound_effect.playSound("win.wav");
+
                           	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
 
-                        	break;
+                            break;
                         case 1:
                         	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
                         	break;
