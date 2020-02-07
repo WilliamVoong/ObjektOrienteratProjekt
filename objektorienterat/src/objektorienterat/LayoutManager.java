@@ -4,8 +4,6 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  *  LayoutManager has the responsibility of what panel that are being displayed. 
@@ -27,13 +25,13 @@ public class LayoutManager implements SwappableScreen{
     }
     public void addComponentToPane(Container pane) throws Exception {
     	  cards.setVisible(true);
-    	  GUI_GAME game= new GUI_GAME(this);
-    	  Game game_model=new Game();
+    	  GameView game= new GameView(this);
+    	  GameModel game_model=new GameModel();
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
-          cards.add(new GUI_STATS(this), HIGHSCOREPANEL);
+          cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
           cards.add(game, GAMEPANEL);
-        new Game_Controller(game_model,game);
+        new GameController(game_model,game);
           pane.add(cards);
           System.out.println("hej");
     	
@@ -42,9 +40,9 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GUI_GAME gam_load = FileHandler.load_game("Save_Gui");
-                Game game_load_model = FileHandler.load_game_model("Save_model");
-                new Game_Controller(game_load_model,gam_load);
+                GameView gam_load = FileHandler.load_game("Save_Gui");
+                GameModel game_load_model = FileHandler.load_game_model("Save_model");
+                new GameController(game_load_model,gam_load);
                 cards.add(gam_load,LOADGAME);
 
             }

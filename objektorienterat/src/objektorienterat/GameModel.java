@@ -3,11 +3,11 @@ package src.objektorienterat;
 
 import java.io.Serializable;
 
-public class Game  implements Serializable{
+public class GameModel implements Serializable{
 	private String[][] marks;
 	private int markCount;
 
-	Game() {
+	GameModel() {
 		this.marks = new String[3][3];
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {

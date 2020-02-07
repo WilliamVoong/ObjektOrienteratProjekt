@@ -33,7 +33,7 @@ public class GUI_MainMenu extends DisplayScreen {
 		goToGameHighscore.setForeground(Color.white);
 		goToGameHighscore.setPreferredSize(new Dimension(200, 200));
 		goToGameHighscore.setUI(new StyledButtonUI());
-		JButton gotoloadgame=  new JButton("Load Game");
+		JButton gotoloadgame=  new JButton("Load GameModel");
 		gotoloadgame.setFont(new Font("Calibri", Font.PLAIN, 20));
 		gotoloadgame.setBackground(new Color(0x788BCE));
 		gotoloadgame.setForeground(Color.white);

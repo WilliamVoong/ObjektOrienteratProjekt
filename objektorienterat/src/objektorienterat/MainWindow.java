@@ -1,13 +1,8 @@
 package src.objektorienterat;
 
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.imageio.IIOException;
 import javax.swing.*;
 
 /*
@@ -31,8 +26,8 @@ public class MainWindow extends JFrame {
 				//MainPage m = new MainPage();
 				//m.setVisible(true);
 				try{
-					Game_Controller.save_game("Save_Gui");
-					Game_Controller.save_game_model("Save_model");
+					GameController.save_game("Save_Gui");
+					GameController.save_game_model("Save_model");
 				}catch (IOException ex)
 				{
 					System.out.println(ex);
