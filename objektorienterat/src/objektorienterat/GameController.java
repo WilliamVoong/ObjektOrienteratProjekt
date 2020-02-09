@@ -1,96 +1,46 @@
 package src.objektorienterat;
 
-
-import java.awt.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.util.Random;
 
 public  class GameController {
-    private  static GameModel theModel;
-    private  static GameView theView;
+    private GameModel theModel;
+    private GameView theView;
+    private Playing player1;
+	private Playing player2;
+	private Playing currentlyPlaying;
 
-    public GameController(GameModel theModel, GameView theView) {
-         this.theModel = theModel;
+    public GameController(GameModel theModel, GameView theView, Playing player1, Playing player2) {
+        this.theModel = theModel;
         this.theView = theView;
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                theView.addCellListener(new Coordinate(i, j), new CellListener());
-            }
-        }
+        this.player1 = player1;
+        this.player2 = player2;
     }
+    
+    public void gameInit() {
+		Random random = new Random();
+		this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
+		notifyAI();
+	}
+    
+    public void viewCellWasClicked() {
+		if(this.currentlyPlaying instanceof Player) {
+			this.currentlyPlaying.makeMove(this.theModel, this.theView, this.theView.getLastClickedCell().getCoordinate());
+		}
+	}
+    
+    public void viewStateWasChanged() {
+		changeTurn();
+		notifyAI();
+	}
+    
+    private void notifyAI() {
+		if(this.currentlyPlaying instanceof AI) {
+			this.currentlyPlaying.makeMove(this.theModel, this.theView, null);
+		}
+	}
 
-    public GameModel getTheModel(){return theModel;}
-
-    public GameView getTheView(){return theView;
-
-    }
-
-    public static void save_game(String filename) throws IOException
-    {
-        FileHandler.Save_game(theView,filename);
-    }
-
-    public static void save_game_model(String filename) throws IOException
-    {
-        FileHandler.Save_game_model(theModel,filename);
-    }
-
-
-
-    public GameController(GameController game_controller)
-    {
-        theView=game_controller.getTheView();
-        theModel=game_controller.getTheModel();
-    }
-
-
-
-
-    class CellListener implements ActionListener {
-        /* kommer förbättra detta senare */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Sound_effect.playSound("buttonclick.wav");
-            Cell c = (Cell)e.getSource();
-            theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
-            if(c.getText().equals("")) {
-                Coordinate coord = c.getCoordinate();
-                theModel.mark(coord);
-                theView.setCellText(coord, theModel.getMark(coord));
-                switch(theModel.checkForWinner(coord)) {
-                case -1:
-                	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-                    if(AIcoord != null) {
-                        theModel.mark(AIcoord);
-                        theView.setCellText(AIcoord, theModel.getMark(AIcoord));
-                        theView.Change_color(AIcoord,new Color(0xBC83CE));
-                        switch(theModel.checkForWinner(AIcoord)) {
-                        case -1: break;
-                        case 0:
-                            Sound_effect.playSound("win.wav");
-                          	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-
-                        	break;
-                        case 1:
-                        	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                        	break;
-                        }
-                    }
-                    break;
-                case 0:
-                	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-                	break;
-                case 1:
-                	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-           theView.repaint();
-        }
-
-    }
+	private void changeTurn() {
+		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
+	}
 
 }

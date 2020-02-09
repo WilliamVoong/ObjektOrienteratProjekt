@@ -1,93 +1,82 @@
 package src.objektorienterat;
 
-
 import java.io.Serializable;
 
-public class GameModel implements Serializable{
-	private String[][] marks;
+public class GameModel implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private Mark[][] marks;
 	private int markCount;
 
-	GameModel() {
-		this.marks = new String[3][3];
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				this.marks[i][j] = "";
+	public GameModel() {
+		this.marks = new Mark[3][3];
+		reset();
+	}
+
+	private void reset() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				this.marks[i][j] = Mark.NULL;
 			}
 		}
 		this.markCount = 0;
 	}
 
-	public void mark(Coordinate c) {
-		int x = c.getX();
-		int y = c.getY();
-		if (this.markCount % 2 == 0) {
-			this.marks[x][y] = "X";
-		} else {
-			this.marks[x][y] = "O";
-		}
+	public void makeMark(Coordinate coord) {
+		this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O;
 		this.markCount++;
 	}
-
-	public String getMark(Coordinate c) {
-		return this.marks[c.getX()][c.getY()];
+	
+	public boolean isGameOver() {
+		return isWinner() || this.markCount > 8;
 	}
 
-	public String[][] getMarks() {
+	private boolean isWinner() {
+		
+		// check rows
+		for(int i = 0; i < 3; i++) {
+			if(	this.marks[i][0].equals(this.marks[i][1])
+		    	&&
+		    	this.marks[i][1].equals(this.marks[i][2])) 
+		    {
+				return true;
+		   	}
+		}
+		
+		// check columns
+		for(int i = 0; i < 3; i++) {
+			if(	this.marks[0][i].equals(this.marks[1][i])
+		    	&&
+		    	this.marks[1][i].equals(this.marks[2][i])) 
+		    {
+				return true;
+		   	}
+		}
+		
+		// check diagonals
+		if(	this.marks[0][0].equals(this.marks[1][1])
+	        &&
+	        this.marks[1][1].equals(this.marks[2][2])
+	    	||
+	    	this.marks[2][0].equals(this.marks[1][1])
+	    	&&
+	    	this.marks[1][1].equals(this.marks[0][2]))
+	    	{
+	        	return true;
+	        }
+
+		return false;
+	}
+	
+	public Mark getMark(Coordinate coord) {
+		return this.marks[coord.getX()][coord.getY()];
+	}
+	
+	public Mark[][] getMarks() {
 		return this.marks;
 	}
-
-
-    public int getMarkCount() {
-        return this.markCount;
-    }
-    
-    public int checkForWinner(Coordinate c) {
-    	// there cannot be a winner if markCount < 5
-    	if(this.markCount < 5) {
-    		return -1;
-    	}
-    	int x = c.getX();
-    	int y = c.getY();
-    	
-    	// check the row
-    	if(	this.marks[x][0].equals(this.marks[x][1])
-    		&&
-    		this.marks[x][1].equals(this.marks[x][2])) 
-    	{
-    		return this.markCount % 2;
-    	}
-    	
-    	// check the column
-    	if(	this.marks[0][y].equals(this.marks[1][y])
-        	&&
-        	this.marks[1][y].equals(this.marks[2][y]))
-    	{
-        	return this.markCount % 2;
-        }
-    	
-    	// check diagonals regardless due to laziness
-    	if(	this.marks[0][0].equals(this.marks[1][1])
-        	&&
-        	this.marks[1][1].equals(this.marks[2][2])
-    		||
-    		this.marks[2][0].equals(this.marks[1][1])
-    	    &&
-    	    this.marks[1][1].equals(this.marks[0][2]))
-    	{
-        	return this.markCount % 2;
-        }
-    	
-    	// no winner
-    	return -1;
-    }
-    
-    public void reset() {
-    	for(int i = 0; i < 3; i++) {
-    		for(int j = 0; j < 3; j++) {
-    			this.marks[i][j] = "";
-    		}
-    	}
-    	this.markCount = 0;
-    }
+	
+	public int getMarkCount() {
+		return this.markCount;
+	}
     
 }
