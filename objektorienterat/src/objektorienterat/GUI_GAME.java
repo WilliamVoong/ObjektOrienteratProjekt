@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class GUI_GAME extends DisplayScreen implements Serializable, PropertyChangeListener {
 	Cell[][] cells = new Cell[3][3];
+	JLabel label;
 
 	public GUI_GAME(SwappableScreen layoutManager) {
 		super(layoutManager);
@@ -22,6 +23,11 @@ public class GUI_GAME extends DisplayScreen implements Serializable, PropertyCha
 				cells[i][j].setForeground(Color.white);
 				add(cells[i][j]);
 			}
+			 label=new JLabel();
+			label.setFont(new Font("Calibri", Font.PLAIN, 75));
+			label.setForeground(Color.white);
+			label.setBounds(100, 100, 50, 70);
+			add(label);
 		}
 	}
 
@@ -51,11 +57,20 @@ public class GUI_GAME extends DisplayScreen implements Serializable, PropertyCha
 
 	@Override
 	public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-		setCellText((Coordinate)propertyChangeEvent.getOldValue(), (String) propertyChangeEvent.getNewValue());
-		if(propertyChangeEvent.getNewValue().equals("X"))
-			Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0x6CCEAE));
+
+		if(propertyChangeEvent.getPropertyName().equals("second"))
+		{
+			label.setText(Integer.toString((Integer) propertyChangeEvent.getNewValue()));
+		}
+
 		else
-			Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0xC16FCE));
+		{
+			setCellText((Coordinate)propertyChangeEvent.getOldValue(), (String) propertyChangeEvent.getNewValue());
+			if(propertyChangeEvent.getNewValue().equals("X"))
+				Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0x6CCEAE));
+			else
+				Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0xC16FCE));
+		}
 
 	}
 }

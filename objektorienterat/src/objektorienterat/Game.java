@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Game extends PropertyChangeSupport implements Serializable {
 	private String[][] marks;
 	private int markCount;
+	private Thread activity ;
 
 	Game(Object sourcebean) {
 		super((sourcebean));
@@ -19,6 +20,8 @@ public class Game extends PropertyChangeSupport implements Serializable {
 			}
 		}
 		this.markCount = 0;
+
+
 	}
 
 	public void mark(Coordinate c) {
@@ -96,5 +99,7 @@ public class Game extends PropertyChangeSupport implements Serializable {
     	}
     	this.markCount = 0;
     }
-    
+
+
+
 }

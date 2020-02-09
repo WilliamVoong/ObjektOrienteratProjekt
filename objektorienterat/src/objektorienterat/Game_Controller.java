@@ -12,14 +12,17 @@ import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
-public  class  Game_Controller   {
+public  class  Game_Controller  {
     private  static Game theModel;
     private  static GUI_GAME theView;
+
 
 
     public Game_Controller(Game theModel, GUI_GAME theView) {
          this.theModel = theModel;
         this.theView = theView;
+        Clock clock=new Clock(new Object());
+        clock.addPropertyChangeListener(theView);
         theModel.addPropertyChangeListener(theView);
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -65,37 +68,39 @@ public  class  Game_Controller   {
             if(c.getText().equals("")) {
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
-               // theView.setCellText(coord, theModel.getMark(coord)); old version without Observer
+                // theView.setCellText(coord, theModel.getMark(coord)); old version without Observer
                 switch(theModel.checkForWinner(coord)) {
-                case -1:
-                	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-                    if(AIcoord != null) {
-                        theModel.mark(AIcoord);
-                        //theView.setCellText(AIcoord, theModel.getMark(AIcoord)); without observer
-                        //theView.Change_color(AIcoord,new Color(0xBC83CE));
-                        switch(theModel.checkForWinner(AIcoord)) {
-                        case -1: break;
-                        case 0:
-                            Sound_effect.playSound("win.wav");
-                          	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                    case -1:
+                        Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
+                        if(AIcoord != null) {
+                            theModel.mark(AIcoord);
+                            //theView.setCellText(AIcoord, theModel.getMark(AIcoord)); without observer
+                            //theView.Change_color(AIcoord,new Color(0xBC83CE));
+                            switch(theModel.checkForWinner(AIcoord)) {
+                                case -1: break;
+                                case 0:
+                                    Sound_effect.playSound("win.wav");
+                                    JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
 
-                        	break;
-                        case 1:
-                        	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                        	break;
+                                    break;
+                                case 1:
+                                    JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                                    break;
+                            }
                         }
-                    }
-                    break;
-                case 0:
-                	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-                	break;
-                case 1:
-                	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-           theView.repaint();
+            theView.repaint();
         }
 
     }
+
+
 
 }
