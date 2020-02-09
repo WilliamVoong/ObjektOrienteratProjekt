@@ -2,11 +2,13 @@ package src.objektorienterat;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
-public class GUI_GAME extends DisplayScreen implements Serializable{
+public class GUI_GAME extends DisplayScreen implements Serializable, PropertyChangeListener {
 	Cell[][] cells = new Cell[3][3];
 
 	public GUI_GAME(SwappableScreen layoutManager) {
@@ -36,9 +38,24 @@ public class GUI_GAME extends DisplayScreen implements Serializable{
 		return cells[coordinate.getX()][coordinate.getY()];
 	}
 
-	public void Change_color(Coordinate coordinate, Color color)
-	{
-		cells[coordinate.getX()][coordinate.getY()].setBackground(color);
+	public void Change_color(Coordinate coordinate, Color color) {
+
+
+	cells[coordinate.getX()][coordinate.getY()].setBackground(color);
+
+
+
+
+
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+		setCellText((Coordinate)propertyChangeEvent.getOldValue(), (String) propertyChangeEvent.getNewValue());
+		if(propertyChangeEvent.getNewValue().equals("X"))
+			Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0x6CCEAE));
+		else
+			Change_color((Coordinate)propertyChangeEvent.getOldValue(),new Color(0xC16FCE));
 
 	}
 }

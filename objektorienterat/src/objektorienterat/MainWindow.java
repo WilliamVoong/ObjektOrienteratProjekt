@@ -33,6 +33,7 @@ public class MainWindow extends JFrame {
 				try{
 					Game_Controller.save_game("Save_Gui");
 					Game_Controller.save_game_model("Save_model");
+
 				}catch (IOException ex)
 				{
 					System.out.println(ex);
@@ -41,6 +42,7 @@ public class MainWindow extends JFrame {
 				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
 				e.getWindow().dispose();
 				System.out.println("JFrame Closed!");
+				System.exit(0);
 			}
 		});
 

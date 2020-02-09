@@ -16,9 +16,11 @@ public  class  Game_Controller   {
     private  static Game theModel;
     private  static GUI_GAME theView;
 
+
     public Game_Controller(Game theModel, GUI_GAME theView) {
          this.theModel = theModel;
         this.theView = theView;
+        theModel.addPropertyChangeListener(theView);
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
                 theView.addCellListener(new Coordinate(i, j), new CellListener());
@@ -59,18 +61,18 @@ public  class  Game_Controller   {
         public void actionPerformed(ActionEvent e) {
             Sound_effect.playSound("buttonclick.wav");
             Cell c = (Cell)e.getSource();
-            theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
+            //theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
             if(c.getText().equals("")) {
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
-                theView.setCellText(coord, theModel.getMark(coord));
+               // theView.setCellText(coord, theModel.getMark(coord)); old version without Observer
                 switch(theModel.checkForWinner(coord)) {
                 case -1:
                 	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
                     if(AIcoord != null) {
                         theModel.mark(AIcoord);
-                        theView.setCellText(AIcoord, theModel.getMark(AIcoord));
-                        theView.Change_color(AIcoord,new Color(0xBC83CE));
+                        //theView.setCellText(AIcoord, theModel.getMark(AIcoord)); without observer
+                        //theView.Change_color(AIcoord,new Color(0xBC83CE));
                         switch(theModel.checkForWinner(AIcoord)) {
                         case -1: break;
                         case 0:
