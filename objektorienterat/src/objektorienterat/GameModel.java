@@ -12,7 +12,7 @@ public class GameModel implements Serializable {
 		reset();
 	}
 
-	private void reset() {
+	public void reset() {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				this.marks[i][j] = Mark.NULL;
@@ -30,13 +30,15 @@ public class GameModel implements Serializable {
 		return isWinner() || this.markCount > 8;
 	}
 
-	private boolean isWinner() {
+	public boolean isWinner() {
 		
 		// check rows
 		for(int i = 0; i < 3; i++) {
 			if(	this.marks[i][0].equals(this.marks[i][1])
 		    	&&
-		    	this.marks[i][1].equals(this.marks[i][2])) 
+		    	this.marks[i][1].equals(this.marks[i][2])
+		    	&&
+		    	!this.marks[i][0].equals(Mark.NULL))
 		    {
 				return true;
 		   	}
@@ -46,14 +48,18 @@ public class GameModel implements Serializable {
 		for(int i = 0; i < 3; i++) {
 			if(	this.marks[0][i].equals(this.marks[1][i])
 		    	&&
-		    	this.marks[1][i].equals(this.marks[2][i])) 
+		    	this.marks[1][i].equals(this.marks[2][i])
+		    	&&
+		    	!this.marks[0][i].equals(Mark.NULL))
 		    {
 				return true;
 		   	}
 		}
 		
 		// check diagonals
-		if(	this.marks[0][0].equals(this.marks[1][1])
+		if(	!this.marks[1][1].equals(Mark.NULL)
+			&&
+			this.marks[0][0].equals(this.marks[1][1])
 	        &&
 	        this.marks[1][1].equals(this.marks[2][2])
 	    	||
