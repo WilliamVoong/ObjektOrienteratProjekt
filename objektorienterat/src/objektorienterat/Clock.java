@@ -5,8 +5,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
-public class Clock extends PropertyChangeSupport implements ActionListener {
+public class Clock extends PropertyChangeSupport implements ActionListener, Serializable {
     private final int perioad=10;
     private  int Second;
     javax.swing.Timer timer=new javax.swing.Timer(1000,this);

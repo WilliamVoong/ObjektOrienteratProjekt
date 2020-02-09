@@ -3,7 +3,7 @@ package src.objektorienterat;
 
 import java.io.*;
 
-public class FileHandler   {
+public class FileHandler implements Serializable   {
     public static void Save_game(GUI_GAME game,String file_name) throws FileNotFoundException,IOException
     {
         File file =new File(file_name);

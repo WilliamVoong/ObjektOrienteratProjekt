@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
-public  class  Game_Controller  {
+public  class  Game_Controller implements Serializable {
     private  static Game theModel;
     private  static GUI_GAME theView;
 
