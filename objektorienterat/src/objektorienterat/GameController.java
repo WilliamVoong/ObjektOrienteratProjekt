@@ -24,7 +24,7 @@ public  class GameController {
     
     public void viewCellWasClicked() {
 		if(this.currentlyPlaying instanceof Player) {
-			this.currentlyPlaying.makeMove(this.theModel, this.theView, this.theView.getLastClickedCell().getCoordinate());
+			this.currentlyPlaying.makeMove(this.theModel, this.theView);
 		}
 	}
     
@@ -35,7 +35,7 @@ public  class GameController {
     
     private void notifyAI() {
 		if(this.currentlyPlaying instanceof AI) {
-			this.currentlyPlaying.makeMove(this.theModel, this.theView, null);
+			this.currentlyPlaying.makeMove(this.theModel, this.theView);
 		}
 	}
 

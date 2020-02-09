@@ -81,7 +81,8 @@ public class Player implements Playing {
 	}
 
 	@Override
-	public void makeMove(GameModel model, GameView view, Coordinate coord) {
+	public void makeMove(GameModel model, GameView view) {
+		Coordinate coord = view.getLastClickedCell().getCoordinate();
 		model.makeMark(coord);
 		view.makeMark(coord, model.getMark(coord).toString());
 	}

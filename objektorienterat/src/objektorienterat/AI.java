@@ -7,7 +7,7 @@ import java.util.Random;
 public class AI implements Playing {
 
 	@Override
-	public void makeMove(GameModel model, GameView view, Coordinate coord) {
+	public void makeMove(GameModel model, GameView view) {
 		Coordinate AIcoord = null;
 		if((AIcoord = smartMove(model.getMarks(), model.getMarkCount())) != null) {
 			makeMark(model, view, AIcoord);
