@@ -1,61 +1,63 @@
 package src.objektorienterat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Stats {
-	List<Player> players;
+	Map<String, Player> players;
+	static final int SORTBYGAMESPLAYED =	0x1000;
+	static final int SORTBYGAMESWON =		0x1001;
+	static final int SORTBYGAMESLOST =		0x1002;
+	static final int SORTBYGAMESDRAWN =		0x1003;
 	
 	public Stats() {
-		this.players = new ArrayList<>();
+		this.players = new HashMap<>();
 	}
 	
-	public List<Player> getPlayers() {
+	public Map<String, Player> getPlayers() {
 		return this.players;
 	}
 	
-	public void addPlayer(Player p) {
-		this.players.add(p);
+	public void put(Player p) {
+		this.players.put(p.getUsername(), p);
 	}
 	
-	public void sort(Comparator<Player> c) {
-		this.players.sort(c);
-	}
-	
-	/*
-	 * OBS! Följande finns bara här tillfälligt för att man ska kunna
-	 * klippa och klistra snabba lambda statements om man använder sort-funktionen
-	 */
-	
-	/*
-	new Comparator<Player>() {
-		@Override
-		public int compare(Player o1, Player o2) {
-			return o2.getGamesPlayed() - o1.getGamesPlayed();
+	public LinkedHashMap<String, Player> getPlayersSort(int sortCode) {
+		if(!(	sortCode == Stats.SORTBYGAMESPLAYED	|| 
+				sortCode == Stats.SORTBYGAMESWON	||
+				sortCode == Stats.SORTBYGAMESLOST	||
+				sortCode == Stats.SORTBYGAMESDRAWN	))
+		{
+			return null;
 		}
-	}
-	
-	new Comparator<Player>() {
-		@Override
-		public int compare(Player o1, Player o2) {
-			return o2.getGamesWon() - o1.getGamesWon();
+		Comparator<Map.Entry<String, Player>> gamesWonComparator = new Comparator<Map.Entry<String, Player>>() {
+			@Override
+			public int compare(Map.Entry<String, Player> me1, Map.Entry<String, Player> me2) {
+				Player p1 = me1.getValue();
+				Player p2 = me2.getValue();
+				if(sortCode == Stats.SORTBYGAMESPLAYED) {
+					return p2.getGamesPlayed() - p1.getGamesPlayed();
+				} else if(sortCode == Stats.SORTBYGAMESWON) {
+					return p2.getGamesWon() - p1.getGamesWon();
+				} else if(sortCode == Stats.SORTBYGAMESLOST) {
+					return p2.getGamesLost() - p1.getGamesLost();
+				} else {
+					return p2.getGamesDrawn() - p1.getGamesDrawn();
+				}
+			}
+		};
+		List<Map.Entry<String, Player>> listOfEntries = new ArrayList<>(this.players.entrySet());
+		Collections.sort(listOfEntries, gamesWonComparator);
+		LinkedHashMap<String, Player> sortedByGamesWon = new LinkedHashMap<String, Player>(listOfEntries.size());
+		for(Map.Entry<String, Player> entry : listOfEntries) {
+			sortedByGamesWon.put(entry.getKey(), entry.getValue());
 		}
+		return sortedByGamesWon;
 	}
-	
-	new Comparator<Player>() {
-		@Override
-		public int compare(Player o1, Player o2) {
-			return o2.getGamesLost() - o1.getGamesLost();
-		}
-	}
-	
-	new Comparator<Player>() {
-		@Override
-		public int compare(Player o1, Player o2) {
-			return o2.getGamesDrawn() - o1.getGamesDrawn();
-		}
-	}
-	*/
 	
 }
