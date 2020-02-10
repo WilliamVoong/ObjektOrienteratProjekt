@@ -2,7 +2,7 @@ package src.objektorienterat;
 
 import java.util.Random;
 
-public  class GameController {
+public class GameController {
     private GameModel theModel;
     private GameView theView;
     private Playing player1;
