@@ -34,11 +34,11 @@ public class GameModel implements Serializable {
 		
 		// check rows
 		for(int i = 0; i < 3; i++) {
-			if(	this.marks[i][0].equals(this.marks[i][1])
+			if(	!(this.marks[i][0] == Mark.NULL)
+				&&
+				this.marks[i][0] == this.marks[i][1]
 		    	&&
-		    	this.marks[i][1].equals(this.marks[i][2])
-		    	&&
-		    	!this.marks[i][0].equals(Mark.NULL))
+		    	this.marks[i][1] == this.marks[i][2])
 		    {
 				return true;
 		   	}
@@ -46,26 +46,28 @@ public class GameModel implements Serializable {
 		
 		// check columns
 		for(int i = 0; i < 3; i++) {
-			if(	this.marks[0][i].equals(this.marks[1][i])
+			if(	!(this.marks[0][i] == Mark.NULL)
+				&&
+				this.marks[0][i] == this.marks[1][i]
 		    	&&
-		    	this.marks[1][i].equals(this.marks[2][i])
-		    	&&
-		    	!this.marks[0][i].equals(Mark.NULL))
+		    	this.marks[1][i] == this.marks[2][i])
 		    {
 				return true;
 		   	}
 		}
 		
 		// check diagonals
-		if(	!this.marks[1][1].equals(Mark.NULL)
+		if(	!(this.marks[1][1] == Mark.NULL)
 			&&
-			this.marks[0][0].equals(this.marks[1][1])
+			this.marks[0][0] == this.marks[1][1]
 	        &&
-	        this.marks[1][1].equals(this.marks[2][2])
+	        this.marks[1][1] == this.marks[2][2]
 	    	||
-	    	this.marks[2][0].equals(this.marks[1][1])
+	    	!(this.marks[1][1] == Mark.NULL)
 	    	&&
-	    	this.marks[1][1].equals(this.marks[0][2]))
+	    	this.marks[2][0] == this.marks[1][1]
+	    	&&
+	    	this.marks[1][1] == this.marks[0][2])
 	    	{
 	        	return true;
 	        }
