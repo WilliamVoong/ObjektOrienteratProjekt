@@ -28,14 +28,14 @@ public  class GameController {
 	}
     
     public void viewCellWasClicked() {
-		if(this.currentlyPlaying instanceof Player) {
+		if(!this.gameOver && this.currentlyPlaying instanceof Player) {
 			this.currentlyPlaying.makeMove(this.theModel, this.theView);
 		}
 	}
     
     public void viewStateWasChanged() {
 		if(this.gameOver = this.theModel.isGameOver()) {
-			// notify view (to be continued)
+			// notify view (to be continued - the crap below is just for testing purposes)
 			String s = (this.theModel.getMarkCount() == 0) ? Mark.X.toString() : Mark.O.toString();
 			if(this.theModel.getMarkCount() > 8 && !this.theModel.isWinner()) {
 				s = "No one";
@@ -48,7 +48,7 @@ public  class GameController {
 	}
     
     private void notifyAI() {
-		if(this.currentlyPlaying instanceof AI) {
+		if(!this.gameOver && this.currentlyPlaying instanceof AI) {
 			this.currentlyPlaying.makeMove(this.theModel, this.theView);
 		}
 	}
