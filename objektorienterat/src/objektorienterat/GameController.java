@@ -36,7 +36,7 @@ public  class GameController {
     public void viewStateWasChanged() {
 		if(this.gameOver = this.theModel.isGameOver()) {
 			// notify view (to be continued)
-			String s = (this.theModel.getMarkCount() == 0) ? Mark.O.toString() : Mark.X.toString();
+			String s = (this.theModel.getMarkCount() == 0) ? Mark.X.toString() : Mark.O.toString();
 			if(this.theModel.getMarkCount() > 8 && !this.theModel.isWinner()) {
 				s = "No one";
 			}
