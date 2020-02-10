@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 import javax.swing.*;
 
-public class GameView extends DisplayScreen implements Serializable, PropertyChangeListener {
+public class GameView extends DisplayScreen implements Serializable, PropertyChangeListener,FileHandlerInterface {
 	Cell[][] cells = new Cell[3][3];
 	JLabel label;
 
@@ -34,6 +34,18 @@ public class GameView extends DisplayScreen implements Serializable, PropertyCha
 	public void setCellText(Coordinate c, String text) { cells[c.getX()][c.getY()].setText(text);
 	}
 
+	public void setCellText(String [][] marks)
+	{
+		for(int i=0;i<3;i++ )
+		{
+			for(int j=0;j<3;j++)
+			{
+				setCellText(new Coordinate(i,j),marks[i][j]);
+			}
+		}
+
+	}
+
 	public void addCellListener(Coordinate c, ActionListener cellListener) {
 		cells[c.getX()][c.getY()].addActionListener(cellListener);
 
@@ -45,14 +57,7 @@ public class GameView extends DisplayScreen implements Serializable, PropertyCha
 	}
 
 	public void Change_color(Coordinate coordinate, Color color) {
-
-
 	cells[coordinate.getX()][coordinate.getY()].setBackground(color);
-
-
-
-
-
 	}
 
 	@Override

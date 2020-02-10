@@ -39,16 +39,9 @@ public  class GameController {
 
     public static void save_game_model(String filename) throws IOException
     {
-        FileHandler.Save_game_model(theModel,filename);
+        FileHandler.Save_game(theModel,filename);
     }
 
-
-
-    public GameController(GameController game_controller)
-    {
-        theView=game_controller.getTheView();
-        theModel=game_controller.getTheModel();
-    }
 
 
 

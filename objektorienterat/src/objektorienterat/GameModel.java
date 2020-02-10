@@ -6,7 +6,7 @@ import javafx.beans.Observable;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
-public class GameModel extends PropertyChangeSupport implements Serializable {
+public class GameModel extends PropertyChangeSupport implements Serializable,FileHandlerInterface {
 	private String[][] marks;
 	private int markCount;
 

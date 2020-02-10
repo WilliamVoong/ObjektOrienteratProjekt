@@ -25,13 +25,13 @@ public class LayoutManager implements SwappableScreen{
     }
     public void addComponentToPane(Container pane) throws Exception {
     	  cards.setVisible(true);
-    	  GameView game= new GameView(this);
+    	  GameView gameView= new GameView(this);
     	  GameModel game_model=new GameModel();
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
-          cards.add(game, GAMEPANEL);
-        new GameController(game_model,game);
+          cards.add(gameView, GAMEPANEL);
+        new GameController(game_model,gameView);
           pane.add(cards);
           System.out.println("hej");
     	
@@ -40,10 +40,10 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GameView gam_load = FileHandler.load_game("Save_Gui");
-                GameModel game_load_model = FileHandler.load_game_model("Save_model");
-                new GameController(game_load_model,gam_load);
-                cards.add(gam_load,LOADGAME);
+                GameView gameView= (GameView) FileHandler.load_game("Save_Gui");
+                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model");
+                new GameController(gameModel,gameView);
+                cards.add(gameView,LOADGAME);
 
             }
         }catch (Exception e)
