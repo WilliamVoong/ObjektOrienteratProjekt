@@ -6,11 +6,11 @@ import javafx.beans.Observable;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
-public class Game  extends PropertyChangeSupport implements Serializable {
+public class GameModel extends PropertyChangeSupport implements Serializable {
 	private String[][] marks;
 	private int markCount;
 
-	Game() {
+	GameModel() {
 
 		super(new Emtptyclass());
 		this.marks = new String[3][3];

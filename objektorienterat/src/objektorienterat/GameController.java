@@ -1,24 +1,19 @@
 package src.objektorienterat;
 
 
-import java.awt.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
-public  class  Game_Controller implements Serializable {
-    private  static Game theModel;
-    private  static GUI_GAME theView;
+public  class GameController {
+    private  static GameModel theModel;
+    private  static GameView theView;
 
 
 
-    public Game_Controller(Game theModel, GUI_GAME theView) {
+    public GameController(GameModel theModel, GameView theView) {
          this.theModel = theModel;
         this.theView = theView;
         Clock clock=new Clock(new Object());
@@ -31,9 +26,9 @@ public  class  Game_Controller implements Serializable {
         }
     }
 
-    public Game getTheModel(){return theModel;}
+    public GameModel getTheModel(){return theModel;}
 
-    public GUI_GAME getTheView(){return theView;
+    public GameView getTheView(){return theView;
 
     }
 
@@ -49,7 +44,7 @@ public  class  Game_Controller implements Serializable {
 
 
 
-    public Game_Controller(Game_Controller game_controller)
+    public GameController(GameController game_controller)
     {
         theView=game_controller.getTheView();
         theModel=game_controller.getTheModel();

@@ -4,7 +4,7 @@ package src.objektorienterat;
 import java.io.*;
 
 public class FileHandler implements Serializable   {
-    public static void Save_game(GUI_GAME game,String file_name) throws FileNotFoundException,IOException
+    public static void Save_game(GameView game, String file_name) throws FileNotFoundException,IOException
     {
         File file =new File(file_name);
         ObjectOutputStream save_file;
@@ -25,11 +25,11 @@ public class FileHandler implements Serializable   {
 
     }
 
-    public static GUI_GAME load_game(String file_name)  throws FileNotFoundException,IOException,ClassNotFoundException
+    public static GameView load_game(String file_name)  throws FileNotFoundException,IOException,ClassNotFoundException
     {
-        GUI_GAME my_pre_game;
+        GameView my_pre_game;
         ObjectInputStream load_file=new ObjectInputStream(new FileInputStream(file_name));
-        GUI_GAME test=(GUI_GAME)load_file.readObject();
+        GameView test=(GameView)load_file.readObject();
             load_file.close();
             return test;
 
@@ -38,7 +38,7 @@ public class FileHandler implements Serializable   {
 
 
 
-    public static void Save_game_model(Game game,String file_name) throws FileNotFoundException,IOException
+    public static void Save_game_model(GameModel gameModel, String file_name) throws FileNotFoundException,IOException
     {
         File file =new File(file_name);
         ObjectOutputStream save_file;
@@ -54,16 +54,16 @@ public class FileHandler implements Serializable   {
 
         }
 
-        save_file.writeObject(game);
+        save_file.writeObject(gameModel);
         save_file.close();
 
     }
 
-    public static Game load_game_model(String file_name)  throws FileNotFoundException,IOException,ClassNotFoundException
+    public static GameModel load_game_model(String file_name)  throws FileNotFoundException,IOException,ClassNotFoundException
     {
-        Game my_pre_game;
+        GameModel my_pre_game;
         ObjectInputStream load_file=new ObjectInputStream(new FileInputStream(file_name));
-        Game test=(Game) load_file.readObject();
+        GameModel test=(GameModel) load_file.readObject();
         load_file.close();
         return test;
 
