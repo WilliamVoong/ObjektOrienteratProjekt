@@ -21,6 +21,7 @@ public class GameView extends DisplayScreen implements Serializable{
 				add(cells[i][j]);
 			}
 		}
+		setPreferredSize(new Dimension(900,900));
 	}
 
 	public void setCellText(Coordinate c, String text) { cells[c.getX()][c.getY()].setText(text);

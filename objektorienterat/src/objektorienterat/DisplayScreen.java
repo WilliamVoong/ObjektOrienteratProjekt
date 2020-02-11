@@ -17,7 +17,7 @@ public class DisplayScreen extends JPanel {
 	
 	DisplayScreen(SwappableScreen layoutManager){
 		this.layoutManager=layoutManager; 
-		setBackground(Color.ORANGE);
+		setBackground(new Color(0xFB292952));
 	}
 
 }
