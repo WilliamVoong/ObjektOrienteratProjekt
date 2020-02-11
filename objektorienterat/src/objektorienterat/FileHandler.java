@@ -14,7 +14,6 @@ public class FileHandler implements Serializable {
             save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
 
         }
-
         save_file.writeUTF(playername);
         save_file.writeObject(game);
         save_file.flush();
@@ -27,18 +26,19 @@ public class FileHandler implements Serializable {
 
         FileInputStream fis = new FileInputStream(file_name);
         AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
+        FileHandlerInterface test=null;
         while(fis.available()>0)
         {
             if(load_file.readUTF().equals(playername)) {
-                FileHandlerInterface test = (FileHandlerInterface) load_file.readObject();
-                load_file.close();
-                return test;
+                 test = (FileHandlerInterface) load_file.readObject();
+
             }
             else
                 load_file.readObject();
 
         }
-        return null;
+        load_file.close();
+        return test;
 
     }
 

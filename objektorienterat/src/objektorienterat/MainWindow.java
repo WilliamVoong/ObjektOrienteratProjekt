@@ -26,8 +26,8 @@ public class MainWindow extends JFrame {
 				//MainPage m = new MainPage();
 				//m.setVisible(true);
 				try{
-					GameController.save_game("Save_Gui14");
-					GameController.save_game_model("Save_model14");
+					GameController.save_game("Save_Gui15");
+					GameController.save_game_model("Save_model15");
 
 				}catch (IOException ex)
 				{
