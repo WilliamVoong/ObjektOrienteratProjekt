@@ -2,7 +2,7 @@ package src.objektorienterat;
 
 import java.awt.CardLayout;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -40,8 +40,10 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GameView gameView= (GameView) FileHandler.load_game("Save_Gui10");
-                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model10");
+                GameView gameView= (GameView) FileHandler.load_game("Save_Gui13","mohammad");
+                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model13","mohammad");
+                if(gameView==null)
+                    JOptionPane.showMessageDialog(null, "There is no data saved for this Username before !!", "OBS!!", JOptionPane.ERROR_MESSAGE);
                 new GameController(gameModel,gameView);
                 cards.add(gameView,LOADGAME);
 

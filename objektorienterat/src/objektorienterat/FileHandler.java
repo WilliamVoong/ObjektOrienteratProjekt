@@ -4,17 +4,18 @@ package src.objektorienterat;
 import java.io.*;
 
 public class FileHandler implements Serializable {
-    public static void Save_game(FileHandlerInterface game, String file_name) throws FileNotFoundException, IOException {
+    public static void Save_game(FileHandlerInterface game, String file_name,String playername) throws FileNotFoundException, IOException {
         File file = new File(file_name);
         AppendableObjectOutputStream save_file;
         if (file.exists()) {
-            save_file = new AppendableObjectOutputStream(new FileOutputStream(file));
+            save_file = new AppendableObjectOutputStream(new FileOutputStream(file,true));
 
         } else {
             save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
 
         }
 
+        save_file.writeUTF(playername);
         save_file.writeObject(game);
         save_file.flush();
         save_file.close();
@@ -22,14 +23,24 @@ public class FileHandler implements Serializable {
 
     }
 
-    public static FileHandlerInterface load_game(String file_name) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static FileHandlerInterface load_game(String file_name,String playername) throws FileNotFoundException, IOException, ClassNotFoundException {
 
         FileInputStream fis = new FileInputStream(file_name);
         AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
+        while(fis.available()>0)
+        {
+            if(load_file.readUTF().equals(playername)) {
                 FileHandlerInterface test = (FileHandlerInterface) load_file.readObject();
                 load_file.close();
                 return test;
             }
+            else
+                load_file.readObject();
+
+        }
+        return null;
+
+    }
 
 
 

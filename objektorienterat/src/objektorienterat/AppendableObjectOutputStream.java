@@ -12,5 +12,6 @@ public class AppendableObjectOutputStream extends ObjectOutputStream {
     protected void writeStreamHeader() throws IOException {
         // do not write a header
         System.out.println("im called");
+        reset();
     }
 }
