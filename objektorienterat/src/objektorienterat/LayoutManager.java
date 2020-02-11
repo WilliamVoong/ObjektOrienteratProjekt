@@ -40,8 +40,8 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GameView gameView= (GameView) FileHandler.load_game("Save_Gui");
-                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model");
+                GameView gameView= (GameView) FileHandler.load_game("Save_Gui10");
+                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model10");
                 new GameController(gameModel,gameView);
                 cards.add(gameView,LOADGAME);
 

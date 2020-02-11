@@ -24,6 +24,7 @@ public  class GameController {
                 theView.addCellListener(new Coordinate(i, j), new CellListener());
             }
         }
+        theView.addSuggestListner(new SugestListner());
     }
 
     public GameModel getTheModel(){return theModel;}
@@ -43,6 +44,15 @@ public  class GameController {
     }
 
 
+    class SugestListner implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
+            Sound_effect.playSound("help.wav");
+            theView.blinkButton(AIcoord);
+        }
+    }
 
 
 
@@ -69,19 +79,27 @@ public  class GameController {
                                 case 0:
                                     Sound_effect.playSound("win.wav");
                                     JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                                    theModel.reset();
+                                    theView.resetcell();
 
                                     break;
                                 case 1:
                                     JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                                    theModel.reset();
+                                    theView.resetcell();
                                     break;
                             }
                         }
                         break;
                     case 0:
                         JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                        theModel.reset();
+                        theView.resetcell();
                         break;
                     case 1:
                         JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                        theModel.reset();
+                        theView.resetcell();
                 }
             }
             theView.repaint();
