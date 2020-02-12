@@ -3,14 +3,16 @@ package src.objektorienterat;
 import java.awt.CardLayout;
 
 import javax.swing.JPanel;
-
+/*
+ * A layoutmanager for the stats class; 
+ * 
+ */
 public class LayoutManagerStats implements SwappableScreen{
 	JPanel cards = new JPanel(new CardLayout());
 	CardLayout c1= (CardLayout) (cards.getLayout());
 	@Override
 	public void swap(String screenToShow) {
 		
-		c1.next(cards);
 	}
 
 	@Override

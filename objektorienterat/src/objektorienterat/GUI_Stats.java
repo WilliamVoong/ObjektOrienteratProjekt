@@ -23,32 +23,32 @@ public class GUI_Stats extends DisplayScreen {
 	
 	GUI_Stats(LayoutManager manager){
 		super(manager); 
-		
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		JLabel scoreText=new JLabel("Score"); 
 		
+		JLabel scoreText=new JLabel("Score"); 
 		scoreText.setForeground(Color.WHITE);
 		scoreText.setFont(new Font("Helvetica", Font.PLAIN,60));
 		scoreText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		scoreText.setBackground(Color.black);
-		//add(Box.createRigidArea(new Dimension(300,300)));
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		//mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		mainPanel.setBackground(Color.BLACK);
-		//add(Box.createRigidArea(new Dimension(300,300)));
-		mainPanel.add(scoreText);
-		JPanel panel= new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		
-		
-		panel.add(scoreText);
-		drawScorePanel(panel);
-		drawButtonPanel(panel);
-		panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-	
 		JButton backToMenu= new JButton("Go Back To Menu"); 
 		backToMenu.setUI(new StyledButtonUI());
+		
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		mainPanel.setBackground(Color.BLACK);
+		mainPanel.add(scoreText);
+		
+		
+		JPanel holderPanel= new JPanel();
+		holderPanel.setLayout(new BoxLayout(holderPanel,BoxLayout.Y_AXIS));
+		holderPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		holderPanel.add(scoreText);
+		drawScorePanel(holderPanel);
+		drawButtonPanel(holderPanel);
+		
+	
+		
 		backToMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,9 +58,9 @@ public class GUI_Stats extends DisplayScreen {
 		
 		
 	
-		panel.setBackground(Color.black);
+		holderPanel.setBackground(Color.black);
 		add(Box.createHorizontalGlue());
-		add(panel);
+		add(holderPanel);
 		
 		add(Box.createRigidArea(new Dimension(100,100)));
 		add(backToMenu);
@@ -132,12 +132,25 @@ public class GUI_Stats extends DisplayScreen {
 		});
 		buttonPanel.add(prev);
 		buttonPanel.add(next);
-		
-		
 		paneltodrawTo.add(buttonPanel);
 	}
+	
+	/*	NOT DONE!!!!!!!!!!!!!!
+	 * creates panel for every 10 stats added to the screen.
+	 *  TODOOOO 
+	 */
 	private void drawStats()
 	{
+		
+		JPanel score= new JPanel();
+		score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
+		score.setAlignmentX(CENTER_ALIGNMENT);
+		score.setBackground(new Color(0x00AAF0CD) );
+		for(int j =0 ; j < 10; j++) {
+			JLabel s= new JLabel("example score" + j);
+			s.setAlignmentX(Component.CENTER_ALIGNMENT);
+			score.add(s);
+		} 
 		
 	}; 
 	
