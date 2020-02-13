@@ -2,35 +2,34 @@ package src.objektorienterat;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.Serializable;
 
-public class GameView extends DisplayScreen implements Serializable{
+public class GameView extends DisplayScreen implements Serializable, ModelListener {
 	private static final long serialVersionUID = 1L;
-	Cell[][] cells = new Cell[3][3];
-	private GameController gameController;
-	private Cell lastClickedCell;
-
-	public GameView(SwappableScreen layoutManager) {
-		super(layoutManager);
-		setLayout(new GridLayout(3, 3));
+	private Cell[][] cells;
+	private GameModel model;
+	
+	public GameView(SwappableScreen screen, GameModel model) {
+		super(screen);
+		this.model = model;
+		this.model.addListener(this);
 		this.cells = new Cell[3][3];
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				Cell c = this.cells[i][j] = new Cell(new Coordinate(i, j));
-				c.addActionListener(
-						(ActionEvent e) -> {
-							this.lastClickedCell = (Cell)e.getSource();
-							this.gameController.viewCellWasClicked();
-						});
-				add(c);
+		setLayout(new GridLayout(3, 3));
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				add(this.cells[i][j] = new Cell(new Coordinate(i, j)));
 			}
 		}
 		reset();
 	}
 	
-	public void setGameController(GameController gameController) {
-		this.gameController = gameController;
+	public void addCellListeners(ActionListener cellListener) {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				this.cells[i][j].addActionListener(cellListener);
+			}
+		}
 	}
 
 	public void reset() {
@@ -39,20 +38,13 @@ public class GameView extends DisplayScreen implements Serializable{
 				this.cells[i][j].setText("");
 			}
 		}
-		this.lastClickedCell = null;
 	}
 	
-	public void makeMark(Coordinate coord, String s) {
-		this.cells[coord.getX()][coord.getY()].setText(s);
-		this.gameController.viewStateWasChanged();
-	}
-
-	public Cell getLastClickedCell() {
-		return this.lastClickedCell;
-	}
-	
-	public Cell getCorrdinate(Coordinate coordinate) {
-		return cells[coordinate.getX()][coordinate.getY()];
+	@Override
+	public void modelWasUpdated() {
+		Move m = this.model.getLastMove();
+		Coordinate coord = m.getCoord();
+		this.cells[coord.getX()][coord.getY()].setText(m.getMark().toString());
 	}
 
 	public void Change_color(Coordinate coordinate, Color color) {

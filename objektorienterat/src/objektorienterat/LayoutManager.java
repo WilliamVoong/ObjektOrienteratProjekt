@@ -25,13 +25,14 @@ public class LayoutManager implements SwappableScreen{
     }
     public void addComponentToPane(Container pane) throws Exception {
     	  cards.setVisible(true);
-    	  GameView game= new GameView(this);
-    	  GameModel game_model=new GameModel();
+    	  
+    	  GameModel model=new GameModel();
+    	  GameView view= new GameView(this, model);
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
-          cards.add(game, GAMEPANEL);
-        new GameController(game_model,game);
+          cards.add(view, GAMEPANEL);
+          new GameController(game_model,game);
           pane.add(cards);
           System.out.println("hej");
     	

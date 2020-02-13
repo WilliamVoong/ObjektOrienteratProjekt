@@ -25,13 +25,6 @@ public class MainWindow extends JFrame {
 				System.out.println("Uncomment following to open another window!");
 				//MainPage m = new MainPage();
 				//m.setVisible(true);
-				try{
-					GameController.save_game("Save_Gui");
-					GameController.save_game_model("Save_model");
-				}catch (IOException ex)
-				{
-					System.out.println(ex);
-				}
 
 				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
 				e.getWindow().dispose();

@@ -1,14 +1,19 @@
 package src.objektorienterat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Mark[][] marks;
 	private int markCount;
-
+	private Move lastMove;
+	private List<ModelListener> listeners;
+	
 	public GameModel() {
 		this.marks = new Mark[3][3];
+		this.listeners = new ArrayList<>();
 		reset();
 	}
 
@@ -20,12 +25,31 @@ public class GameModel implements Serializable {
 		}
 		this.markCount = 0;
 	}
-
-	public void makeMark(Coordinate coord) {
-		this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O;
-		this.markCount++;
+	
+	public void addListener(ModelListener listener) {
+		this.listeners.add(listener);
 	}
 	
+	public void removeListener(ModelListener listener) {
+		this.listeners.remove(listener);
+	}
+	
+	public Move getLastMove() {
+		return this.lastMove;
+	}
+	
+	public void makeMark(Coordinate coord) {
+		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
+		this.markCount++;
+		notifyListeners();
+	}
+	
+	private void notifyListeners() {
+		for(ModelListener listener : listeners) {
+			listener.modelWasUpdated();
+		}
+	}
+
 	public boolean isGameOver() {
 		return isWinner() || this.markCount > 8;
 	}

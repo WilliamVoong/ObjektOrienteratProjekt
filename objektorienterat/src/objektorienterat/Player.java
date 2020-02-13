@@ -1,6 +1,6 @@
 package src.objektorienterat;
 
-public class Player implements Playing {
+public class Player implements HumanPlayer {
 
 	private String username;
 	private int gamesPlayed;
@@ -81,10 +81,8 @@ public class Player implements Playing {
 	}
 
 	@Override
-	public void makeMove(GameModel model, GameView view) {
-		Coordinate coord = view.getLastClickedCell().getCoordinate();
+	public void makeMove(GameModel model, Coordinate coord) {
 		model.makeMark(coord);
-		view.makeMark(coord, model.getMark(coord).toString());
 	}
 
 }

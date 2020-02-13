@@ -3,22 +3,29 @@ package src.objektorienterat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class AI implements Playing {
+public class AI implements AIPlayer {
 
 	@Override
-	public void makeMove(GameModel model, GameView view) {
+	public void makeMove(GameModel model) {
 		Coordinate AIcoord = null;
 		if((AIcoord = smartMove(model.getMarks(), model.getMarkCount())) != null) {
-			makeMark(model, view, AIcoord);
+			makeMark(model, AIcoord);
 		} else if((AIcoord = randomMove(model.getMarks())) != null) {
-			makeMark(model, view, AIcoord);
+			makeMark(model, AIcoord);
 		}
 	}
 	
-	private void makeMark(GameModel model, GameView view, Coordinate coord) {
-		model.makeMark(coord);
-		view.makeMark(coord, model.getMark(coord).toString());
+	private void makeMark(GameModel model, Coordinate coord) {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				model.makeMark(coord);
+			}
+		}, 1000);
 	}
 	
 	private Coordinate smartMove(Mark[][] marks, int markCount) {
@@ -138,7 +145,6 @@ public class AI implements Playing {
 
 	private static Coordinate randomMove(Mark[][] marks) {
 		List<Coordinate> potentialMoveCoordinates = new ArrayList<>();
-		Random rand = new Random();
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (marks[i][j].equals(Mark.NULL)) {
@@ -147,6 +153,7 @@ public class AI implements Playing {
 			}
 		}
 		if (!potentialMoveCoordinates.isEmpty()) {
+			Random rand = new Random();
 			return potentialMoveCoordinates.get(rand.nextInt(potentialMoveCoordinates.size()));
 		}
 		return null;
