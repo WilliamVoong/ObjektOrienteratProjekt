@@ -3,7 +3,9 @@ package src.objektorienterat;
 
 import java.io.*;
 
-public class FileHandler implements Serializable {
+
+public class FileHandler   {
+
 
     public static void Save_game(FileHandlerInterface game, String file_name,String playername)  {
 
@@ -44,6 +46,7 @@ public class FileHandler implements Serializable {
                 else
                     load_file.readObject();
             }
+
             load_file.close();
             return test;
 
@@ -67,9 +70,11 @@ public class FileHandler implements Serializable {
 
 }
 
-
 /*  This is for saving game Model
     public static void Save_game_model(GameModel gameModel, String file_name) throws FileNotFoundException,IOException
+=======
+    public static void Save_game_model(GameModel game, String file_name) throws FileNotFoundException,IOException
+>>>>>>> 904269f59fe1b30628cd8eacbde385a6e95670f6
     {
         File file =new File(file_name);
         ObjectOutputStream save_file;

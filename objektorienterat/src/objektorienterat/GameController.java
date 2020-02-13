@@ -1,6 +1,8 @@
 package src.objektorienterat;
 
 
+import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,20 +13,14 @@ public  class GameController {
     private  static GameModel theModel;
     private  static GameView theView;
 
-
-
     public GameController(GameModel theModel, GameView theView) {
          this.theModel = theModel;
         this.theView = theView;
-        Clock clock=new Clock(new Object());
-        clock.addPropertyChangeListener(theView);
-        theModel.addPropertyChangeListener(theView);
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
                 theView.addCellListener(new Coordinate(i, j), new CellListener());
             }
         }
-        theView.addSuggestListner(new SugestListner());
     }
 
     public GameModel getTheModel(){return theModel;}
@@ -35,12 +31,20 @@ public  class GameController {
 
     public static void save_game(String filename) throws IOException
     {
-        FileHandler.Save_game(theView,filename,"william");
+        FileHandler.Save_game(theView,filename,"bilal");
     }
 
     public static void save_game_model(String filename) throws IOException
     {
-        FileHandler.Save_game(theModel,filename,"william");
+        FileHandler.Save_game(theModel,filename,"bilal");
+    }
+
+
+
+    public GameController(GameController game_controller)
+    {
+        theView=game_controller.getTheView();
+        theModel=game_controller.getTheModel();
     }
 
 
@@ -56,57 +60,48 @@ public  class GameController {
 
 
 
+
     class CellListener implements ActionListener {
         /* kommer förbättra detta senare */
         @Override
         public void actionPerformed(ActionEvent e) {
             Sound_effect.playSound("buttonclick.wav");
             Cell c = (Cell)e.getSource();
-            //theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
+            theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
             if(c.getText().equals("")) {
                 Coordinate coord = c.getCoordinate();
                 theModel.mark(coord);
-                // theView.setCellText(coord, theModel.getMark(coord)); old version without Observer
+                theView.setCellText(coord, theModel.getMark(coord));
                 switch(theModel.checkForWinner(coord)) {
-                    case -1:
-                        Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-                        if(AIcoord != null) {
-                            theModel.mark(AIcoord);
-                            //theView.setCellText(AIcoord, theModel.getMark(AIcoord)); without observer
-                            //theView.Change_color(AIcoord,new Color(0xBC83CE));
-                            switch(theModel.checkForWinner(AIcoord)) {
-                                case -1: break;
-                                case 0:
-                                    Sound_effect.playSound("win.wav");
-                                    JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-                                    theModel.reset();
-                                    theView.resetcell();
+                case -1:
+                	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
+                    if(AIcoord != null) {
+                        theModel.mark(AIcoord);
+                        theView.setCellText(AIcoord, theModel.getMark(AIcoord));
+                        theView.Change_color(AIcoord,new Color(0xBC83CE));
+                        switch(theModel.checkForWinner(AIcoord)) {
+                        case -1: break;
+                        case 0:
+                            Sound_effect.playSound("win.wav");
+                          	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
 
-                                    break;
-                                case 1:
-                                    JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                                    theModel.reset();
-                                    theView.resetcell();
-                                    break;
-                            }
+                        	break;
+                        case 1:
+                        	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
+                        	break;
                         }
-                        break;
-                    case 0:
-                        JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-                        theModel.reset();
-                        theView.resetcell();
-                        break;
-                    case 1:
-                        JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                        theModel.reset();
-                        theView.resetcell();
+                    }
+                    break;
+                case 0:
+                	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
+                	break;
+                case 1:
+                	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-            theView.repaint();
+           theView.repaint();
         }
 
     }
-
-
 
 }

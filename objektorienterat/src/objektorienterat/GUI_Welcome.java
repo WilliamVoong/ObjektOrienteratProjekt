@@ -19,30 +19,31 @@ public class GUI_Welcome extends DisplayScreen {
 
 	GUI_Welcome(SwappableScreen layoutManager) {
 		super(layoutManager);
-		JPanel playerinput=new JPanel();
+		JPanel buttonPanel=new JPanel();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); 
-		playerinput.setLayout(new BoxLayout(playerinput, BoxLayout.X_AXIS));
-		playerinput.setBackground(this.getBackground());
+		
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.setBackground(this.getBackground());
 		
 		JLabel treirad= new JLabel("Tre i rad");
 		JLabel username= new JLabel("Enter your username:   "); 
+		treirad.setForeground(Color.WHITE);
+		username.setForeground(Color.WHITE);
 		
 		JTextField text = new JTextField(10);
-	
-		
-		
 		
 		treirad.setFont(new Font("Helvetica", Font.PLAIN,60));
 		text.setMaximumSize(new Dimension(130,30));
 		treirad.setAlignmentX(CENTER_ALIGNMENT);
-		playerinput.setAlignmentX(CENTER_ALIGNMENT);
+		buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
 		
 		add(Box.createRigidArea(new Dimension(0,300)));
 		add(treirad);
 		add(Box.createRigidArea(new Dimension(0,30)));
 		
-		playerinput.add(username);
-		playerinput.add(text);
+		buttonPanel.add(username);
+		buttonPanel.add(text);
+
 		setVisible(true);
 		setPreferredSize(new Dimension(300, 300));
 		
@@ -60,12 +61,13 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Player player= new Player(text.getText(),0,0,0,0);
 				System.out.println(text.getText());
 				layoutManager.swap(LayoutManager.MENUPANEL);
 			}
 
 		});
-		add(playerinput);
+		add(buttonPanel);
 
 	}
 }

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bcda44ab-4669-4552-a665-3687c9faac1b" name="Default Changelist" comment="Merge branch 'master' into bashar&#10;&#10;# Conflicts:&#10;#&#9;objektorienterat/src/objektorienterat/FileHandler.java&#10;#&#9;objektorienterat/src/objektorienterat/Game_Controller.java&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/LayoutManagerStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_Gui" beforeDir="false" afterPath="$PROJECT_DIR$/Save_Gui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_Gui16" beforeDir="false" afterPath="$PROJECT_DIR$/Save_Gui16" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_model" beforeDir="false" afterPath="$PROJECT_DIR$/Save_model" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_model16" beforeDir="false" afterPath="$PROJECT_DIR$/Save_model16" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/DisplayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/DisplayScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Welcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Welcome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/LayoutManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/LayoutManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Stats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/StyledButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/StyledButtonUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/SwappableScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/SwappableScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/HorizontalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/LayoutState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/Util.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/com/intellij/uiDesigner/core/VerticalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Coordinate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_GAME.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_GAME.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Welcome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Welcome$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Welcome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Welcome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameController$CellListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameController$CellListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameController$SugestListner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameEngine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/NetWork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/NetWork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/ScreenButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/ScreenButton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Sound_effect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Sound_effect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Stats.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Stats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/SwappableScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/SwappableScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/WinningScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/WinningScreen.class" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>TicTacToeModel</find>
+      <find>TicTacToeView</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>GUI_GAME</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="src.objektorienterat.Main" />
+      <module name="ObjektOrienteratProjekt" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="37409330-ff5f-47af-94c8-3f85918a57f2" name="Default" comment="" />
+      <created>1580822563009</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580822563009</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
