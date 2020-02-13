@@ -28,7 +28,6 @@ public class LayoutManager implements SwappableScreen{
     	  
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
-
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
          // cards.add(game, GAMEPANEL);
           new GameController(new GameModel(), game);

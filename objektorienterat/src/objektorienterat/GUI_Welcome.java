@@ -43,6 +43,7 @@ public class GUI_Welcome extends DisplayScreen {
 		
 		buttonPanel.add(username);
 		buttonPanel.add(text);
+
 		setVisible(true);
 		setPreferredSize(new Dimension(300, 300));
 		
@@ -60,6 +61,7 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Player player= new Player(text.getText(),0,0,0,0);
 				System.out.println(text.getText());
 				layoutManager.swap(LayoutManager.MENUPANEL);
 			}
