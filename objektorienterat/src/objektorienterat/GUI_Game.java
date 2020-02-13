@@ -6,17 +6,22 @@ import java.io.Serializable;
 import javax.swing.*;
 
 public class GUI_Game extends DisplayScreen {
-	JPanel game;
+
 	Player player;
 	FileHandler filehandler;
+    GameModel gameModel;
+    GameView gameView;
 
-    GUI_Game(SwappableScreen layoutManager, JPanel gameView){
+
+    GUI_Game(SwappableScreen layoutManager,GameModel gameModel,GameView gameView){
     	
     	
     
         super(layoutManager);
-    	game= new DisplayScreen(layoutManager);
-    	game=gameView;
+        this.gameModel=gameModel;
+        this.gameView=gameView;
+    	//this.gameView= new DisplayScreen(layoutManager);
+
         setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
@@ -43,20 +48,38 @@ public class GUI_Game extends DisplayScreen {
             }
         });
 
+        sugggestMove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gameView.blinkButton(AI.move(gameModel.getMarks(),gameModel.getMarkCount()));
+                Sound_effect.playSound("help.wav");
+
+            }
+        });
+
+        saveGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                FileHandler.Save_game(gameModel,"Save_model17","bashar");
+                FileHandler.Save_game(gameView,"Save_Gui17","bashar");
+
+            }
+        });
+
 
         buttonPanel.add(Box.createRigidArea(new Dimension(0,100)));
         buttonPanel.add(goBackToMenu);
         buttonPanel.add(saveGame);
         buttonPanel.add(sugggestMove);
 
-        add(game,BorderLayout.CENTER);
+        add(gameView,BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.EAST);
 
 
         //add(text, BorderLayout.NORTH);
     }
-   public void setGamepanel(JPanel gamepanel){
-	   this.game=gamepanel; 
-   } 
+   //public void setGamepanel(JPanel gamepanel){
+	 //  this.gameView=gamepanel;
+  // }
    
 }

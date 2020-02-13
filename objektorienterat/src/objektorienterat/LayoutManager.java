@@ -26,13 +26,14 @@ public class LayoutManager implements SwappableScreen{
     public void addComponentToPane(Container pane) {
     	  cards.setVisible(true);
     	  GameView game= new GameView(this);
+    	  GameModel gameModel=new GameModel();
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this), MENUPANEL);
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
          // cards.add(game, GAMEPANEL);
-          new GameController(new GameModel(), game);
+          new GameController(gameModel, game);
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
-          cards.add(new GUI_Game(this,game), GAMEPANEL);
+          cards.add(new GUI_Game(this,gameModel,game),GAMEPANEL);
           pane.add(cards);
     	
     }
@@ -41,12 +42,12 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GameView gameView= (GameView) FileHandler.load_game("Save_Gui16","bashar");
-                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model16","bashar");
+                GameView gameView= (GameView) FileHandler.load_game("Save_Gui17","bashar");
+                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model17","bashar");
                 if(gameView==null)
                     JOptionPane.showMessageDialog(null, "There is no data saved for this Username before !!", "OBS!!", JOptionPane.ERROR_MESSAGE);
                 new GameController(gameModel,gameView);
-                cards.add(gameView,LOADGAME);
+                cards.add(new GUI_Game(this,gameModel,gameView),LOADGAME);
 
             }
         }catch (Exception e)
