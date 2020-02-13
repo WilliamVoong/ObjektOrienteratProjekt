@@ -61,7 +61,7 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Player player= new Player(text.getText(),0,0,0,0);
+				Playing player= new Player(text.getText(),0,0,0);
 				System.out.println(text.getText());
 				layoutManager.swap(LayoutManager.MENUPANEL);
 			}
