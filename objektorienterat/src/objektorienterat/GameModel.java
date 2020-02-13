@@ -1,13 +1,20 @@
 package src.objektorienterat;
 
 
+import javafx.beans.Observable;
+
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
-public class GameModel implements Serializable{
+
+public class GameModel extends PropertyChangeSupport implements Serializable,FileHandlerInterface {
+
 	private String[][] marks;
 	private int markCount;
 
 	GameModel() {
+
+		super(new Emtptyclass());
 		this.marks = new String[3][3];
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -15,6 +22,8 @@ public class GameModel implements Serializable{
 			}
 		}
 		this.markCount = 0;
+
+
 	}
 
 	public void mark(Coordinate c) {
@@ -22,10 +31,13 @@ public class GameModel implements Serializable{
 		int y = c.getY();
 		if (this.markCount % 2 == 0) {
 			this.marks[x][y] = "X";
+			firePropertyChange("cellchange",c,"X");
 		} else {
 			this.marks[x][y] = "O";
+			firePropertyChange("cellchange",c,"O");
 		}
 		this.markCount++;
+
 	}
 
 	public String getMark(Coordinate c) {
@@ -89,5 +101,7 @@ public class GameModel implements Serializable{
     	}
     	this.markCount = 0;
     }
-    
+
+
+
 }

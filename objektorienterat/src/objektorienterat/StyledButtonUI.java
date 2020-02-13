@@ -6,7 +6,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.io.Serializable;
 
-class StyledButtonUI extends BasicButtonUI implements Serializable {
+class StyledButtonUI extends BasicButtonUI {
 
     @Override
     public void installUI (JComponent c) {

@@ -26,7 +26,8 @@ public class GUI_MainMenu extends DisplayScreen {
 		JButton goToGameHighscore=  new JButton("Score");
 		JButton gotoloadgame=  new JButton("Load GameModel");
 		JButton exit= new JButton("Avsluta");
-		JLabel welcome=new JLabel("Välkommen till huvudmenyn"); 
+		JLabel welcome=new JLabel("Vï¿½lkommen till huvudmenyn");
+
 	
 	
 		welcome.setFont(new Font("Helvetica", Font.PLAIN,60));
@@ -51,7 +52,9 @@ public class GUI_MainMenu extends DisplayScreen {
 		addWithVerticalAlignment(goToGame,50);
 		addWithVerticalAlignment(goToGameHighscore,50);
 		addWithVerticalAlignment(goToGamePlayer,50);
+		addWithVerticalAlignment(gotoloadgame,50);
 		addWithVerticalAlignment(exit,50);
+
 
 		
 		exit.addActionListener(new ActionListener() {
@@ -81,6 +84,14 @@ public class GUI_MainMenu extends DisplayScreen {
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 			}
 			
+		});
+
+		gotoloadgame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// controller.clearGame(); -> TODO
+				layoutManager.swap(LayoutManager.LOADGAME);
+			}
+
 		});
 		
 		

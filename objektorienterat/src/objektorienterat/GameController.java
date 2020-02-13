@@ -31,12 +31,12 @@ public  class GameController {
 
     public static void save_game(String filename) throws IOException
     {
-        FileHandler.Save_game(theView,filename);
+        FileHandler.Save_game(theView,filename,"bilal");
     }
 
     public static void save_game_model(String filename) throws IOException
     {
-        FileHandler.Save_game_model(theModel,filename);
+        FileHandler.Save_game(theModel,filename,"bilal");
     }
 
 
@@ -45,6 +45,17 @@ public  class GameController {
     {
         theView=game_controller.getTheView();
         theModel=game_controller.getTheModel();
+    }
+
+
+    class SugestListner implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
+            Sound_effect.playSound("help.wav");
+            theView.blinkButton(AIcoord);
+        }
     }
 
 
