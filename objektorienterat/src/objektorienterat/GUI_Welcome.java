@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 
 /*
  * 
@@ -71,19 +72,33 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String username=text.getText();
-				boolean playerExists= stats.getPlayers().containsKey(username);
-						
-				if(playerExists) {
-					Player Player2Play = stats.getPlayers().get(username);
-				}else {
-					Player Player2Play = new Player(username,0,0,0); 
-					setCurrentlyPlaying(username);
-					stats.getPlayers().put(username, new Player(username,0,0,0));
+				
+				
+				try{
+					StringInputChecker s= new StringInputChecker();
+					String username = s.Check(text.getText());
+					boolean playerExists= stats.getPlayers().containsKey(username);
+					if(playerExists) {
+						Player Player2Play = stats.getPlayers().get(username);
+					}else {
+						Player Player2Play = new Player(username,0,0,0); 
+						setCurrentlyPlaying(username);
+						stats.getPlayers().put(username, new Player(username,0,0,0));
+					}
+					layoutManager.swap(LayoutManager.MENUPANEL);
+					
+				} catch (StringEmptyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Please insert a nonempty String"," ****************** ERROR *****************",JOptionPane.ERROR_MESSAGE);
+					
 				}
 				
+				
+				
+				
 				//layoutManager.addNewScreen(new Gui_MainMenu(new Filehandler("filename",username)));
-				layoutManager.swap(LayoutManager.MENUPANEL); // meny är förutbestämd, men måste bestäma en player. 
+				 // meny är förutbestämd, men måste bestäma en player. 
 															//  däremot skapa menypanel innan vi skriver in texten 
 			}												//  men referensen 
 

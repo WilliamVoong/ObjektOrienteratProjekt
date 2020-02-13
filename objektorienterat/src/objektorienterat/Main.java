@@ -6,5 +6,7 @@ public class Main {
 		TreIrad t= new TreIrad();
 		t.runGame();
 		//FileHandler.print();
+		StringInputChecker b= new StringInputChecker(new String(""));
+		
 	}
 }
