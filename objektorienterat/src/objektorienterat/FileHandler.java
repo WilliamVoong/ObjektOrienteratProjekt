@@ -4,60 +4,65 @@ package src.objektorienterat;
 import java.io.*;
 
 public class FileHandler implements Serializable {
-    public static void Save_game(FileHandlerInterface game, String file_name,String playername) throws FileNotFoundException, IOException {
-        File file = new File(file_name);
-        AppendableObjectOutputStream save_file;
-        if (file.exists()) {
-            save_file = new AppendableObjectOutputStream(new FileOutputStream(file,true));
 
-        } else {
-            save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
+    public static void Save_game(FileHandlerInterface game, String file_name,String playername)  {
 
-        }
-        save_file.writeUTF(playername);
-        save_file.writeObject(game);
-        save_file.flush();
-        save_file.close();
+        try {
+            File file = new File(file_name);
+            AppendableObjectOutputStream save_file;
+            if (file.exists()) {
+                save_file = new AppendableObjectOutputStream(new FileOutputStream(file, true));
 
-
-    }
-
-    public static FileHandlerInterface load_game(String file_name,String playername) throws FileNotFoundException, IOException, ClassNotFoundException {
-
-        FileInputStream fis = new FileInputStream(file_name);
-        AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
-        FileHandlerInterface test=null;
-        while(fis.available()>0)
-        {
-            if(load_file.readUTF().equals(playername)) {
-                 test = (FileHandlerInterface) load_file.readObject();
+            } else {
+                save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
 
             }
-            else
-                load_file.readObject();
+            save_file.writeUTF(playername);
+            save_file.writeObject(game);
+            save_file.flush();
+            save_file.close();
 
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found Error");
+        } catch (IOException e) {
+            System.out.println("Error in Writing to the File");
         }
-        load_file.close();
-        return test;
 
     }
 
-
-
-
-
-
-    public static void print() throws IOException, ClassNotFoundException {
-        AppendableObjectInputStream file= new AppendableObjectInputStream(new FileInputStream("Save_model9"));
-        for(int i=0;i<3;i++)
+    public static FileHandlerInterface load_game(String file_name,String playername) {
+        try {
+            FileInputStream fis = new FileInputStream(file_name);
+            AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
+            FileHandlerInterface test=null;
+            while(fis.available()>0)
+            {
+                if(load_file.readUTF().equals(playername)) {
+                    test = (FileHandlerInterface) load_file.readObject();
+                }
+                else
+                    load_file.readObject();
+            }
+            load_file.close();
+            return test;
+        }catch (FileNotFoundException e)
         {
-
-
-            System.out.println(file.readObject());
-            file.readObject();
+            System.out.println("File Not Found Exeption");
+        }
+        catch (IOException e)
+        {
+            System.out.println("error in reading or writing the file ");
 
         }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("Class Error . ");
+        }
+
+       return null;
     }
+
 }
 
 

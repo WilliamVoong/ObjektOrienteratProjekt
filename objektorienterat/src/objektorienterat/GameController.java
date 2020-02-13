@@ -35,12 +35,12 @@ public  class GameController {
 
     public static void save_game(String filename) throws IOException
     {
-        FileHandler.Save_game(theView,filename,"rima");
+        FileHandler.Save_game(theView,filename,"william");
     }
 
     public static void save_game_model(String filename) throws IOException
     {
-        FileHandler.Save_game(theModel,filename,"rima");
+        FileHandler.Save_game(theModel,filename,"william");
     }
 
 

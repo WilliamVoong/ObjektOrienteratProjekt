@@ -40,8 +40,8 @@ public class LayoutManager implements SwappableScreen{
     public void swap(String string)  {
         try {
             if (string.equals(LOADGAME)) {
-                GameView gameView= (GameView) FileHandler.load_game("Save_Gui15","bilal");
-                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model15","bilal");
+                GameView gameView= (GameView) FileHandler.load_game("Save_Gui16","vektor");
+                GameModel gameModel = (GameModel) FileHandler.load_game("Save_model16","vektor");
                 if(gameView==null)
                     JOptionPane.showMessageDialog(null, "There is no data saved for this Username before !!", "OBS!!", JOptionPane.ERROR_MESSAGE);
                 new GameController(gameModel,gameView);
