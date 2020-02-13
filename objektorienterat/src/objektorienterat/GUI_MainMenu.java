@@ -15,8 +15,13 @@ import java.awt.*;
  */
 
 public class GUI_MainMenu extends DisplayScreen {
-	GameController controller;
-	GUI_MainMenu(SwappableScreen layoutManager, GameController controller) {
+	
+	GameController controller;  
+	FileHandler filehandler; 
+	Player player; 
+	
+	
+	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller) {
 		super(layoutManager);
 		this.controller = controller;
 		
@@ -27,7 +32,7 @@ public class GUI_MainMenu extends DisplayScreen {
 		JButton goToGameHighscore=  new JButton("Score");
 		JButton gotoloadgame=  new JButton("Load GameModel");
 		JButton exit= new JButton("Avsluta");
-		JLabel welcome=new JLabel("V�lkommen till huvudmenyn");
+		JLabel welcome=new JLabel(" Welcome to the game");
 
 	
 	
@@ -67,6 +72,8 @@ public class GUI_MainMenu extends DisplayScreen {
 		
 		goToGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// controller.setPlaying(p1)  // player is already defined 
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 				controller.gameInit();
 			}
@@ -91,6 +98,7 @@ public class GUI_MainMenu extends DisplayScreen {
 			public void actionPerformed(ActionEvent e) {
 				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.LOADGAME);
+				//filehandler.load_game(file_name, playername)
 			}
 
 		});
