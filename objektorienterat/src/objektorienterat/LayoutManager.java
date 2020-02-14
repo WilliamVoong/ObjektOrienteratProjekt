@@ -23,7 +23,7 @@ public class LayoutManager implements SwappableScreen{
     
     public void addComponentToPane(Container pane) {
 
-    	  cards.setVisible(true);    	  
+    	  cards.setVisible(true);
          pane.add(cards);
     }
 
@@ -38,7 +38,7 @@ public class LayoutManager implements SwappableScreen{
 
                 Playing ai1 = new AI();
                 Playing ai2 = new AI();
-                new GameController(gameModel,gameView, ai1, ai2);
+                new GameController(gameModel,gameView);
                 cards.add(new GUI_Game(this,gameModel,gameView),LOADGAME);
 
             }
