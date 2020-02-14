@@ -12,12 +12,10 @@ import javax.swing.JOptionPane;
   public class GameController implements ModelListener {
 	private GameModel model;
 	private GameView view;
-	private Playing player1;
-	private Playing player2;
-	private Playing currentlyPlaying;
+	private Playing player1, player2, currentlyPlaying;
 	private boolean gameOver;
 	
-	public GameController(GameModel model, GameView view, Playing player1, Playing player2) {
+	public GameController(GameModel model, GameView view) {
 		this.model = model;
 		this.model.addListener(this);
 		this.view = view;
@@ -31,8 +29,6 @@ import javax.swing.JOptionPane;
 				}
 			}
 		});
-		this.player1 = player1;
-		this.player2 = player2;
 		this.gameOver = true;
 	}
 	
@@ -64,6 +60,14 @@ import javax.swing.JOptionPane;
 		this.view.reset();
 		this.gameOver = false;
 		notifyAI();
+	}
+	
+	public void setPlayer1(Playing player1) {
+		this.player1 = player1;
+	}
+	
+	public void setPlayer2(Playing player2) {
+		this.player2 = player2;
 	}
 	
 	/*
