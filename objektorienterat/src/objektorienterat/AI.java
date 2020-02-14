@@ -16,6 +16,7 @@ public class AI implements AIPlayer {
 		} else if((AIcoord = randomMove(model.getMarks())) != null) {
 			makeMark(model, AIcoord);
 		}
+
 	}
 	
 	private void makeMark(GameModel model, Coordinate coord) {
@@ -28,7 +29,7 @@ public class AI implements AIPlayer {
 		}, 1000);
 	}
 	
-	private Coordinate smartMove(Mark[][] marks, int markCount) {
+	public static Coordinate smartMove(Mark[][] marks, int markCount) {
 		int rowOffenseCount;
 		int rowDefenseCount;
 		Mark currentRowMark = null;
@@ -143,7 +144,7 @@ public class AI implements AIPlayer {
 		return count == 2 && potentialMarkCoordinate != null;
 	}
 
-	private static Coordinate randomMove(Mark[][] marks) {
+	public static Coordinate randomMove(Mark[][] marks) {
 		List<Coordinate> potentialMoveCoordinates = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {

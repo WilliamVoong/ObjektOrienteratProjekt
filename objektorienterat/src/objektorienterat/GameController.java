@@ -8,7 +8,8 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public class GameController implements ModelListener {
+
+  public class GameController implements ModelListener {
 	private GameModel model;
 	private GameView view;
 	private Playing player1;
@@ -68,15 +69,10 @@ public class GameController implements ModelListener {
 	/*
 	 * BASHARS SAKER
 	 */
-    
-    class SugestListner implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            //Coordinate AIcoord = AI.move(model.getMarks(), model.getMarkCount());
-            Sound_effect.playSound("help.wav");
-            //view.blinkButton(AIcoord);
-        }
-    }
+
+
+
+
 
 }
