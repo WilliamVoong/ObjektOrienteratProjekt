@@ -32,7 +32,7 @@ public class LayoutManager implements SwappableScreen{
     	  Playing p2 = new Player("lajjan",0,0,0);
     	  Playing ai1 = new AI();
           Playing ai2 = new AI();
-    	  GameController controller = new GameController(model, view, p1, ai1);
+    	  GameController controller = new GameController(model, view);
     	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
           cards.add(new GUI_MainMenu(this, controller), MENUPANEL);
           cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
@@ -52,7 +52,7 @@ public class LayoutManager implements SwappableScreen{
 
                 Playing ai1 = new AI();
                 Playing ai2 = new AI();
-                new GameController(gameModel,gameView, ai1, ai2);
+                new GameController(gameModel,gameView);
                 cards.add(new GUI_Game(this,gameModel,gameView),LOADGAME);
 
             }

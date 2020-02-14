@@ -24,7 +24,6 @@ public class FileHandler   {
             save_file.flush();
             save_file.close();
 
-
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found Error");
         } catch (IOException e) {
