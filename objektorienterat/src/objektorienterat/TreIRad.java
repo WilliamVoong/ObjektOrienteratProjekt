@@ -13,11 +13,13 @@ public class TreIRad {
     private DisplayScreen guiGame;
     private DisplayScreen guiMainMenu;
     private Player currentUser;
+    private FileHandler fileHandler;
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
         currentUser= new Player("dummy",0,0,0);
         createGameModelViewControler();
+        fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
         setupScreenMananger();
 
@@ -31,7 +33,7 @@ public class TreIRad {
 
     private void createScreens(){
         guiStats= new GUI_Stats(layoutManager, stats);
-        guiMainMenu= new GUI_MainMenu(layoutManager,currentUser,controller);
+        guiMainMenu= new GUI_MainMenu(layoutManager,currentUser,controller,fileHandler);
         guiGame= new GUI_Game(layoutManager, gameModel, gameView);
         guiWelcome= new GUI_Welcome(layoutManager, currentUser, stats);
 

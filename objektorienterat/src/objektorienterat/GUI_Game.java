@@ -63,9 +63,7 @@ public class GUI_Game extends DisplayScreen {
         saveGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //FileHandler.Save_game(gameModel,"Save_model17","bashar");
-                //FileHandler.Save_game(gameView,"Save_Gui17","bashar");
-
+                filehandler.Save(player);
             }
         });
 
