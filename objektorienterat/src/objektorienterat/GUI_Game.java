@@ -15,14 +15,24 @@ public class GUI_Game extends DisplayScreen {
 
     GUI_Game(SwappableScreen layoutManager,GameModel gameModel,GameView gameView){
     	
-    	
+
     
         super(layoutManager);
         this.gameModel=gameModel;
         this.gameView=gameView;
-    	//this.gameView= new DisplayScreen(layoutManager);
+        setLayout(new GridBagLayout());
+        GridBagConstraints c=new GridBagConstraints();
+        ;
 
-        setLayout(new BorderLayout());
+
+
+
+
+
+
+        //this.gameView= new DisplayScreen(layoutManager);
+
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
         buttonPanel.setBackground(Color.BLACK);
@@ -38,8 +48,9 @@ public class GUI_Game extends DisplayScreen {
         
         
         
-        text.setPreferredSize(new Dimension(100,100));
-        goBackToMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //text.setPreferredSize(new Dimension(100,100));
+        //we
+        // wegoBackToMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         goBackToMenu.addActionListener(new ActionListener() {
             @Override
@@ -74,9 +85,29 @@ public class GUI_Game extends DisplayScreen {
         buttonPanel.add(goBackToMenu);
         buttonPanel.add(saveGame);
         buttonPanel.add(sugggestMove);
+        //add(buttonPanel, c);
 
-        add(gameView,BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.EAST);
+
+        c.fill=GridBagConstraints.HORIZONTAL;
+        c.gridx=1;
+        c.gridy=0;
+        c.gridwidth=1;
+        c.gridheight=1;
+
+        add(sugggestMove,c);
+        c.gridy++;
+        add(saveGame,c);
+        c.gridy++;
+        add(goBackToMenu);
+
+        c.gridwidth=5;
+        c.gridheight=5;
+        c.gridx=0;
+        c.gridy=0;
+        c.ipady=600;
+        c.ipadx=600;
+        add(gameView,c);
+
 
 
         //add(text, BorderLayout.NORTH);
