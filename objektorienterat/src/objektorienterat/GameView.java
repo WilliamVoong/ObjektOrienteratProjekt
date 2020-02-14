@@ -1,42 +1,45 @@
 package src.objektorienterat;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.*;
+import javax.swing.Timer;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.io.Serializable;
 
 public class GameView extends DisplayScreen implements Serializable, FileHandlerInterface, ModelListener {
 	private static final long serialVersionUID = 1L;
 	private Cell[][] cells;
 	private GameModel model;
+	List<ViewListener> listeners;
 	
 	public GameView(SwappableScreen screen, GameModel model) {
 		super(screen);
 		this.model = model;
 		this.model.addListener(this);
+		this.listeners = new ArrayList<>();
 		this.cells = new Cell[3][3];
 		setLayout(new GridLayout(3, 3));
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				add(this.cells[i][j] = new Cell(new Coordinate(i, j)));
+				Cell c = new Cell(new Coordinate(i, j));
+				c.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						notifyListeners((Cell)e.getSource());
+					}
+				});
+				this.cells[i][j] = c;
+				add(c);
 			}
 		}
 		setPreferredSize(new Dimension(900, 900));
 		reset();
-	}
-	
-	public void addCellListeners(ActionListener cellListener) {
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
-				this.cells[i][j].addActionListener(cellListener);
-			}
-		}
 	}
 
 	public void reset() {
@@ -45,11 +48,19 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 				this.cells[i][j].setText("");
 			}
 		}
+		/* BORDE DETTA GÖRAS?
+		for(ViewListener vl : listeners) {
+			this.listeners.remove(vl);
+		}
+		*/
 	}
 	
 	@Override
 	public void modelWasUpdated() {
 		Move m = this.model.getLastMove();
+		if(m == null) {
+			return;
+		}
 		Coordinate coord = m.getCoord();
 		this.cells[coord.getX()][coord.getY()].setText(m.getMark().toString());
 		if(model.getMarkCount()%2 ==0 )
@@ -57,6 +68,21 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 		else
 			Change_color(coord,new Color(0x80CEB9));
 
+	}
+	
+	public void addListener(ViewListener listener) {
+		this.listeners.add(listener);
+	}
+	
+	public void removeListener(ViewListener listener) {
+		this.listeners.remove(listener);
+	}
+	
+	private void notifyListeners(Cell clickedCell) {
+		for(ViewListener vl : listeners) {
+			System.out.println("notifying VIEW listener");
+			vl.cellWasClicked(clickedCell);
+		}
 	}
 
 	/*
@@ -93,6 +119,5 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 		});
 		blinkTimer.start();
 	}
-
 
 }
