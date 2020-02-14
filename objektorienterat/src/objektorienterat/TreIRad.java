@@ -32,7 +32,7 @@ public class TreIRad {
     private void createScreens(){
         guiStats= new GUI_Stats(layoutManager, stats);
         guiMainMenu= new GUI_MainMenu(layoutManager,currentUser,controller);
-        guiGame= new GUI_Game(layoutManager,gameView);
+        guiGame= new GUI_Game(layoutManager, gameModel, gameView);
         guiWelcome= new GUI_Welcome(layoutManager, currentUser, stats);
 
     }
