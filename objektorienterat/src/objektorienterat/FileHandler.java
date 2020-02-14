@@ -7,7 +7,11 @@ import java.io.*;
 public class FileHandler   {
 
 
-    public static void Save_game(FileHandlerInterface game, String file_name,String playername)  {
+    public FileHandler()
+    {
+
+    }
+    public  void Save_game(FileHandlerInterface game, String file_name,Player player)  {
 
         try {
             File file = new File(file_name);
@@ -19,7 +23,7 @@ public class FileHandler   {
                 save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
 
             }
-            save_file.writeUTF(playername);
+            save_file.writeUTF(player.getUsername());
             save_file.writeObject(game);
             save_file.flush();
             save_file.close();
@@ -32,14 +36,14 @@ public class FileHandler   {
 
     }
 
-    public static FileHandlerInterface load_game(String file_name,String playername) {
+    public FileHandlerInterface load_game(String file_name,Player player) {
         try {
             FileInputStream fis = new FileInputStream(file_name);
             AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
             FileHandlerInterface test=null;
             while(fis.available()>0)
             {
-                if(load_file.readUTF().equals(playername)) {
+                if(load_file.readUTF().equals(player.getUsername())) {
                     test = (FileHandlerInterface) load_file.readObject();
                 }
                 else

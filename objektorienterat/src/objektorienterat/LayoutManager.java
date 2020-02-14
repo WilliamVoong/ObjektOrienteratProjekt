@@ -3,6 +3,7 @@ package src.objektorienterat;
 import java.awt.CardLayout;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
@@ -20,30 +21,15 @@ public class LayoutManager implements SwappableScreen{
    
     JPanel cards = new JPanel(new CardLayout());
     
-    LayoutManager(){
-
-    }
     public void addComponentToPane(Container pane) {
 
-    	  cards.setVisible(true);    	  
-    	  GameModel model=new GameModel();
-    	  GameView view= new GameView(this, model);
-    	  Playing p1 = new Player("bajjan",0,0,0);
-    	  Playing p2 = new Player("lajjan",0,0,0);
-    	  Playing ai1 = new AI();
-          Playing ai2 = new AI();
-    	  GameController controller = new GameController(model, view);
-    	  cards.add(new GUI_Welcome(this), WELCOMEPANEL);
-          cards.add(new GUI_MainMenu(this, controller), MENUPANEL);
-          cards.add(new GUI_Stats(this), HIGHSCOREPANEL);
-          cards.add(new GUI_Game(this, model,view), GAMEPANEL);
-          pane.add(cards);
-    	
+    	  cards.setVisible(true);
+         pane.add(cards);
     }
 
 
     public void swap(String string)  {
-        try {
+        /*try {
             if (string.equals(LOADGAME)) {
                 GameView gameView= (GameView) FileHandler.load_game("Save_Gui17","bashar");
                 GameModel gameModel = (GameModel) FileHandler.load_game("Save_model17","bashar");
@@ -59,8 +45,9 @@ public class LayoutManager implements SwappableScreen{
         }catch (Exception e)
         {
 
-        }
-    	CardLayout c1= (CardLayout) (cards.getLayout());
+        }*/
+    	
+        CardLayout c1= (CardLayout) (cards.getLayout());
     	c1.show(cards, string);
     	
     }
