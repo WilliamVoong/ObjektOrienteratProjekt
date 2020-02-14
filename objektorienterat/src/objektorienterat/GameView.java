@@ -52,6 +52,11 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 		Move m = this.model.getLastMove();
 		Coordinate coord = m.getCoord();
 		this.cells[coord.getX()][coord.getY()].setText(m.getMark().toString());
+		if(model.getMarkCount()%2 ==0 )
+			Change_color(coord,new Color(0xCE5F86));
+		else
+			Change_color(coord,new Color(0x80CEB9));
+
 	}
 
 	/*
@@ -88,4 +93,6 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 		});
 		blinkTimer.start();
 	}
+
+
 }
