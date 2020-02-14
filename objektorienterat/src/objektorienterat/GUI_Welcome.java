@@ -10,15 +10,26 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 
+/*
+ * 
+ * The gui of the Welcomescreen. 
+ * Has the responsiblity of the userinterface of the welcome screen. 
+ * 
+ */
 public class GUI_Welcome extends DisplayScreen {
-
-	/**
-	 * 
-	 */
-
-	GUI_Welcome(SwappableScreen layoutManager) {
+	Player currentlyPlaying;
+	GameController controller; 
+	Stats stats; 
+	LayoutManager layoutManager;
+	
+	GUI_Welcome(SwappableScreen layoutManager, Player currentlyPlayin, Stats stats){
+		
 		super(layoutManager);
+		this.stats=stats;
+		this.currentlyPlaying=currentlyPlaying;
+		
 		JPanel buttonPanel=new JPanel();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); 
 		
@@ -61,13 +72,41 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Playing player= new Player(text.getText(),0,0,0);
-				System.out.println(text.getText());
-				layoutManager.swap(LayoutManager.MENUPANEL);
-			}
+				
+				
+				try{
+					StringInputChecker s= new StringInputChecker();
+					String username = s.Check(text.getText());
+					boolean playerExists= stats.getPlayers().containsKey(username);
+					if(playerExists) {
+						Player Player2Play = stats.getPlayers().get(username);
+					}else {
+						Player Player2Play = new Player(username,0,0,0); 
+						setCurrentlyPlaying(username);
+						stats.getPlayers().put(username, new Player(username,0,0,0));
+					}
+					layoutManager.swap(LayoutManager.MENUPANEL);
+					
+				} catch (StringEmptyException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Please insert a nonempty String"," ****************** ERROR *****************",JOptionPane.ERROR_MESSAGE);
+					
+				}
+				
+				
+				
+				
+				//layoutManager.addNewScreen(new Gui_MainMenu(new Filehandler("filename",username)));
+				 // meny är förutbestämd, men måste bestäma en player. 
+															//  däremot skapa menypanel innan vi skriver in texten 
+			}												//  men referensen 
 
 		});
 		add(buttonPanel);
 
+	}
+	public void setCurrentlyPlaying(String username){
+		currentlyPlaying=	new Player(username,0,0,0); 
 	}
 }

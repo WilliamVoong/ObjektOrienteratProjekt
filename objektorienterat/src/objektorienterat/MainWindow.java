@@ -8,15 +8,18 @@ import javax.swing.*;
 /*
  * MainWindow has the responsiblity to display the main screen. 
  */
-public class MainWindow extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private DisplayScreen currentlyDisplayed;
-
-	MainWindow() throws Exception {
+public class MainWindow extends JFrame implements Runnable {
+	private LayoutManager screenSwapper;
+	MainWindow(LayoutManager screenSwapper){
 		super();
+		this.screenSwapper= screenSwapper;
+	}
+
+	@Override
+	public void run() {
+	
 		setVisible(true);
-		LayoutManager manager= new LayoutManager(); 
-		manager.addComponentToPane(getContentPane());
+		screenSwapper.addComponentToPane(getContentPane());
 		pack();
 		setSize(900,900);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -37,7 +40,6 @@ public class MainWindow extends JFrame {
 				System.exit(0);
 			}
 		});
-
 	}
 
 

@@ -20,10 +20,12 @@ public class GUI_Stats extends DisplayScreen {
 	JPanel mainPanel= new JPanel(); 
 	SwappableScreen screenswapper= new LayoutManagerStats(); 
 	
-	GUI_Stats(LayoutManager manager){
+	GUI_Stats(LayoutManager manager, Stats stats){
 		super(manager); 
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.stats=stats; 
 		
+		
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		JLabel scoreText=new JLabel("Score"); 
 		scoreText.setForeground(Color.WHITE);
 		scoreText.setFont(new Font("Helvetica", Font.PLAIN,60));
@@ -60,7 +62,6 @@ public class GUI_Stats extends DisplayScreen {
 		holderPanel.setBackground(Color.black);
 		add(Box.createHorizontalGlue());
 		add(holderPanel);
-		
 		add(Box.createRigidArea(new Dimension(100,100)));
 		add(backToMenu);
 		add(Box.createHorizontalGlue());
