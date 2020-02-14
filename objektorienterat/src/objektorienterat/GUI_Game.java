@@ -51,8 +51,11 @@ public class GUI_Game extends DisplayScreen {
         sugggestMove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                gameView.blinkButton(AI.move(gameModel.getMarks(),gameModel.getMarkCount()));
+                Coordinate AIcoord = AI.smartMove(gameModel.getMarks(),gameModel.getMarkCount());
+                if(AIcoord==null)
+                    AIcoord=AI.randomMove(gameModel.getMarks());
                 Sound_effect.playSound("help.wav");
+                gameView.blinkButton(AIcoord);
 
             }
         });

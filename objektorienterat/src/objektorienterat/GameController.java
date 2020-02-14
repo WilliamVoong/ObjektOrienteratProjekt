@@ -1,7 +1,6 @@
 package src.objektorienterat;
 
-
-import java.awt.*;
+import java.util.Random;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,94 +8,71 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public  class GameController {
-    private  static GameModel theModel;
-    private  static GameView theView;
 
-    public GameController(GameModel theModel, GameView theView) {
-         this.theModel = theModel;
-        this.theView = theView;
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                theView.addCellListener(new Coordinate(i, j), new CellListener());
-            }
-        }
-    }
+  public class GameController implements ModelListener {
+	private GameModel model;
+	private GameView view;
+	private Playing player1;
+	private Playing player2;
+	private Playing currentlyPlaying;
+	private boolean gameOver;
+	
+	public GameController(GameModel model, GameView view, Playing player1, Playing player2) {
+		this.model = model;
+		this.model.addListener(this);
+		this.view = view;
+		this.view.addCellListeners(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Cell c = (Cell)e.getSource();
+				if(!gameOver && c.getText().equals("") && currentlyPlaying instanceof Player) {
+					Player user = (Player)currentlyPlaying;
+					user.makeMove(model, c.getCoordinate());
+				}
+			}
+		});
+		this.player1 = player1;
+		this.player2 = player2;
+		this.gameOver = true;
+	}
+	
+	public void modelWasUpdated() {
+		if(this.gameOver = this.model.isGameOver()) {
+			// garbage below is just for testing - will be implemented properly soon(tm)
+			String s = (this.model.getMarkCount() % 2 == 0) ? Mark.O.toString() : Mark.X.toString();
+			if(this.model.getMarkCount() > 8 && !this.model.isWinner()) {
+				s = "No one";
+			}
+			System.out.println("Game over! The winner is: "+s+"!");
+		} else {
+			this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
+			notifyAI();
+		}
+	}
+	
+	private void notifyAI() {
+		if(!this.gameOver && this.currentlyPlaying instanceof AI) {
+			AI ai = (AI)this.currentlyPlaying;
+			ai.makeMove(this.model);
+		}
+	}
 
-    public GameModel getTheModel(){return theModel;}
-
-    public GameView getTheView(){return theView;
-
-    }
-
-    public static void save_game(String filename)
-    {
-        FileHandler.Save_game(theView,filename,"bilal");
-    }
-
-    public static void save_game_model(String filename)
-    {
-        FileHandler.Save_game(theModel,filename,"bilal");
-    }
+	public void gameInit() {
+		Random random = new Random();
+		this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
+		this.model.reset();
+		this.view.reset();
+		this.gameOver = false;
+		notifyAI();
+	}
+	
+	/*
+	 * BASHARS SAKER
+	 */
 
 
 
 
 
-    class SugestListner implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-            Sound_effect.playSound("help.wav");
-            theView.blinkButton(AIcoord);
-        }
-    }
-
-
-
-
-    class CellListener implements ActionListener {
-        /* kommer förbättra detta senare */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Sound_effect.playSound("buttonclick.wav");
-            Cell c = (Cell)e.getSource();
-            theView.Change_color(c.getCoordinate(),new Color(0x6CCEAE));
-            if(c.getText().equals("")) {
-                Coordinate coord = c.getCoordinate();
-                theModel.mark(coord);
-                theView.setCellText(coord, theModel.getMark(coord));
-                switch(theModel.checkForWinner(coord)) {
-                case -1:
-                	Coordinate AIcoord = AI.move(theModel.getMarks(), theModel.getMarkCount());
-                    if(AIcoord != null) {
-                        theModel.mark(AIcoord);
-                        theView.setCellText(AIcoord, theModel.getMark(AIcoord));
-                        theView.Change_color(AIcoord,new Color(0xBC83CE));
-                        switch(theModel.checkForWinner(AIcoord)) {
-                        case -1: break;
-                        case 0:
-                            Sound_effect.playSound("win.wav");
-                          	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-
-                        	break;
-                        case 1:
-                        	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                        	break;
-                        }
-                    }
-                    break;
-                case 0:
-                	JOptionPane.showMessageDialog(null, "O won!", "O won!", JOptionPane.INFORMATION_MESSAGE);
-                	break;
-                case 1:
-                	JOptionPane.showMessageDialog(null, "X won!", "X won!", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-           theView.repaint();
-        }
-
-    }
 
 }

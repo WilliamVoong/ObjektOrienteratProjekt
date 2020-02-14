@@ -17,8 +17,9 @@ import java.awt.*;
 public class GUI_MainMenu extends DisplayScreen {
 	GameController controller;
 
-	GUI_MainMenu(SwappableScreen layoutManager) {
+	GUI_MainMenu(SwappableScreen layoutManager, GameController controller) {
 		super(layoutManager);
+		this.controller = controller;
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -67,8 +68,8 @@ public class GUI_MainMenu extends DisplayScreen {
 		
 		goToGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.GAMEPANEL);
+				controller.gameInit();
 			}
 			
 		});
@@ -81,8 +82,8 @@ public class GUI_MainMenu extends DisplayScreen {
 		
 		goToGamePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.GAMEPANEL);
+				controller.gameInit();
 			}
 			
 		});
