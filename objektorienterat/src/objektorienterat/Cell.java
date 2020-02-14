@@ -13,6 +13,7 @@ public class Cell extends JButton implements Serializable {
 		super(s);
 		setFont(new Font("Calibri", Font.PLAIN, 75));
 		setBackground(new Color(0x4988CE));
+		setForeground(Color.white);
 		//setForeground(Color.white);
 		this.coordinate = coordinate;
 	}
