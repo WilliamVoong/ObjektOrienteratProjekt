@@ -102,7 +102,6 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 			private int count = 0;
 			private int maxCount = 4;
 			private boolean on = false;
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (count >= maxCount) {
@@ -114,8 +113,6 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 					count++;
 				}
 			}
-
-
 		});
 		blinkTimer.start();
 	}

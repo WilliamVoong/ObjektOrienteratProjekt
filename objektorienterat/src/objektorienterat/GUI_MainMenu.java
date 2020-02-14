@@ -22,11 +22,11 @@ public class GUI_MainMenu extends DisplayScreen {
 	Player player; 
 	
 	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller) {
+	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller, FileHandler filehandler) {
 
 		super(layoutManager);
 		this.controller = controller;
-		
+		this.filehandler=filehandler;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JButton goToGame= new JButton("Player vs AI");
@@ -100,7 +100,7 @@ public class GUI_MainMenu extends DisplayScreen {
 			public void actionPerformed(ActionEvent e) {
 				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.LOADGAME);
-				//filehandler.load_game(file_name, playername)
+				filehandler.Load(player);
 			}
 
 		});

@@ -5,9 +5,17 @@ import java.io.*;
 
 
 public class FileHandler   {
+    FileHandlerInterface gameview;
+    FileHandlerInterface gamemodel;
 
 
-    public static void Save_game(FileHandlerInterface game, String file_name,String playername)  {
+    public FileHandler(FileHandlerInterface gamemodel,FileHandlerInterface gameview)
+    {
+        this.gamemodel=gamemodel;
+        this.gameview=gameview;
+
+    }
+    private   void Save_game(FileHandlerInterface game, String file_name,Player player)  {
 
         try {
             File file = new File(file_name);
@@ -19,11 +27,10 @@ public class FileHandler   {
                 save_file = new AppendableObjectOutputStream(new FileOutputStream(file_name));
 
             }
-            save_file.writeUTF(playername);
+            save_file.writeUTF(player.getUsername());
             save_file.writeObject(game);
             save_file.flush();
             save_file.close();
-
 
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found Error");
@@ -33,14 +40,14 @@ public class FileHandler   {
 
     }
 
-    public static FileHandlerInterface load_game(String file_name,String playername) {
+    private FileHandlerInterface load_game(String file_name,Player player) {
         try {
             FileInputStream fis = new FileInputStream(file_name);
             AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
             FileHandlerInterface test=null;
             while(fis.available()>0)
             {
-                if(load_file.readUTF().equals(playername)) {
+                if(load_file.readUTF().equals(player.getUsername())) {
                     test = (FileHandlerInterface) load_file.readObject();
                 }
                 else
@@ -48,7 +55,7 @@ public class FileHandler   {
             }
 
             load_file.close();
-            return test;
+
 
         }catch (FileNotFoundException e)
         {
@@ -66,6 +73,20 @@ public class FileHandler   {
         }
 
        return null;
+    }
+
+
+    public void Save(Player player)
+    {
+        Save_game(gameview,"Save_Gui18",player);
+        Save_game(gamemodel,"Save_model18",player);
+
+    }
+
+    public void Load(Player player)
+    {
+        gameview=load_game("Save_Gui18",player);
+        gamemodel=load_game("Save_model18",player);
     }
 
 }
