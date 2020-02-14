@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcda44ab-4669-4552-a665-3687c9faac1b" name="Default Changelist" comment="Merge branch 'master' into bashar&#10;&#10;# Conflicts:&#10;#&#9;objektorienterat/src/objektorienterat/FileHandler.java&#10;#&#9;objektorienterat/src/objektorienterat/Game_Controller.java&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class">
-      <change afterPath="$PROJECT_DIR$/bin/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/StringEmptyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/StringInputChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/TreIRad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/src/objektorienterat/LayoutManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/src/objektorienterat/LayoutManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Stats.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Stats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Welcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Welcome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/LayoutManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/LayoutManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/TreIRad.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/TreIRad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +108,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580822563009</updated>
-      <workItem from="1581683216136" duration="3731000" />
+      <workItem from="1581683216136" duration="4038000" />
     </task>
     <servers />
   </component>
