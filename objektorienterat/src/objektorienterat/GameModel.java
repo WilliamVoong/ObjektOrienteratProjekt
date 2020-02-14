@@ -7,18 +7,17 @@ import java.util.Random;
 
 public class GameModel implements Serializable,FileHandlerInterface {
 	private static final long serialVersionUID = 1L;
-	private Mark[][] marks;
-	private int markCount;
-	private Move lastMove;
-	private Playing player1, player2, currentlyPlaying;
-	private boolean gameOver;
-	private List<ModelListener> listeners;
+	private Mark[][] marks = new Mark[3][3];
+	private int markCount = 0;
+	private Move lastMove = null;
+	private Playing player1 = null,
+					player2 = null,
+					currentlyPlaying = null;
+	private boolean gameOver = true;
+	private List<ModelListener> listeners = new ArrayList<>();
 	
 	public GameModel() {
-		this.marks = new Mark[3][3];
-		this.listeners = new ArrayList<>();
 		reset();
-		this.gameOver = true;
 	}
 	
 	public void reset() {
@@ -29,6 +28,7 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		}
 		this.markCount = 0;
 		this.lastMove = null;
+		this.gameOver = true;
 	}
 	
 	public void addListener(ModelListener listener) {
@@ -50,13 +50,12 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
 		this.markCount++;
 		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
-		System.out.println("move made");
 		if(this.markCount > 4 && isWinner()) {
-			System.out.println("winner");
+			System.out.println("Someone won! Let's add a way to make something appropriate happen");
 			this.gameOver = true;
 			// NÅGOT HÄNDER NÄR NÅN VINNER
 		} else if(this.markCount > 8) {
-			System.out.println("tie");
+			System.out.println("No one won! Let's add a way to make something appropriate happen");
 			this.gameOver = true;
 			// NÅGOT HÄNDER NÄR DET ÄR OAVGJORT
 		}
@@ -64,7 +63,6 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	}
 
 	private void notifyListeners() {
-		System.out.println("notifying MODEL LISTENERS");
 		for(ModelListener listener : listeners) {
 			listener.modelWasUpdated();
 		}
@@ -131,16 +129,12 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		return this.markCount;
 	}
 	
-	public void setPlayer1(Playing player1) {
+	public void setPlayers(Playing player1, Playing player2) {
 		this.player1 = player1;
-	}
-	
-	public void setPlayer2(Playing player2) {
 		this.player2 = player2;
 	}
 	
 	public void gameInit() {
-		System.out.println("initialising game");
 		Random random = new Random();
 		this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
 		reset();
@@ -151,21 +145,5 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	public Playing getCurrentlyPlaying() {
 		return this.currentlyPlaying;
 	}
-	
-	/* GAMMAL OFÄRDIG KOD I CONTROLLER:
-	public void modelWasUpdated() {
-		if(this.gameOver = this.model.isGameOver()) {
-			// garbage below is just for testing - will be implemented properly soon(tm)
-			String s = (this.model.getMarkCount() % 2 == 0) ? Mark.O.toString() : Mark.X.toString();
-			if(this.model.getMarkCount() > 8 && !this.model.isWinner()) {
-				s = "No one";
-			}
-			System.out.println("Game over! The winner is: "+s+"!");
-		} else {
-			this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
-			notifyAI();
-		}
-	}
-	 */
 
 }

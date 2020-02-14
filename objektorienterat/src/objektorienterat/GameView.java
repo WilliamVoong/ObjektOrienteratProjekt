@@ -14,27 +14,26 @@ import java.awt.GridLayout;
 
 public class GameView extends DisplayScreen implements Serializable, FileHandlerInterface, ModelListener {
 	private static final long serialVersionUID = 1L;
-	private Cell[][] cells;
+	private Cell[][] cells = new Cell[3][3];
+	private Cell lastClickedCell = null;
+	private List<ViewListener> listeners = new ArrayList<>();
 	private GameModel model;
-	List<ViewListener> listeners;
 	
 	public GameView(SwappableScreen screen, GameModel model) {
 		super(screen);
 		this.model = model;
 		this.model.addListener(this);
-		this.listeners = new ArrayList<>();
-		this.cells = new Cell[3][3];
 		setLayout(new GridLayout(3, 3));
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				Cell c = new Cell(new Coordinate(i, j));
+				Cell c = this.cells[i][j] = new Cell(new Coordinate(i, j));
 				c.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						notifyListeners((Cell)e.getSource());
+						lastClickedCell = (Cell)e.getSource();
+						notifyListeners();
 					}
 				});
-				this.cells[i][j] = c;
 				add(c);
 			}
 		}
@@ -78,11 +77,14 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 		this.listeners.remove(listener);
 	}
 	
-	private void notifyListeners(Cell clickedCell) {
+	private void notifyListeners() {
 		for(ViewListener vl : listeners) {
-			System.out.println("notifying VIEW listener");
-			vl.cellWasClicked(clickedCell);
+			vl.viewWasUpdated();
 		}
+	}
+	
+	public Cell getLastClickedCell() {
+		return this.lastClickedCell;
 	}
 
 	/*
