@@ -29,8 +29,11 @@ public class MainWindow extends JFrame implements Runnable {
 				System.out.println("Uncomment following to open another window!");
 				//MainPage m = new MainPage();
 				//m.setVisible(true);
+
+
 				//GameController.save_game("Save_Gui16");
 				//GameController.save_game_model("Save_model16");
+
 				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
 				e.getWindow().dispose();
 				System.out.println("JFrame Closed!");

@@ -1,5 +1,6 @@
 package src.objektorienterat;
 
+import java.awt.*;
 import java.util.Random;
 
 import java.awt.event.ActionEvent;
@@ -8,15 +9,14 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public class GameController implements ModelListener {
+
+  public class GameController implements ModelListener {
 	private GameModel model;
 	private GameView view;
-	private Playing player1;
-	private Playing player2;
-	private Playing currentlyPlaying;
+	private Playing player1, player2, currentlyPlaying;
 	private boolean gameOver;
 	
-	public GameController(GameModel model, GameView view, Playing player1, Playing player2) {
+	public GameController(GameModel model, GameView view) {
 		this.model = model;
 		this.model.addListener(this);
 		this.view = view;
@@ -30,8 +30,6 @@ public class GameController implements ModelListener {
 				}
 			}
 		});
-		this.player1 = player1;
-		this.player2 = player2;
 		this.gameOver = true;
 	}
 	
@@ -65,18 +63,21 @@ public class GameController implements ModelListener {
 		notifyAI();
 	}
 	
+	public void setPlayer1(Playing player1) {
+		this.player1 = player1;
+	}
+	
+	public void setPlayer2(Playing player2) {
+		this.player2 = player2;
+	}
+	
 	/*
 	 * BASHARS SAKER
 	 */
-    
-    class SugestListner implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            //Coordinate AIcoord = AI.move(model.getMarks(), model.getMarkCount());
-            Sound_effect.playSound("help.wav");
-            //view.blinkButton(AIcoord);
-        }
-    }
+
+
+
+
 
 }

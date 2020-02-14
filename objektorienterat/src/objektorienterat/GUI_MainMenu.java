@@ -15,6 +15,7 @@ import java.awt.*;
  */
 
 public class GUI_MainMenu extends DisplayScreen {
+
 	
 	GameController controller;  
 	FileHandler filehandler; 
@@ -22,6 +23,7 @@ public class GUI_MainMenu extends DisplayScreen {
 	
 	
 	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller) {
+
 		super(layoutManager);
 		this.controller = controller;
 		
