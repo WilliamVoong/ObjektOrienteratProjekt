@@ -62,7 +62,7 @@ public class GUI_Game extends DisplayScreen {
         saveGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                filehandler.Save(new Player("pelle",0,0,0));
+                filehandler.Save(player);
             }
         });
 
