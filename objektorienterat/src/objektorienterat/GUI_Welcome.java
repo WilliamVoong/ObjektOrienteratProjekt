@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class GUI_Welcome extends DisplayScreen {
 	Player currentlyPlaying;
-	GameController controller; 
 	Stats stats; 
 	LayoutManager layoutManager;
 	

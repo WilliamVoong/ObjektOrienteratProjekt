@@ -13,11 +13,10 @@ public class GUI_Game extends DisplayScreen {
     GameView gameView;
 
 
-    GUI_Game(SwappableScreen layoutManager,GameModel gameModel,GameView gameView){
-    	
-    	
-    
+    GUI_Game(SwappableScreen layoutManager,GameModel gameModel,GameView gameView, Player player, FileHandler filehandler){
         super(layoutManager);
+        this.filehandler=filehandler; 
+        this.player=player;
         this.gameModel=gameModel;
         this.gameView=gameView;
     	//this.gameView= new DisplayScreen(layoutManager);
@@ -63,7 +62,7 @@ public class GUI_Game extends DisplayScreen {
         saveGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                filehandler.Save(player);
+                filehandler.Save(new Player("pelle",0,0,0));
             }
         });
 

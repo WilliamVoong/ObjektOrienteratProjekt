@@ -6,13 +6,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-public class GameView extends DisplayScreen implements Serializable, FileHandlerInterface, ModelListener {
+public class GameView extends JPanel implements Serializable, FileHandlerInterface, ModelListener {
 	private static final long serialVersionUID = 1L;
 	private Cell[][] cells = new Cell[3][3];
 	private Cell lastClickedCell = null;
@@ -20,7 +21,7 @@ public class GameView extends DisplayScreen implements Serializable, FileHandler
 	private GameModel model;
 	
 	public GameView(SwappableScreen screen, GameModel model) {
-		super(screen);
+		super();
 		this.model = model;
 		this.model.addListener(this);
 		setLayout(new GridLayout(3, 3));
