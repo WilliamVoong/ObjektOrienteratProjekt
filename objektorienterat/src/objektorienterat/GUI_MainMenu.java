@@ -17,15 +17,14 @@ import java.awt.*;
 public class GUI_MainMenu extends DisplayScreen {
 
 	
-	GameController controller;  
+
 	FileHandler filehandler; 
 	Player player; 
 	
 	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller, FileHandler filehandler) {
+	GUI_MainMenu(SwappableScreen layoutManager ,Player player, FileHandler filehandler) {
 
 		super(layoutManager);
-		this.controller = controller;
 		this.filehandler=filehandler;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -77,7 +76,6 @@ public class GUI_MainMenu extends DisplayScreen {
 				
 				// controller.setPlaying(p1)  // player is already defined 
 				layoutManager.swap(LayoutManager.GAMEPANEL);
-				controller.gameInit();
 			}
 			
 		});
@@ -91,7 +89,6 @@ public class GUI_MainMenu extends DisplayScreen {
 		goToGamePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutManager.swap(LayoutManager.GAMEPANEL);
-				controller.gameInit();
 			}
 			
 		});

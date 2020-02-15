@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class GUI_Welcome extends DisplayScreen {
 	Player currentlyPlaying;
-	GameController controller; 
 	Stats stats; 
 	LayoutManager layoutManager;
 	
@@ -98,8 +97,8 @@ public class GUI_Welcome extends DisplayScreen {
 				
 				
 				//layoutManager.addNewScreen(new Gui_MainMenu(new Filehandler("filename",username)));
-				 // meny är förutbestämd, men måste bestäma en player. 
-															//  däremot skapa menypanel innan vi skriver in texten 
+				 // meny ï¿½r fï¿½rutbestï¿½md, men mï¿½ste bestï¿½ma en player. 
+															//  dï¿½remot skapa menypanel innan vi skriver in texten 
 			}												//  men referensen 
 
 		});
