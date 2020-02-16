@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class GUI_Game extends DisplayScreen {
 
@@ -24,13 +26,20 @@ public class GUI_Game extends DisplayScreen {
         this.player=player;
         this.gameModel=gameModel;
         this.gameView=gameView;
-        setLayout(new GridBagLayout());
+        setBackground(Color.WHITE);
+        
+        
+        setLayout(new BorderLayout());
+        
+      
+        
         GridBagConstraints c=new GridBagConstraints();
-        ;
-
-
-
-
+        gameView.setBorder(BorderFactory.createLineBorder(Color.black, 30));
+ 
+        
+        JPanel wrapper = new JPanel(new BorderLayout()); 
+        wrapper.add(Box.createGlue(), BorderLayout.CENTER);
+        
 
 
 
@@ -38,17 +47,37 @@ public class GUI_Game extends DisplayScreen {
 
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
-        buttonPanel.setBackground(Color.BLACK);
+        buttonPanel.setBorder(new EmptyBorder(30,30,30,30));
+        //buttonPanel.setLayout(new GridLayout(5,1));
+        //buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonPanel.setLayout(new GridBagLayout()); 
+        buttonPanel.setBackground(getBackground());
+        
 
-
+        gameView.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
 
         JButton goBackToMenu= new JButton("go back to menu");
         JButton saveGame= new JButton("save game");
         JButton sugggestMove= new JButton("Suggest move");
-
-        goBackToMenu.setUI(new StyledButtonUI());
-        JLabel text=new JLabel("hej");
+        
+       
+       goBackToMenu.setUI(new StyledButtonUI());
+       sugggestMove.setUI(new StyledButtonUI());
+       saveGame.setUI(new StyledButtonUI());
+       
+       	c.ipady=30;
+       	c.weighty=3;
+       	c.gridx=GridBagConstraints.PAGE_START;
+       	c.fill=GridBagConstraints.HORIZONTAL;
+  
+        buttonPanel.add( goBackToMenu,c);
+        
+        c.gridy+=3; 
+        buttonPanel.add( sugggestMove,c);
+        c.gridy+=3; 
+        buttonPanel.add(saveGame,c);
+       
         
         
         
@@ -75,40 +104,15 @@ public class GUI_Game extends DisplayScreen {
             }
         });
 
-        saveGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                filehandler.Save(player);
-            }
-        });
-
-
-        buttonPanel.add(Box.createRigidArea(new Dimension(0,100)));
-        buttonPanel.add(goBackToMenu);
-        buttonPanel.add(saveGame);
-        buttonPanel.add(sugggestMove);
-        //add(buttonPanel, c);
-
-
-        c.fill=GridBagConstraints.HORIZONTAL;
-        c.gridx=1;
-        c.gridy=0;
-        c.gridwidth=1;
-        c.gridheight=1;
-
-        add(sugggestMove,c);
-        c.gridy++;
-        add(saveGame,c);
-        c.gridy++;
-        add(goBackToMenu);
-
-        c.gridwidth=5;
-        c.gridheight=5;
-        c.gridx=0;
-        c.gridy=0;
-        c.ipady=600;
-        c.ipadx=600;
-        add(gameView,c);
+     
+        
+        add(gameView,BorderLayout.CENTER);
+        add(buttonPanel,BorderLayout.EAST);
+        add(Box.createGlue(), BorderLayout.NORTH);
+        add(Box.createGlue(), BorderLayout.WEST);
+        add(Box.createGlue(), BorderLayout.SOUTH);
+     
+  
 
 
 
