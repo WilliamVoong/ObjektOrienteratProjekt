@@ -28,63 +28,11 @@ public class GUI_Game extends DisplayScreen {
         this.gameView=gameView;
         setBackground(Color.WHITE);
         
-        
-        setLayout(new BorderLayout());
-        
-      
-        
-        GridBagConstraints c=new GridBagConstraints();
-        gameView.setBorder(BorderFactory.createLineBorder(Color.black, 30));
  
-        
-        JPanel wrapper = new JPanel(new BorderLayout()); 
-        wrapper.add(Box.createGlue(), BorderLayout.CENTER);
-        
-
-
-
-        //this.gameView= new DisplayScreen(layoutManager);
-
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBorder(new EmptyBorder(30,30,30,30));
-        //buttonPanel.setLayout(new GridLayout(5,1));
-        //buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonPanel.setLayout(new GridBagLayout()); 
-        buttonPanel.setBackground(getBackground());
-        
-
-        gameView.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
-
         JButton goBackToMenu= new JButton("go back to menu");
         JButton saveGame= new JButton("save game");
         JButton sugggestMove= new JButton("Suggest move");
         
-       
-       goBackToMenu.setUI(new StyledButtonUI());
-       sugggestMove.setUI(new StyledButtonUI());
-       saveGame.setUI(new StyledButtonUI());
-       
-       	c.ipady=30;
-       	c.weighty=3;
-       	c.gridx=GridBagConstraints.PAGE_START;
-       	c.fill=GridBagConstraints.HORIZONTAL;
-  
-        buttonPanel.add( goBackToMenu,c);
-        
-        c.gridy+=3; 
-        buttonPanel.add( sugggestMove,c);
-        c.gridy+=3; 
-        buttonPanel.add(saveGame,c);
-       
-        
-        
-        
-        //text.setPreferredSize(new Dimension(100,100));
-        //we
-        // wegoBackToMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         goBackToMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,6 +51,50 @@ public class GUI_Game extends DisplayScreen {
 
             }
         });
+        saveGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                filehandler.Save(player);
+
+            }
+        });
+        
+        setLayout(new BorderLayout());
+        GridBagConstraints c=new GridBagConstraints();
+        gameView.setBorder(BorderFactory.createLineBorder(Color.black, 30));
+        JPanel wrapper = new JPanel(new BorderLayout()); 
+        wrapper.add(Box.createGlue(), BorderLayout.CENTER);
+        
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBorder(new EmptyBorder(30,30,30,30));
+        buttonPanel.setLayout(new GridBagLayout()); 
+        buttonPanel.setBackground(getBackground());
+        
+
+        gameView.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
+
+      
+       
+       goBackToMenu.setUI(new StyledButtonUI());
+       sugggestMove.setUI(new StyledButtonUI());
+       saveGame.setUI(new StyledButtonUI());
+       
+       	c.ipady=30;
+       	c.weighty=3;
+       	c.gridx=GridBagConstraints.PAGE_START;
+       	c.fill=GridBagConstraints.HORIZONTAL;
+       	
+       	
+        buttonPanel.add( goBackToMenu,c);
+        c.gridy+=3; 
+        buttonPanel.add( sugggestMove,c);
+        c.gridy+=3; 
+        buttonPanel.add(saveGame,c);
+       
+
+     
 
      
         
