@@ -17,15 +17,17 @@ import java.awt.*;
 public class GUI_MainMenu extends DisplayScreen {
 
 	
-	GameController controller;  
-	FileHandler filehandler; 
-	Player player; 
+	private FileHandler filehandler; 
+	private HumanPlayer player1; 
+	private Playing player2; 
+	private GameModel gameModel; 
 	
-	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player,  GameController controller) {
+	GUI_MainMenu(SwappableScreen layoutManager ,HumanPlayer player1,  FileHandler filehandler, GameModel gameModel) {
 
 		super(layoutManager);
-		this.controller = controller;
+		this.filehandler=filehandler;
+		this.gameModel=gameModel;
+		this.player1=player1;
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -74,10 +76,10 @@ public class GUI_MainMenu extends DisplayScreen {
 		
 		goToGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				// controller.setPlaying(p1)  // player is already defined 
+				player2= new AI(gameModel); 
+				gameModel.setPlayers(player1, player2);
+				gameModel.gameInit();
 				layoutManager.swap(LayoutManager.GAMEPANEL);
-				controller.gameInit();
 			}
 			
 		});
@@ -90,8 +92,10 @@ public class GUI_MainMenu extends DisplayScreen {
 		
 		goToGamePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gameModel.setPlayers(player1, player2); // Todo we need a player factory here 
+				gameModel.gameInit();
 				layoutManager.swap(LayoutManager.GAMEPANEL);
-				controller.gameInit();
 			}
 			
 		});
@@ -100,7 +104,7 @@ public class GUI_MainMenu extends DisplayScreen {
 			public void actionPerformed(ActionEvent e) {
 				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.LOADGAME);
-				//filehandler.load_game(file_name, playername)
+				filehandler.Load(player1);
 			}
 
 		});

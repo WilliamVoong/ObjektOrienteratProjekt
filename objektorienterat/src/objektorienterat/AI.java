@@ -6,20 +6,25 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AI implements AIPlayer {
-
-	@Override
-	public void makeMove(GameModel model) {
+public class AI implements Playing, ModelListener {
+	private GameModel model;
+	
+	public AI(GameModel model) {
+		this.model = model;
+		this.model.addListener(this);
+	}
+	
+	public void makeMove() {
 		Coordinate AIcoord = null;
-		if((AIcoord = smartMove(model.getMarks(), model.getMarkCount())) != null) {
-			makeMark(model, AIcoord);
-		} else if((AIcoord = randomMove(model.getMarks())) != null) {
-			makeMark(model, AIcoord);
+		if((AIcoord = smartMove(this.model.getMarks(), this.model.getMarkCount())) != null) {
+			makeMark(AIcoord);
+		} else if((AIcoord = randomMove(this.model.getMarks())) != null) {
+			makeMark(AIcoord);
 		}
 
 	}
 	
-	private void makeMark(GameModel model, Coordinate coord) {
+	private void makeMark(Coordinate coord) {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
@@ -158,6 +163,13 @@ public class AI implements AIPlayer {
 			return potentialMoveCoordinates.get(rand.nextInt(potentialMoveCoordinates.size()));
 		}
 		return null;
+	}
+
+	@Override
+	public void modelWasUpdated() {
+		if(this.model.getCurrentlyPlaying() == this) {
+			makeMove();
+		}
 	}
 
 }

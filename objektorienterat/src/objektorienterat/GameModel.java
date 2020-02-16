@@ -3,17 +3,20 @@ package src.objektorienterat;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameModel implements Serializable,FileHandlerInterface {
 	private static final long serialVersionUID = 1L;
-	private Mark[][] marks;
-	private int markCount;
-	private Move lastMove;
-	private List<ModelListener> listeners;
+	private Mark[][] marks = new Mark[3][3];
+	private int markCount = 0;
+	private Move lastMove = null;
+	private Playing player1 = null,
+					player2 = null,
+					currentlyPlaying = null;
+	private boolean gameOver = true;
+	private List<ModelListener> listeners = new ArrayList<>();
 	
 	public GameModel() {
-		this.marks = new Mark[3][3];
-		this.listeners = new ArrayList<>();
 		reset();
 	}
 	
@@ -24,6 +27,8 @@ public class GameModel implements Serializable,FileHandlerInterface {
 			}
 		}
 		this.markCount = 0;
+		this.lastMove = null;
+		this.gameOver = true;
 	}
 	
 	public void addListener(ModelListener listener) {
@@ -39,11 +44,24 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	}
 	
 	public void makeMark(Coordinate coord) {
+		if(this.gameOver) {
+			return;
+		}
 		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
 		this.markCount++;
+		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
+		if(this.markCount > 4 && isWinner()) {
+			System.out.println("Someone won! Let's add a way to make something appropriate happen");
+			this.gameOver = true;
+			// NÅGOT HÄNDER NÄR NÅN VINNER
+		} else if(this.markCount > 8) {
+			System.out.println("No one won! Let's add a way to make something appropriate happen");
+			this.gameOver = true;
+			// NÅGOT HÄNDER NÄR DET ÄR OAVGJORT
+		}
 		notifyListeners();
 	}
-	
+
 	private void notifyListeners() {
 		for(ModelListener listener : listeners) {
 			listener.modelWasUpdated();
@@ -109,6 +127,23 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	
 	public int getMarkCount() {
 		return this.markCount;
+	}
+	
+	public void setPlayers(Playing player1, Playing player2) {
+		this.player1 = player1;
+		this.player2 = player2;
+	}
+	
+	public void gameInit() {
+		Random random = new Random();
+		this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
+		reset();
+		this.gameOver = false;
+		notifyListeners();
+	}
+	
+	public Playing getCurrentlyPlaying() {
+		return this.currentlyPlaying;
 	}
 
 }

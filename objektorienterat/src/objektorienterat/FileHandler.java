@@ -5,13 +5,17 @@ import java.io.*;
 
 
 public class FileHandler   {
+    FileHandlerInterface gameview;
+    FileHandlerInterface gamemodel;
 
 
-    public FileHandler()
+    public FileHandler(FileHandlerInterface gamemodel,FileHandlerInterface gameview)
     {
+        this.gamemodel=gamemodel;
+        this.gameview=gameview;
 
     }
-    public  void Save_game(FileHandlerInterface game, String file_name,Player player)  {
+    private   void Save_game(FileHandlerInterface game, String file_name,Player player)  {
 
         try {
             File file = new File(file_name);
@@ -36,7 +40,7 @@ public class FileHandler   {
 
     }
 
-    public FileHandlerInterface load_game(String file_name,Player player) {
+    private FileHandlerInterface load_game(String file_name,Player player) {
         try {
             FileInputStream fis = new FileInputStream(file_name);
             AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
@@ -51,7 +55,7 @@ public class FileHandler   {
             }
 
             load_file.close();
-            return test;
+
 
         }catch (FileNotFoundException e)
         {
@@ -69,6 +73,20 @@ public class FileHandler   {
         }
 
        return null;
+    }
+
+
+    public void Save(Player player)
+    {
+        Save_game(gameview,"Save_Gui18",player);
+        Save_game(gamemodel,"Save_model18",player);
+
+    }
+
+    public void Load(Player player)
+    {
+        gameview=load_game("Save_Gui18",player);
+        gamemodel=load_game("Save_model18",player);
     }
 
 }

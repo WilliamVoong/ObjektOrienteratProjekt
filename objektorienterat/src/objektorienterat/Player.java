@@ -1,6 +1,6 @@
 package src.objektorienterat;
 
-public class Player implements HumanPlayer {
+public class Player {
 
 	private String username;
 	private int gamesPlayed;
@@ -78,11 +78,6 @@ public class Player implements HumanPlayer {
 	public void incrementGamesDrawn() {
 		this.gamesPlayed++;
 		this.gamesDrawn++;
-	}
-
-	@Override
-	public void makeMove(GameModel model, Coordinate coord) {
-		model.makeMark(coord);
 	}
 
 }
