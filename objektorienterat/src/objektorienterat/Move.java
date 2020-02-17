@@ -1,6 +1,8 @@
 package src.objektorienterat;
 
-public class Move {
+import java.io.Serializable;
+
+public class Move implements Serializable {
 	private Mark mark;
 	private Coordinate coord;
 	

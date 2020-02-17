@@ -1,8 +1,15 @@
 package src.objektorienterat;
 
-public class HumanPlayer extends Player implements Playing, ViewListener {
+import java.io.Serializable;
+
+public class HumanPlayer extends Player implements Playing, ViewListener, Serializable {
 	private GameModel model;
 	private GameView view;
+
+	public HumanPlayer()
+	{
+		super();
+	}
 	
 	public HumanPlayer(Player player, GameModel model, GameView view) {
 		super(player.getUsername(), player.getGamesWon(), player.getGamesLost(), player.getGamesDrawn());

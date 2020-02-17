@@ -1,12 +1,13 @@
 package src.objektorienterat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AI implements Playing, ModelListener {
+public class AI implements Playing, ModelListener, Serializable {
 	private GameModel model;
 	
 	public AI(GameModel model) {

@@ -55,6 +55,7 @@ public class FileHandler   {
             }
 
             load_file.close();
+            return test;
 
 
         }catch (FileNotFoundException e)
@@ -78,15 +79,15 @@ public class FileHandler   {
 
     public void Save(Player player)
     {
-        Save_game(gameview,"Save_Gui18",player);
-        Save_game(gamemodel,"Save_model18",player);
+        Save_game(gameview,"Save_Gui21",player);
+        Save_game(gamemodel,"Save_model21",player);
 
     }
 
     public void Load(Player player)
     {
-        gameview=load_game("Save_Gui18",player);
-        gamemodel=load_game("Save_model18",player);
+        gameview=load_game("Save_Gui21",player);
+        gamemodel=load_game("Save_model21",player);
     }
 
 }

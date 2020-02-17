@@ -15,8 +15,12 @@ public class Player {
 		this.gamesDrawn = gamesDrawn;
 		this.gamesPlayed = this.gamesWon + this.gamesLost + this.gamesDrawn;
 	}
-	
-	@Override
+
+    public Player() {
+
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
