@@ -22,9 +22,7 @@ public class GUI_Stats extends DisplayScreen {
 	
 	GUI_Stats(LayoutManager manager, Stats stats){
 		super(manager); 
-		this.stats=stats; 
-		
-		
+		this.stats=stats;
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		JLabel scoreText=new JLabel("Score"); 
 		scoreText.setForeground(Color.WHITE);
