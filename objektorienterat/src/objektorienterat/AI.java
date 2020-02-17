@@ -16,9 +16,11 @@ public class AI implements Playing, ModelListener {
 	
 	public void makeMove() {
 		Coordinate AIcoord = null;
-		if((AIcoord = smartMove(this.model.getMarks(), this.model.getMarkCount())) != null) {
+		if((AIcoord = smartMove(this.model.getMarks(), this.model.getMarkCount())) != null
+				&& this.model.isLegalMove(this, AIcoord)) {
 			makeMark(AIcoord);
-		} else if((AIcoord = randomMove(this.model.getMarks())) != null) {
+		} else if((AIcoord = randomMove(this.model.getMarks())) != null
+				&& this.model.isLegalMove(this, AIcoord)) {
 			makeMark(AIcoord);
 		}
 

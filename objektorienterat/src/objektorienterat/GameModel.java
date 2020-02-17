@@ -145,5 +145,9 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	public Playing getCurrentlyPlaying() {
 		return this.currentlyPlaying;
 	}
+	
+	public boolean isLegalMove(Playing moveMaker, Coordinate coord) {
+		return this.currentlyPlaying == moveMaker && this.marks[coord.getX()][coord.getY()] == Mark.NULL;
+	}
 
 }
