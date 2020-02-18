@@ -21,16 +21,28 @@ public class Player implements ViewListener, Playing {
 		this.gamesPlayed = this.gamesWon + this.gamesLost + this.gamesDrawn;
 	}
 	
+	public Player(String username, int gamesWon, int gamesLost, int gamesDrawn, GameModel model, GameView view) {
+		this(username, gamesWon, gamesLost, gamesDrawn);
+		this.model = model;
+		this.view = view;
+	}
+	
+	public Player(String username) {
+		this(username, 0, 0, 0);
+	}
+	
+	public Player(String username, GameModel model, GameView view) {
+		this(username);
+		this.model = model;
+		this.view = view;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
-	}
-	
-	public Player(String username) {
-		this(username, 0, 0, 0);
 	}
 
 	@Override
