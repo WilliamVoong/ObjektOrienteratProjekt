@@ -136,7 +136,7 @@ public class GUI_MainMenu extends DisplayScreen {
 
 				filehandler.Load(player1);
 				layoutManager.swap(LayoutManager.GAMEPANEL);
-				gameModel.notifyListeners();
+
 			}
 
 		});

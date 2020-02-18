@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
  * 
  */
 public class GUI_Welcome extends DisplayScreen {
-	Player currentUser;
+	HumanPlayer currentUser;
 	Stats stats; 
 	LayoutManager layoutManager;
 	
 	HumanPlayerFactory playerFactory;
 	
-	GUI_Welcome(SwappableScreen layoutManager, Player currentUser, HumanPlayerFactory playerFactory){
+	GUI_Welcome(SwappableScreen layoutManager, HumanPlayer currentUser, HumanPlayerFactory playerFactory){
 		
 		super(layoutManager);
 		this.stats=stats;
@@ -78,7 +78,7 @@ public class GUI_Welcome extends DisplayScreen {
 				try{
 					StringInputChecker s= new StringInputChecker();
 					String username = s.Check(text.getText());
-					Player user=playerFactory.create(username);
+					HumanPlayer user=playerFactory.create(username);
 					setCurrentUser(user);
 					layoutManager.swap(LayoutManager.MENUPANEL);
 				} catch (StringEmptyException e1) {
@@ -98,7 +98,7 @@ public class GUI_Welcome extends DisplayScreen {
 		add(buttonPanel);
 
 	}
-	public void setCurrentUser(Player user) {
+	public void setCurrentUser(HumanPlayer user) {
 		this.currentUser= user; 
 	}
 	

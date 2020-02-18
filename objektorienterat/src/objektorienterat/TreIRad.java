@@ -14,7 +14,7 @@ public class TreIRad {
     private DisplayScreen guiGame;
     private DisplayScreen guiMainMenu;
    // private DisplayScreen guiloadgame ;
-    private Player currentUser;
+    private HumanPlayer currentUser;
     private FileHandler fileHandler;
     private HumanPlayer humanPlayer;
     private AI ai;
@@ -22,11 +22,12 @@ public class TreIRad {
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
-        currentUser= new Player("bashar",0,0,0);
+
         createGameModelViewControler();
+        currentUser= new HumanPlayer( new Player("bashar",0,0,0),gameModel,gameView);
         humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
         humanPlayerFactory= new HumanPlayerFactory(gameView,gameModel,stats);
-        fileHandler=new FileHandler(gameModel);
+        fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
         setupScreenMananger();
         

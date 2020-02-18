@@ -5,17 +5,17 @@ import java.io.*;
 
 
 public class FileHandler   {
-   // FileHandlerInterface gameview;
-    FileHandlerInterface gamemodel;
+    GameView gameview;
+    GameModel gamemodel;
 
 
-    public FileHandler(FileHandlerInterface gamemodel)
+    public FileHandler(GameModel gamemodel,GameView gameview)
     {
         this.gamemodel=gamemodel;
-        //this.gameview=gameview;
+        this.gameview=gameview;
 
     }
-    private   void Save_game(FileHandlerInterface game, String file_name,Player player)  {
+    private   void Save_game(GameModel game, String file_name,Player player)  {
 
         try {
             File file = new File(file_name);
@@ -40,15 +40,15 @@ public class FileHandler   {
 
     }
 
-    private FileHandlerInterface load_game(String file_name,Player player) {
+    private GameModel load_game(String file_name,Player player) {
         try {
             FileInputStream fis = new FileInputStream(file_name);
             AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
-            FileHandlerInterface test=null;
+            GameModel test=null;
             while(fis.available()>0)
             {
                 if(load_file.readUTF().equals(player.getUsername())) {
-                    test = (FileHandlerInterface) load_file.readObject();
+                    test = (GameModel) load_file.readObject();
                 }
                 else
                     load_file.readObject();
@@ -80,14 +80,16 @@ public class FileHandler   {
     public void Save(Player player)
     {
         //Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model23",player);
+        Save_game(gamemodel,"Save_model25",player);
 
     }
 
     public void Load(Player player)
     {
         //gameview=load_game("Save_Gui22",player);
-       gamemodel=load_game("Save_model23",player);
+       gamemodel=load_game("Save_model25",player);
+       gameview.fullUpdate(gamemodel);
+
     }
 
 }
