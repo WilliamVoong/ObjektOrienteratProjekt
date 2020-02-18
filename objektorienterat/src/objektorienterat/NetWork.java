@@ -1,6 +1,9 @@
 package src.objektorienterat;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class NetWork {
 	static final String DATABASE = "jdbc:postgresql://localhost/portal";
@@ -19,8 +22,8 @@ public class NetWork {
     
     public void getData(Stats stats) {
     	try {
-    		Statement s = conn.createStatement();
-    		ResultSet rs = s.executeQuery("SELECT * FROM StatsView");
+    		Statement s = this.conn.createStatement();
+    		ResultSet rs = s.executeQuery("SELECT * FROM Stats");
     		while(rs.next()) {
     			stats.put(
     					new Player(
@@ -29,13 +32,19 @@ public class NetWork {
     							rs.getInt("gamesLost"),
     							rs.getInt("gamesDrawn")));
     		}
-    		System.out.println("Fetched.");
     	} catch(SQLException e) {
             System.out.println(e);
     	}
     }
     
-	public void putData(Player p) {
+    public void putData(Stats stats) {
+		List<Map.Entry<String, Player>> listOfEntries = new ArrayList<>(stats.getPlayers().entrySet());
+		for(Map.Entry<String, Player> entry : listOfEntries) {
+			putPlayer(entry.getValue());
+		}
+    }
+    
+	public void putPlayer(Player p) {
     	try {
     		String username = p.getUsername();
     		PreparedStatement psq = conn.prepareStatement("SELECT * "

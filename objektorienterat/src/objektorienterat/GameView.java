@@ -48,26 +48,34 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 				this.cells[i][j].setText("");
 			}
 		}
-		/* BORDE DETTA GÖRAS?
-		for(ViewListener vl : listeners) {
-			this.listeners.remove(vl);
-		}
-		*/
 	}
 	
 	@Override
 	public void modelWasUpdated() {
-		Move m = this.model.getLastMove();
-		if(m == null) {
-			return;
+		Move move = this.model.getLastMove();
+		if(move != null) {
+			setCellState(move);
 		}
-		Coordinate coord = m.getCoord();
-		this.cells[coord.getX()][coord.getY()].setText(m.getMark().toString());
-		if(model.getMarkCount()%2 ==0 )
-			Change_color(coord,new Color(0xCE5F86));
-		else
-			Change_color(coord,new Color(0x80CEB9));
 
+	}
+	
+	private void setCellState(Move move) {
+		Mark mark = move.getMark();
+		Coordinate coord = move.getCoord();
+		this.cells[coord.getX()][coord.getY()].setText(move.getMark().toString());
+		if(mark == Mark.X)
+			Change_color(coord,new Color(0xCE5F86));
+		else if(mark == Mark.O)
+			Change_color(coord,new Color(0x80CEB9));
+	}
+	
+	public void fullUpdate() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				Coordinate coord = new Coordinate(i, j);
+				setCellState(new Move(this.model.getMark(coord), coord));
+			}
+		}
 	}
 	
 	public void addListener(ViewListener listener) {
@@ -76,6 +84,12 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 	
 	public void removeListener(ViewListener listener) {
 		this.listeners.remove(listener);
+	}
+	
+	public void removeListeners() {
+		for(ViewListener listener : this.listeners) {
+			this.listeners.remove(listener);
+		}
 	}
 	
 	private void notifyListeners() {
