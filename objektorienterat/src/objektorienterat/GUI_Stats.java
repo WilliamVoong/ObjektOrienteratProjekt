@@ -1,5 +1,6 @@
 package src.objektorienterat;
 import java.awt.BorderLayout;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,23 +8,35 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
 public class GUI_Stats extends DisplayScreen {
 	Stats stats; 
 	JPanel mainPanel= new JPanel(); 
 	SwappableScreen screenswapper= new LayoutManagerStats(); 
+	final static int SCOREPANEL_WIDTH=600;
+	final static int SCOREPANEL_SPACING=10;
 	
 	GUI_Stats(LayoutManager manager, Stats stats){
 		super(manager); 
 		this.stats=stats;
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		
 		JLabel scoreText=new JLabel("Score"); 
 		scoreText.setForeground(Color.WHITE);
 		scoreText.setFont(new Font("Helvetica", Font.PLAIN,60));
@@ -32,10 +45,6 @@ public class GUI_Stats extends DisplayScreen {
 		JButton backToMenu= new JButton("Go Back To Menu"); 
 		backToMenu.setUI(new StyledButtonUI());
 		
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		mainPanel.setBackground(Color.BLACK);
-		mainPanel.add(scoreText);
 		
 		
 		JPanel holderPanel= new JPanel();
@@ -43,8 +52,10 @@ public class GUI_Stats extends DisplayScreen {
 		holderPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		holderPanel.add(scoreText);
-		drawScorePanel(holderPanel);
-		drawButtonPanel(holderPanel);
+		ScorePanel(holderPanel);
+		ButtonPanel(holderPanel);
+	
+		
 		
 	
 		
@@ -56,7 +67,7 @@ public class GUI_Stats extends DisplayScreen {
         });
 		
 		
-	
+		holderPanel.setPreferredSize(new Dimension(500,500));
 		holderPanel.setBackground(Color.black);
 		add(Box.createHorizontalGlue());
 		add(holderPanel);
@@ -70,23 +81,32 @@ public class GUI_Stats extends DisplayScreen {
 		
 		
 	}
-	private void drawScorePanel(JPanel paneltodrawTo) {
+	private void ScorePanel(JPanel paneltoTo) {
 		JPanel scorePanel=new JPanel();
+
 		scorePanel.setBackground(Color.black);
 		scorePanel.setAlignmentX(CENTER_ALIGNMENT);
-	
+		scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
+		
+		
 		scorePanel= screenswapper.getCards(); 
-		scorePanel.setMaximumSize((new Dimension(200,400)));;
-		scorePanel.setPreferredSize((new Dimension(100,300)));;
-		scorePanel.setMinimumSize((new Dimension(100,300)));;
+		scorePanel.setMaximumSize((new Dimension(600,500)));;
+		//scorePanel.setPreferredSize((new Dimension(100,300)));;
+		//scorePanel.setMinimumSize((new Dimension(100,300)));;
 		
 		for(int i =0 ; i < 10; i++) {
 			JPanel score= new JPanel();
-			score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-			score.setAlignmentX(CENTER_ALIGNMENT);
 			score.setBackground(new Color(0x00AAF0CD) );
+			score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+			
+			LabelForScore(score);
+			//score.setPreferredSize(new Dimension(500,500));
+			//score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
+			//score.setAlignmentX(CENTER_ALIGNMENT);
+			
 			for(int j =0 ; j < 10; j++) {
-				JLabel s= new JLabel("example score" + j+i);
+				JLabel s= new JLabel("example score " + j+i);
+				
 				s.setAlignmentX(Component.CENTER_ALIGNMENT);
 				score.add(s);
 			} 
@@ -95,12 +115,12 @@ public class GUI_Stats extends DisplayScreen {
 		}
 		//add(Box.createHorizontalGlue());
 		
-		paneltodrawTo.add(scorePanel);
+		paneltoTo.add(scorePanel);
 		//add(Box.createVerticalGlue());
 		//add(Box.createHorizontalGlue());
 		
 	}
-	private void drawButtonPanel(JPanel paneltodrawTo) {
+	private void ButtonPanel(JPanel paneltoTo) {
 		JPanel buttonPanel=new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		
@@ -130,28 +150,86 @@ public class GUI_Stats extends DisplayScreen {
 		});
 		buttonPanel.add(prev);
 		buttonPanel.add(next);
-		paneltodrawTo.add(buttonPanel);
+		paneltoTo.add(buttonPanel);
 	}
 	
 	/*	NOT DONE!!!!!!!!!!!!!!
 	 * creates panel for every 10 stats added to the screen.
 	 *  TODOOOO 
 	 */
-	private void drawStats()
+	private void Stats(JPanel paneltoTo)
 	{
 		
+			JPanel scorePanel=new JPanel();	
+			scorePanel.setBackground(Color.black);
+			scorePanel.setAlignmentX(CENTER_ALIGNMENT);
+			scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
+			scorePanel= screenswapper.getCards(); 
+			scorePanel.setMaximumSize((new Dimension(600,500)));;
+	    
+			
+			int counter=1; 
+			int numberOfPlayersToDrawOnEachPanel=13; 
+			Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
+			
+			JPanel score= new JPanel();
+			score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
+			score.setAlignmentX(CENTER_ALIGNMENT);
+			score.setBackground(new Color(0x00AAF0CD) );
+			
+			for(String username : listOfPlayers.keySet()) {
+				Player p=listOfPlayers.get(username);
+				if(counter > numberOfPlayersToDrawOnEachPanel) {
+					score= new JPanel();	
+					screenswapper.addNewScreen(score, p.toString());
+				}else { 	
+						JLabel s= new JLabel("example score");
+						s.setAlignmentX(Component.CENTER_ALIGNMENT);
+						score.add(s);
+				}
+	
+			}
+		paneltoTo.add(scorePanel);
+	}
+		/*
 		JPanel score= new JPanel();
 		score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-		score.setAlignmentX(CENTER_ALIGNMENT);
+		score.setAlissssssgnmentX(CENTER_ALIGNMENT);
 		score.setBackground(new Color(0x00AAF0CD) );
 		for(int j =0 ; j < 10; j++) {
 			JLabel s= new JLabel("example score" + j);
 			s.setAlignmentX(Component.CENTER_ALIGNMENT);
 			score.add(s);
-		} 
+		} */
+	private void LabelForScore(JPanel paneltoTo){
+		JPanel labelPanel= new JPanel();
+	
+		labelPanel.setMaximumSize((new Dimension(600,50)));;
+		//labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.X_AXIS));
+		labelPanel.setLayout(new GridLayout(1,5)); 
+		labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		List<JLabel> labels= new ArrayList<JLabel>();
+		labels.add(new JLabel(" User ")); 
+		labels.add(new JLabel(" # Games"));
+		labels.add(new JLabel(" Losts "));
+		labels.add(new JLabel(" Wins "));
+		labels.add(new JLabel("Draws "));
 		
-	}; 
+		for(JLabel label: labels) {
+		//label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			label.setFont(new Font("Helvetica", Font.PLAIN,20));
+			label.setBorder(new LineBorder(Color.BLACK));
+			label.setAlignmentX(Component.CENTER_ALIGNMENT);
+			
+			labelPanel.add(label,CENTER_ALIGNMENT);
+			//labelPanel.add(Box.createRigidArea(new Dimension(SCOREPANEL_SPACING,SCOREPANEL_SPACING)));
+			
+		}
+		paneltoTo.add(labelPanel);
+		
+	}
+}
 	
 
 
-}
+

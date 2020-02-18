@@ -19,15 +19,17 @@ import javax.swing.JOptionPane;
  * 
  */
 public class GUI_Welcome extends DisplayScreen {
-	Player currentlyPlaying;
+	Player currentUser;
 	Stats stats; 
 	LayoutManager layoutManager;
 	
-	GUI_Welcome(SwappableScreen layoutManager, Player currentlyPlayin, Stats stats){
+	HumanPlayerFactory playerFactory;
+	
+	GUI_Welcome(SwappableScreen layoutManager, Player currentUser, HumanPlayerFactory playerFactory){
 		
 		super(layoutManager);
 		this.stats=stats;
-		this.currentlyPlaying=currentlyPlaying;
+		this.currentUser=currentUser; 
 		
 		JPanel buttonPanel=new JPanel();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); 
@@ -72,25 +74,16 @@ public class GUI_Welcome extends DisplayScreen {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				Player player2Play; 
 				try{
 					StringInputChecker s= new StringInputChecker();
 					String username = s.Check(text.getText());
-					boolean playerExists= stats.getPlayers().containsKey(username);
-					if(playerExists) {
-						Player Player2Play = stats.getPlayers().get(username);
-					}else {
-						Player Player2Play = new Player(username,0,0,0); 
-						setCurrentlyPlaying(username);
-						stats.getPlayers().put(username, new Player(username,0,0,0));
-					}
+					Player user=playerFactory.create(username);
+					setCurrentUser(user);
 					layoutManager.swap(LayoutManager.MENUPANEL);
-					
 				} catch (StringEmptyException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null,"Please insert a nonempty String"," ****************** ERROR *****************",JOptionPane.ERROR_MESSAGE);
-					
 				}
 				
 				
@@ -105,7 +98,8 @@ public class GUI_Welcome extends DisplayScreen {
 		add(buttonPanel);
 
 	}
-	public void setCurrentlyPlaying(String username){
-		currentlyPlaying=	new Player(username,0,0,0); 
+	public void setCurrentUser(Player user) {
+		this.currentUser= user; 
 	}
+	
 }
