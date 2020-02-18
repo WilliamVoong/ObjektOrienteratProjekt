@@ -3,29 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="bcda44ab-4669-4552-a665-3687c9faac1b" name="Default Changelist" comment="Merge branch 'master' into bashar&#10;&#10;# Conflicts:&#10;#&#9;objektorienterat/src/objektorienterat/FileHandler.java&#10;#&#9;objektorienterat/src/objektorienterat/Game_Controller.java&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_Gui21" beforeDir="false" afterPath="$PROJECT_DIR$/Save_Gui21" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Save_model21" beforeDir="false" afterPath="$PROJECT_DIR$/Save_model21" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/HumanPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/HumanPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/TreIRad.java" beforeDir="false" afterPath="$PROJECT_DIR$/objektorienterat/src/objektorienterat/TreIRad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/AI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/HumanPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/HumanPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Move.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Move.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_Stats.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,6 +122,8 @@
       <workItem from="1581683216136" duration="8091000" />
       <workItem from="1581793328505" duration="2976000" />
       <workItem from="1581858086971" duration="2602000" />
+      <workItem from="1581961811927" duration="4074000" />
+      <workItem from="1582028569923" duration="2103000" />
     </task>
     <servers />
   </component>
@@ -155,21 +146,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' into bashar&#10;&#10;# Conflicts:&#10;#&#9;objektorienterat/src/objektorienterat/FileHandler.java&#10;#&#9;objektorienterat/src/objektorienterat/Game_Controller.java&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' into bashar&#10;&#10;# Conflicts:&#10;#&#9;objektorienterat/src/objektorienterat/FileHandler.java&#10;#&#9;objektorienterat/src/objektorienterat/Game_Controller.java&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Cell.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/DisplayScreen.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/FileHandler.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/GUI_STATS.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/LayoutManager.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/Main.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow$1.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/MainWindow.class&#10;#&#9;out/production/ObjektOrienteratProjekt/src/objektorienterat/StyledButtonUI.class" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/objektorienterat/src/objektorienterat/GUI_MainMenu.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

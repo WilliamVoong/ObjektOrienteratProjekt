@@ -11,6 +11,7 @@ public class TreIRad {
     private DisplayScreen guiWelcome;
     private DisplayScreen guiGame;
     private DisplayScreen guiMainMenu;
+    private DisplayScreen guiloadgame ;
     private Player currentUser;
     private FileHandler fileHandler;
     private HumanPlayer humanPlayer;
@@ -18,7 +19,7 @@ public class TreIRad {
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
-        currentUser= new Player("dummy",0,0,0);
+        currentUser= new Player("bashar",0,0,0);
         createGameModelViewControler();
         humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
         fileHandler=new FileHandler(gameModel,gameView);
@@ -36,6 +37,7 @@ public class TreIRad {
         guiStats= new GUI_Stats(layoutManager, stats);
         guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel);
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
+        guiloadgame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
         guiWelcome= new GUI_Welcome(layoutManager, currentUser, stats);
 
     }
@@ -45,6 +47,9 @@ public class TreIRad {
         layoutManager.addNewScreen(guiGame,LayoutManager.GAMEPANEL);
         layoutManager.addNewScreen(guiStats,LayoutManager.HIGHSCOREPANEL);
         layoutManager.addNewScreen(guiMainMenu,LayoutManager.MENUPANEL);
+        layoutManager.addNewScreen(guiloadgame,LayoutManager.LOADGAME);
+
+
     }
 
     public void startGame(){

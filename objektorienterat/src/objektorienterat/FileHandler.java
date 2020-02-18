@@ -79,15 +79,15 @@ public class FileHandler   {
 
     public void Save(Player player)
     {
-        Save_game(gameview,"Save_Gui21",player);
-        Save_game(gamemodel,"Save_model21",player);
+        Save_game(gameview,"Save_Gui22",player);
+        Save_game(gamemodel,"Save_model22",player);
 
     }
 
     public void Load(Player player)
     {
-        gameview=load_game("Save_Gui21",player);
-        gamemodel=load_game("Save_model21",player);
+       // gameview=load_game("Save_Gui22",player);
+       // gamemodel=load_game("Save_model22",player);
     }
 
 }

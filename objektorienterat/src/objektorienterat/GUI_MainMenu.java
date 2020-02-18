@@ -93,9 +93,10 @@ public class GUI_MainMenu extends DisplayScreen {
 		gotoloadgame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// controller.clearGame(); -> TODO
-				filehandler.Load(new Player("dummy"));
-				layoutManager.swap(LayoutManager.LOADGAME);
 
+
+				filehandler.Load(new Player("bashar"));
+				layoutManager.swap(LayoutManager.LOADGAME);
 			}
 
 		});
