@@ -11,9 +11,9 @@ public class AI implements Playing, ModelListener {
 	
 	public AI(GameModel model) {
 		this.model = model;
-		this.model.addListener(this);
 	}
 	
+	@Override
 	public void makeMove() {
 		Coordinate AIcoord = null;
 		if((AIcoord = smartMove(this.model.getMarks(), this.model.getMarkCount())) != null
@@ -32,7 +32,6 @@ public class AI implements Playing, ModelListener {
 			@Override
 			public void run() {
 				model.makeMark(coord);
-				model.changeTurn();
 			}
 		}, 1000);
 	}
@@ -170,9 +169,22 @@ public class AI implements Playing, ModelListener {
 
 	@Override
 	public void modelWasUpdated() {
-		if(this.model.getCurrentlyPlaying() == this) {
-			makeMove();
-		}
+		makeMove();
+	}
+
+	@Override
+	public void win() {
+		this.model.removeListener(this);
+	}
+
+	@Override
+	public void lose() {
+		this.model.removeListener(this);
+	}
+
+	@Override
+	public void draw() {
+		this.model.removeListener(this);
 	}
 
 }

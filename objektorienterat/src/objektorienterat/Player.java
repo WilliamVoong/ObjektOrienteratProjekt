@@ -1,12 +1,17 @@
 package src.objektorienterat;
 
-public class Player {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Player implements ViewListener, Playing {
 
 	private String username;
 	private int gamesPlayed;
 	private int gamesWon;
 	private int gamesLost;
 	private int gamesDrawn;
+	private GameModel model;
+	private GameView view;
 	
 	public Player(String username, int gamesWon, int gamesLost, int gamesDrawn) {
 		this.username = username;		
@@ -80,4 +85,56 @@ public class Player {
 		this.gamesDrawn++;
 	}
 
+	@Override
+	public void viewWasUpdated() {
+		makeMove();
+	}
+
+	@Override
+	public void makeMove() {
+		Coordinate coord = this.view.getLastClickedCell().getCoordinate();
+		if(this.model.isLegalMove(this, coord)) {
+			this.model.makeMark(coord);
+		}
+	}
+
+	@Override
+	public void win() {
+		stopListening();
+		incrementGamesWon();
+	}
+
+	@Override
+	public void lose() {
+		stopListening();
+		incrementGamesLost();
+	}
+
+	@Override
+	public void draw() {
+		stopListening();
+		incrementGamesDrawn();
+	}
+	
+	public void setGameModel(GameModel model) {
+		this.model = model;
+	}
+	
+	public void setGameView(GameView view) {
+		this.view = view;
+	}
+	
+	private Player getSelf() {
+		return this;
+	}
+	
+	private void stopListening() {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				view.removeListener(getSelf());
+			}
+		}, 500);
+	}
 }

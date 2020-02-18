@@ -4,10 +4,7 @@ public class GameAdmin implements ModelListener {
 	private Player currentUser;
 	private GameModel model;
 	private GameView view;
-	private int gameType;
-	private Playing player1;
-	@SuppressWarnings("unused")
-	private Playing player2;
+	private Playing player1, player2;
 	static final int PVC = 0x1337;
 	static final int PVP = 0x1338;
 	static final int CVC = 0x1339;
@@ -26,19 +23,30 @@ public class GameAdmin implements ModelListener {
 		{
 			return;
 		}
-		this.gameType = gameType;
 		if(gameType == GameAdmin.PVC) {
+			AI ai = new AI(this.model);
 			this.model.setPlayers(
-					this.player1 = new HumanPlayer(this.currentUser, this.model, this.view),
-					this.player2 = new AI(this.model));
+					this.player1 = currentUser,
+					this.player2 = ai);
+			this.view.addListener(this.currentUser);
+			this.model.addListener(ai);
 		} else if(gameType == GameAdmin.PVP) {
+			Player p2 = new Player("dummy");
+			p2.setGameModel(this.model);
+			p2.setGameView(this.view);
 			this.model.setPlayers(
-					this.player1 = new HumanPlayer(this.currentUser, this.model, this.view),
-					this.player2 = new HumanPlayer("", this.model, this.view));
+					this.player1 = this.currentUser,
+					this.player2 = p2);
+			this.view.addListener(this.currentUser);
+			this.view.addListener(p2);
 		} else if(gameType == GameAdmin.CVC) {
+			AI ai1 = new AI(this.model);
+			AI ai2 = new AI(this.model);
 			this.model.setPlayers(
-					this.player1 = new AI(this.model),
-					this.player2 = new AI(this.model));
+					this.player1 = ai1,
+					this.player2 = ai2);
+			this.model.addListener(ai1);
+			this.model.addListener(ai2);
 		}
 		this.model.reset();
 		this.view.fullUpdate();
@@ -47,19 +55,21 @@ public class GameAdmin implements ModelListener {
 
 	@Override
 	public void modelWasUpdated() {
-		if(!(this.gameType == GameAdmin.PVC && this.model.isGameOver())) {
+		if(!this.model.isGameOver()) {
 			return;
 		}
 		if(this.model.isWinner()) {
 			if(this.model.getCurrentlyPlaying() == this.player1) {
-				((HumanPlayer)this.player1).incrementGamesWon();
+				this.player1.win();
+				this.player2.lose();
 			} else {
-				((HumanPlayer)this.player1).incrementGamesLost();
+				this.player1.lose();
+				this.player2.win();
 			}
 		} else {
-			((HumanPlayer)this.player1).incrementGamesDrawn();
+			this.player1.draw();
+			this.player2.draw();
 		}
-		
 	}
 	
 }

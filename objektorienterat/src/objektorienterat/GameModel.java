@@ -55,6 +55,7 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		}
 		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
 		this.markCount++;
+		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
 		if(this.markCount > 4 && isWinner()) {
 			System.out.println("Someone won! Let's add a way to make something appropriate happen");
 			this.gameOver = true;
@@ -154,7 +155,4 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		return this.currentlyPlaying == moveMaker && this.marks[coord.getX()][coord.getY()] == Mark.NULL;
 	}
 
-	public void changeTurn() {
-		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
-	}
 }

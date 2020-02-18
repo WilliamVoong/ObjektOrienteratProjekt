@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -56,7 +57,6 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		if(move != null) {
 			setCellState(move);
 		}
-
 	}
 	
 	private void setCellState(Move move) {
@@ -86,15 +86,9 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		this.listeners.remove(listener);
 	}
 	
-	public void removeListeners() {
-		for(ViewListener listener : this.listeners) {
-			this.listeners.remove(listener);
-		}
-	}
-	
 	private void notifyListeners() {
-		for(ViewListener vl : listeners) {
-			vl.viewWasUpdated();
+		for(ViewListener listener : this.listeners) {
+			listener.viewWasUpdated();
 		}
 	}
 	
