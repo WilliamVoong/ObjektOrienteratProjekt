@@ -39,6 +39,12 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		this.listeners.remove(listener);
 	}
 	
+	public void removeListeners() {
+		for(ModelListener listener : this.listeners) {
+			this.listeners.remove(listener);
+		}
+	}
+	
 	public Move getLastMove() {
 		return this.lastMove;
 	}
