@@ -1,5 +1,7 @@
 package src.objektorienterat;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 public class TreIRad {
@@ -11,20 +13,24 @@ public class TreIRad {
     private DisplayScreen guiWelcome;
     private DisplayScreen guiGame;
     private DisplayScreen guiMainMenu;
-    private DisplayScreen guiloadgame ;
+   // private DisplayScreen guiloadgame ;
     private Player currentUser;
     private FileHandler fileHandler;
     private HumanPlayer humanPlayer;
     private AI ai;
+    private HumanPlayerFactory humanPlayerFactory;
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
         currentUser= new Player("bashar",0,0,0);
         createGameModelViewControler();
         humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
-        fileHandler=new FileHandler(gameModel,gameView);
+        humanPlayerFactory= new HumanPlayerFactory(gameView,gameModel,stats);
+        fileHandler=new FileHandler(gameModel);
         createScreens();
         setupScreenMananger();
+        
+        
     }
 
     private void createGameModelViewControler() {
@@ -35,10 +41,12 @@ public class TreIRad {
     }
         private void createScreens() {
         guiStats= new GUI_Stats(layoutManager, stats);
-        guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel);
+        guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel,humanPlayerFactory);
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
-        guiloadgame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser, stats);
+
+       // guiloadgame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
+        guiWelcome= new GUI_Welcome(layoutManager, currentUser, humanPlayerFactory);
+
 
     }
 
@@ -47,7 +55,7 @@ public class TreIRad {
         layoutManager.addNewScreen(guiGame,LayoutManager.GAMEPANEL);
         layoutManager.addNewScreen(guiStats,LayoutManager.HIGHSCOREPANEL);
         layoutManager.addNewScreen(guiMainMenu,LayoutManager.MENUPANEL);
-        layoutManager.addNewScreen(guiloadgame,LayoutManager.LOADGAME);
+        //layoutManager.addNewScreen(guiloadgame,LayoutManager.LOADGAME);
 
 
     }
@@ -55,6 +63,11 @@ public class TreIRad {
     public void startGame(){
         MainWindow w = new MainWindow(layoutManager);
         SwingUtilities.invokeLater(w);
+
+    };
+    
+    public void setStylePopupWindow(){
+    
 
     };
 }

@@ -5,14 +5,14 @@ import java.io.*;
 
 
 public class FileHandler   {
-    FileHandlerInterface gameview;
+   // FileHandlerInterface gameview;
     FileHandlerInterface gamemodel;
 
 
-    public FileHandler(FileHandlerInterface gamemodel,FileHandlerInterface gameview)
+    public FileHandler(FileHandlerInterface gamemodel)
     {
         this.gamemodel=gamemodel;
-        this.gameview=gameview;
+        //this.gameview=gameview;
 
     }
     private   void Save_game(FileHandlerInterface game, String file_name,Player player)  {
@@ -79,15 +79,15 @@ public class FileHandler   {
 
     public void Save(Player player)
     {
-        Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model22",player);
+        //Save_game(gameview,"Save_Gui22",player);
+        Save_game(gamemodel,"Save_model23",player);
 
     }
 
     public void Load(Player player)
     {
-       // gameview=load_game("Save_Gui22",player);
-       // gamemodel=load_game("Save_model22",player);
+        //gameview=load_game("Save_Gui22",player);
+       gamemodel=load_game("Save_model23",player);
     }
 
 }

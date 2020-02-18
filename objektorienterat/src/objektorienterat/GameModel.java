@@ -62,7 +62,7 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		notifyListeners();
 	}
 
-	private void notifyListeners() {
+	public void notifyListeners() {
 		for(ModelListener listener : listeners) {
 			listener.modelWasUpdated();
 		}
@@ -144,6 +144,10 @@ public class GameModel implements Serializable,FileHandlerInterface {
 	
 	public Playing getCurrentlyPlaying() {
 		return this.currentlyPlaying;
+	}
+	
+	public boolean isLegalMove(Playing moveMaker, Coordinate coord) {
+		return this.currentlyPlaying == moveMaker && this.marks[coord.getX()][coord.getY()] == Mark.NULL;
 	}
 
 }

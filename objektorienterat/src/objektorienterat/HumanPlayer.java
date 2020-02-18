@@ -20,8 +20,9 @@ public class HumanPlayer extends Player implements Playing, ViewListener, Serial
 
 	@Override
 	public void viewWasUpdated() {
-		if(this.model.getCurrentlyPlaying() == this) {
-			this.model.makeMark(this.view.getLastClickedCell().getCoordinate());
+		Coordinate coord = this.view.getLastClickedCell().getCoordinate();
+		if(this.model.isLegalMove(this, coord)) {
+			this.model.makeMark(coord);
 		}
 	}
 	
