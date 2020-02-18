@@ -1,5 +1,7 @@
 package src.objektorienterat;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 public class TreIRad {
@@ -15,15 +17,19 @@ public class TreIRad {
     private FileHandler fileHandler;
     private HumanPlayer humanPlayer;
     private AI ai;
+    private HumanPlayerFactory humanPlayerFactory;
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
         currentUser= new Player("dummy",0,0,0);
         createGameModelViewControler();
         humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
+        humanPlayerFactory= new HumanPlayerFactory(gameView,gameModel,stats);
         fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
         setupScreenMananger();
+        
+        
     }
 
     private void createGameModelViewControler(){
@@ -35,9 +41,9 @@ public class TreIRad {
 
     private void createScreens(){
         guiStats= new GUI_Stats(layoutManager, stats);
-        guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel);
+        guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel,humanPlayerFactory);
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser, stats);
+        guiWelcome= new GUI_Welcome(layoutManager, currentUser, humanPlayerFactory);
 
     }
 
@@ -51,6 +57,11 @@ public class TreIRad {
     public void startGame(){
         MainWindow w = new MainWindow(layoutManager);
         SwingUtilities.invokeLater(w);
+
+    };
+    
+    public void setStylePopupWindow(){
+    
 
     };
 }

@@ -14,24 +14,20 @@ public class GUI_Game extends DisplayScreen {
     GameModel gameModel;
     GameView gameView;
 
-
-
-    	
-
-    
-
+ 
     GUI_Game(SwappableScreen layoutManager,GameModel gameModel,GameView gameView, Player player, FileHandler filehandler){
         super(layoutManager);
         this.filehandler=filehandler; 
         this.player=player;
         this.gameModel=gameModel;
         this.gameView=gameView;
-        setBackground(Color.WHITE);
+        
         
  
         JButton goBackToMenu= new JButton("go back to menu");
         JButton saveGame= new JButton("save game");
         JButton sugggestMove= new JButton("Suggest move");
+        
         
         goBackToMenu.addActionListener(new ActionListener() {
             @Override
@@ -71,6 +67,7 @@ public class GUI_Game extends DisplayScreen {
         buttonPanel.setLayout(new GridBagLayout()); 
         buttonPanel.setBackground(getBackground());
         
+        
 
         gameView.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.setAlignmentX(CENTER_ALIGNMENT);
@@ -92,6 +89,8 @@ public class GUI_Game extends DisplayScreen {
         buttonPanel.add( sugggestMove,c);
         c.gridy+=3; 
         buttonPanel.add(saveGame,c);
+        c.gridy+=3; 
+        buttonPanel.add(new JButton("hej"),c);
        
 
      
