@@ -32,6 +32,7 @@ public class AI implements Playing, ModelListener {
 			@Override
 			public void run() {
 				model.makeMark(coord);
+				model.changeTurn();
 			}
 		}, 1000);
 	}
