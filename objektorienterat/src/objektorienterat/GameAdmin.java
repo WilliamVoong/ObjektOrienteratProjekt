@@ -31,9 +31,7 @@ public class GameAdmin implements ModelListener {
 			this.view.addListener(this.currentUser);
 			this.model.addListener(ai);
 		} else if(gameType == GameAdmin.PVP) {
-			Player p2 = new Player("dummy");
-			p2.setGameModel(this.model);
-			p2.setGameView(this.view);
+			Player p2 = new Player("dummy", this.model, this.view);
 			this.model.setPlayers(
 					this.player1 = this.currentUser,
 					this.player2 = p2);
@@ -59,7 +57,7 @@ public class GameAdmin implements ModelListener {
 			return;
 		}
 		if(this.model.isWinner()) {
-			if(this.model.getCurrentlyPlaying() == this.player1) {
+			if(this.model.getCurrentlyPlaying() == this.player2) {
 				this.player1.win();
 				this.player2.lose();
 			} else {
