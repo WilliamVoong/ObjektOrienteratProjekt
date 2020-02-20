@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 	private Cell lastClickedCell = null;
 	private List<ViewListener> listeners = new ArrayList<>();
 	private GameModel model;
-	
+
 	public GameView(SwappableScreen screen, GameModel model) {
 		super();
 		this.model = model;
@@ -46,19 +47,19 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				this.cells[i][j].setText("");
+				cells[i][j].setBackground(new Color(0x4988CE));
 			}
 		}
 	}
-	
+
 	@Override
 	public void modelWasUpdated() {
 		Move move = this.model.getLastMove();
 		if(move != null) {
 			setCellState(move);
 		}
-
 	}
-	
+
 	private void setCellState(Move move) {
 		Mark mark = move.getMark();
 		Coordinate coord = move.getCoord();
@@ -68,39 +69,34 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		else if(mark == Mark.O)
 			Change_color(coord,new Color(0x80CEB9));
 	}
-	
-	public GameModel fullUpdate(GameModel gameModel) {
-		this.model=gameModel;
+
+	public void fullUpdate() {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				Coordinate coord = new Coordinate(i, j);
 				setCellState(new Move(this.model.getMark(coord), coord));
-
 			}
 		}
-		return gameModel;
 	}
-	
+
+	public void setModel(GameModel model) {
+		this.model = model;
+	}
+
 	public void addListener(ViewListener listener) {
 		this.listeners.add(listener);
 	}
-	
+
 	public void removeListener(ViewListener listener) {
 		this.listeners.remove(listener);
 	}
-	
-	public void removeListeners() {
-		for(ViewListener listener : this.listeners) {
-			this.listeners.remove(listener);
-		}
-	}
-	
+
 	private void notifyListeners() {
-		for(ViewListener vl : listeners) {
-			vl.viewWasUpdated();
+		for(ViewListener listener : this.listeners) {
+			listener.viewWasUpdated();
 		}
 	}
-	
+
 	public Cell getLastClickedCell() {
 		return this.lastClickedCell;
 	}
@@ -112,7 +108,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 	public Cell getCorrdinate(Coordinate coordinate) {
 		return cells[coordinate.getX()][coordinate.getY()];
 	}
-	
+
 	public void Change_color(Coordinate coordinate, Color color) {
 		cells[coordinate.getX()][coordinate.getY()].setBackground(color);
 	}

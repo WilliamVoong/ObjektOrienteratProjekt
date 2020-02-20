@@ -14,21 +14,21 @@ public class Stats {
 	static final int SORTBYGAMESWON =		0x1001;
 	static final int SORTBYGAMESLOST =		0x1002;
 	static final int SORTBYGAMESDRAWN =		0x1003;
-	
+
 	public Stats() {
 		this.players = new HashMap<>();
 	}
-	
+
 	public Map<String, Player> getPlayers() {
 		return this.players;
 	}
-	
+
 	public void put(Player p) {
 		this.players.put(p.getUsername(), p);
 	}
-	
+
 	public LinkedHashMap<String, Player> getPlayersSort(int sortCode) {
-		if(!(	sortCode == Stats.SORTBYGAMESPLAYED	|| 
+		if(!(	sortCode == Stats.SORTBYGAMESPLAYED	||
 				sortCode == Stats.SORTBYGAMESWON	||
 				sortCode == Stats.SORTBYGAMESLOST	||
 				sortCode == Stats.SORTBYGAMESDRAWN	))
@@ -59,5 +59,5 @@ public class Stats {
 		}
 		return sortedByGamesWon;
 	}
-	
+
 }

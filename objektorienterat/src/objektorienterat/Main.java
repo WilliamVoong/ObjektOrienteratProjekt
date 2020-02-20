@@ -8,6 +8,6 @@ public class Main {
 		//FileHandler.print();
 
 		StringInputChecker b= new StringInputChecker(new String(""));
-		
+
 	}
 }

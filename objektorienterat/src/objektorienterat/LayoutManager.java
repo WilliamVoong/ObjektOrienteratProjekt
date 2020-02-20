@@ -7,28 +7,28 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *  LayoutManager has the responsibility of what panel that are being displayed. 
- * 
+ *  LayoutManager has the responsibility of what panel that are being displayed.
+ *
  * @author william
  *
  */
 public class LayoutManager implements SwappableScreen{
 	public final static String MENUPANEL = "MenuPanel";
-    public final static String WELCOMEPANEL = "Welcome";
-    public final static String GAMEPANEL = "GamePlay";
-    public final static String HIGHSCOREPANEL = "HighScore";
-    public final static String LOADGAME="Loadgame";
-   
-    JPanel cards = new JPanel(new CardLayout());
-    
-    public void addComponentToPane(Container pane) {
+	public final static String WELCOMEPANEL = "Welcome";
+	public final static String GAMEPANEL = "GamePlay";
+	public final static String HIGHSCOREPANEL = "HighScore";
+	public final static String LOADGAME="Loadgame";
 
-    	  cards.setVisible(true);
-         pane.add(cards);
-    }
+	JPanel cards = new JPanel(new CardLayout());
+
+	public void addComponentToPane(Container pane) {
+
+		cards.setVisible(true);
+		pane.add(cards);
+	}
 
 
-    public void swap(String string)  {
+	public void swap(String string)  {
         /*try {
             if (string.equals(LOADGAME)) {
                 GameView gameView= (GameView) FileHandler.load_game("Save_Gui17","bashar");
@@ -46,11 +46,11 @@ public class LayoutManager implements SwappableScreen{
         {
 
         }*/
-    	
-        CardLayout c1= (CardLayout) (cards.getLayout());
-    	c1.show(cards, string);
-    	
-    }
+
+		CardLayout c1= (CardLayout) (cards.getLayout());
+		c1.show(cards, string);
+
+	}
 	@Override
 	public JPanel getPanel() {
 		// TODO Auto-generated method stub

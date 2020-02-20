@@ -9,12 +9,12 @@ import java.util.TimerTask;
 
 public class AI implements Playing, ModelListener, Serializable {
 	private GameModel model;
-	
+
 	public AI(GameModel model) {
 		this.model = model;
-		this.model.addListener(this);
 	}
-	
+
+	@Override
 	public void makeMove() {
 		Coordinate AIcoord = null;
 		if((AIcoord = smartMove(this.model.getMarks(), this.model.getMarkCount())) != null
@@ -26,7 +26,7 @@ public class AI implements Playing, ModelListener, Serializable {
 		}
 
 	}
-	
+
 	private void makeMark(Coordinate coord) {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -36,7 +36,7 @@ public class AI implements Playing, ModelListener, Serializable {
 			}
 		}, 1000);
 	}
-	
+
 	public static Coordinate smartMove(Mark[][] marks, int markCount) {
 		int rowOffenseCount;
 		int rowDefenseCount;
@@ -137,7 +137,7 @@ public class AI implements Playing, ModelListener, Serializable {
 
 		return null;
 	}
-	
+
 	private static int markProperty(Mark mark, int markCount) {
 		if(mark.equals(Mark.NULL)) {
 			return 0;
@@ -170,9 +170,22 @@ public class AI implements Playing, ModelListener, Serializable {
 
 	@Override
 	public void modelWasUpdated() {
-		if(this.model.getCurrentlyPlaying() == this) {
-			makeMove();
-		}
+		makeMove();
+	}
+
+	@Override
+	public void win() {
+		this.model.removeListener(this);
+	}
+
+	@Override
+	public void lose() {
+		this.model.removeListener(this);
+	}
+
+	@Override
+	public void draw() {
+		this.model.removeListener(this);
 	}
 
 }

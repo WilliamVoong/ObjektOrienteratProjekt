@@ -8,7 +8,6 @@ public class FileHandler   {
     GameView gameview;
     GameModel gamemodel;
 
-
     public FileHandler(GameModel gamemodel,GameView gameview)
     {
         this.gamemodel=gamemodel;
@@ -80,15 +79,15 @@ public class FileHandler   {
     public void Save(Player player)
     {
         //Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model26",player);
+        Save_game(gamemodel,"Save_model30",player);
 
     }
 
     public GameModel Load(Player player)
     {
         //gameview=load_game("Save_Gui22",player);
-       gamemodel=load_game("Save_model26",player);
-       return  gameview.fullUpdate(gamemodel);
+       gamemodel=load_game("Save_model30",player);
+      return gamemodel;
 
 
     }
