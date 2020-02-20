@@ -3,12 +3,13 @@ package src.objektorienterat;
 import javax.swing.border.Border;
 import javax.swing.*;
 import java.util.*;
+import java.util.List;
 import java.awt.event.*;
 import java.awt.*;
 /*
  * 
- * Main Menu screen: responsibility is to display the mainmenu
- * 
+ * Main Menu screen: responsibility is to display the mainMenu
+ * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  * 
  */
 
@@ -16,62 +17,53 @@ public class GUI_MainMenu extends DisplayScreen {
 
 	
 	private FileHandler filehandler; 
-	private HumanPlayer player1; 
-	private Playing player2; 
-	private GameModel gameModel; 
-	private HumanPlayerFactory humanPlayerFactory; 
+	private GameAdmin gameAdmin;
+	private List<JButton> buttons;
 	
-	GUI_MainMenu(SwappableScreen layoutManager ,HumanPlayer player1,  FileHandler filehandler, GameModel gameModel, HumanPlayerFactory humanPlayerFactory) {
+	GUI_MainMenu(SwappableScreen layoutManager ,  FileHandler filehandler, GameAdmin gameAdmin) {
 
 		super(layoutManager);
 		this.filehandler=filehandler;
-		this.gameModel=gameModel;
-		this.humanPlayerFactory=humanPlayerFactory; 
-		this.player1=player1;
+		this.gameAdmin=gameAdmin;
+		buttons= new ArrayList<JButton>();
 		
 		
-		UIManager UI=new UIManager();
-		UI.put("OptionPane.background",new Color(0xFB292952));
-		UI.put("Panel.background", new Color(0xFB292952));
-		UI.put("OptionPane.messageForeground", Color.white);
+		
 		 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JButton changeUser=  new JButton("Change user");
-		JButton goToGame= new JButton("Player vs AI");
-		JButton goToGamePlayer= new JButton("Player vs Player");
+		JButton goToGamePVC= new JButton("Player vs AI");
+		JButton goToGamePVP= new JButton("Player vs Player");
 		JButton goToGameHighscore=  new JButton("Score");
 		JButton gotoloadgame=  new JButton("Load GameModel");
 		JButton exit= new JButton("Avsluta");
 		JLabel welcome=new JLabel(" Welcome to the game");
-
-	
-	
+		
+		
+		buttons.add(goToGamePVC);
+		buttons.add(goToGamePVP);
+		buttons.add(goToGameHighscore);
+		buttons.add(gotoloadgame);
+		buttons.add(changeUser);
+		buttons.add(exit);
+		
+		
 		welcome.setFont(new Font("Helvetica", Font.PLAIN,60));
 		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 		welcome.setForeground(Color.white);
 		welcome.setFont(new Font("Helvetica", Font.PLAIN,40));
 		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		
-
-		setStyle(goToGame);
-		setStyle(goToGamePlayer);
-		setStyle(goToGameHighscore);
-		setStyle(gotoloadgame);
-		setStyle(exit);
-		setStyle(changeUser);
-		
 		add(Box.createRigidArea(new Dimension(0,100)));
 		add(welcome);
 		
-		goToGame.setMaximumSize(new Dimension(100,50));
-		addWithVerticalAlignment(goToGame,50);
-		addWithVerticalAlignment(goToGameHighscore,50);
-		addWithVerticalAlignment(goToGamePlayer,50);
-		addWithVerticalAlignment(gotoloadgame,50);
-		addWithVerticalAlignment(changeUser,50);
-		addWithVerticalAlignment(exit,50);
+
+		for(JButton button: buttons) {
+			setStyle(button);
+			addToPanelWithVerticalAlignment(button,50);
+		}
+	
 		
 		changeUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,11 +80,10 @@ public class GUI_MainMenu extends DisplayScreen {
 			
 		});
 		
-		goToGame.addActionListener(new ActionListener() {
+		goToGamePVC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				player2= new AI(gameModel); 
-				gameModel.setPlayers(player1, player2);
-				gameModel.gameInit();
+				gameAdmin.newGame(GameAdmin.PVC);
+				System.out.println("Currently Player 1: " + gameAdmin.getCurrentUser().getUsername());
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 			}
 			
@@ -104,16 +95,14 @@ public class GUI_MainMenu extends DisplayScreen {
 			
 		});
 		
-		goToGamePlayer.addActionListener(new ActionListener() {
+		goToGamePVP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StringInputChecker checker= new StringInputChecker();
 				
 				try {
-					String playerName=" ";
-					playerName = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
-					player2= humanPlayerFactory.create(playerName); 
-					gameModel.setPlayers(player1, player2); // Todo we need a player factory here 
-					gameModel.gameInit();
+					
+					String playerName = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
+					gameAdmin.setPlayer2(new Player(playerName,0,0,0));
 					layoutManager.swap(LayoutManager.GAMEPANEL);
 	
 				}catch (StringEmptyException e1) {
@@ -133,7 +122,7 @@ public class GUI_MainMenu extends DisplayScreen {
 			public void actionPerformed(ActionEvent e) {
 				// controller.clearGame(); -> TODO
 				layoutManager.swap(LayoutManager.LOADGAME);
-				filehandler.Load(player1);
+				// filehandler.Load(player1);
 			}
 
 		});
@@ -146,7 +135,7 @@ public class GUI_MainMenu extends DisplayScreen {
 	 * Centralizes button and create natural spacing between them;
 	 * 
 	 */
-	private void addWithVerticalAlignment(JButton c, int verticalAlignment){
+	private void addToPanelWithVerticalAlignment(JButton c, int verticalAlignment){
 		c.setMaximumSize(new Dimension(150,50));
 		c.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(Box.createRigidArea(new Dimension(0,verticalAlignment)));
@@ -155,15 +144,13 @@ public class GUI_MainMenu extends DisplayScreen {
 
 	/*
 	 * 
-	 * Stylizes the button	
+	 * Stylizes the button	and sets the size of the buttons
 	 */
 	private void setStyle(JButton button){
-		button.setFont(new Font("Calibri", Font.PLAIN, 20));
-		button.setBackground(new Color(0x788BCE));
-		button.setForeground(Color.white);
 		button.setPreferredSize(new Dimension(200, 200));
 		button.setUI(new StyledButtonUI());
 
 	}
+	
 
 }

@@ -1,6 +1,8 @@
 package src.objektorienterat;
 import java.awt.BorderLayout;
 
+
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -24,6 +26,16 @@ import javax.swing.border.LineBorder;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
+
+
+
+
+/*
+ * 
+ * Welcome screen: responsibility is to display the Stats screen and its textfields
+ * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
+ * 
+ */
 public class GUI_Stats extends DisplayScreen {
 	Stats stats; 
 	JPanel mainPanel= new JPanel(); 
@@ -55,10 +67,6 @@ public class GUI_Stats extends DisplayScreen {
 		ScorePanel(holderPanel);
 		ButtonPanel(holderPanel);
 	
-		
-		
-	
-		
 		backToMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,41 +91,29 @@ public class GUI_Stats extends DisplayScreen {
 	}
 	private void ScorePanel(JPanel paneltoTo) {
 		JPanel scorePanel=new JPanel();
-
 		scorePanel.setBackground(Color.black);
 		scorePanel.setAlignmentX(CENTER_ALIGNMENT);
 		scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
-		
-		
 		scorePanel= screenswapper.getCards(); 
 		scorePanel.setMaximumSize((new Dimension(600,500)));;
-		//scorePanel.setPreferredSize((new Dimension(100,300)));;
-		//scorePanel.setMinimumSize((new Dimension(100,300)));;
 		
 		for(int i =0 ; i < 10; i++) {
 			JPanel score= new JPanel();
 			score.setBackground(new Color(0x00AAF0CD) );
 			score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
-			
 			LabelForScore(score);
-			//score.setPreferredSize(new Dimension(500,500));
-			//score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-			//score.setAlignmentX(CENTER_ALIGNMENT);
-			
 			for(int j =0 ; j < 10; j++) {
 				JLabel s= new JLabel("example score " + j+i);
-				
 				s.setAlignmentX(Component.CENTER_ALIGNMENT);
 				score.add(s);
 			} 
 			Integer a= i;
 			screenswapper.addNewScreen(score, a.toString());
 		}
-		//add(Box.createHorizontalGlue());
+	
 		
 		paneltoTo.add(scorePanel);
-		//add(Box.createVerticalGlue());
-		//add(Box.createHorizontalGlue());
+		
 		
 	}
 	private void ButtonPanel(JPanel paneltoTo) {
@@ -191,29 +187,20 @@ public class GUI_Stats extends DisplayScreen {
 			}
 		paneltoTo.add(scorePanel);
 	}
-		/*
-		JPanel score= new JPanel();
-		score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-		score.setAlissssssgnmentX(CENTER_ALIGNMENT);
-		score.setBackground(new Color(0x00AAF0CD) );
-		for(int j =0 ; j < 10; j++) {
-			JLabel s= new JLabel("example score" + j);
-			s.setAlignmentX(Component.CENTER_ALIGNMENT);
-			score.add(s);
-		} */
+		
 	private void LabelForScore(JPanel paneltoTo){
 		JPanel labelPanel= new JPanel();
 	
+		labelPanel.setBackground(Color.white);
 		labelPanel.setMaximumSize((new Dimension(600,50)));;
-		//labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.X_AXIS));
 		labelPanel.setLayout(new GridLayout(1,5)); 
 		labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		List<JLabel> labels= new ArrayList<JLabel>();
 		labels.add(new JLabel(" User ")); 
-		labels.add(new JLabel(" # Games"));
+		labels.add(new JLabel(" # Games "));
 		labels.add(new JLabel(" Losts "));
 		labels.add(new JLabel(" Wins "));
-		labels.add(new JLabel("Draws "));
+		labels.add(new JLabel(" Draws "));
 		
 		for(JLabel label: labels) {
 		//label.setBorder(BorderFactory.createLineBorder(Color.BLACK));

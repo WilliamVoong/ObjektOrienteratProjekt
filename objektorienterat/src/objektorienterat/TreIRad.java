@@ -3,7 +3,12 @@ package src.objektorienterat;
 import java.awt.Color;
 
 import javax.swing.*;
-
+/*
+ * 
+ * The purpose of this class to create all the references of the treIrad game and create all the compositions. 
+ *
+ * 
+ */
 public class TreIRad {
     private GameView gameView;
     private GameModel gameModel;
@@ -15,16 +20,20 @@ public class TreIRad {
     private DisplayScreen guiMainMenu;
     private Player currentUser;
     private FileHandler fileHandler;
-    private HumanPlayer humanPlayer;
+    private GameAdmin gameAdmin; 
     private AI ai;
-    private HumanPlayerFactory humanPlayerFactory;
+   
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
-        currentUser= new Player("dummy",0,0,0);
+        
+        gameModel= new GameModel();
+        gameView= new GameView(layoutManager,gameModel);  
+        currentUser= new Player("nameNotCurrentltlyDetermined",0,0,0,gameModel,gameView);
+        gameAdmin= new GameAdmin(currentUser, gameModel, gameView);
+        
         createGameModelViewControler();
-        humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
-        humanPlayerFactory= new HumanPlayerFactory(gameView,gameModel,stats);
+        
         fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
         setupScreenMananger();
@@ -33,17 +42,17 @@ public class TreIRad {
     }
 
     private void createGameModelViewControler(){
-        gameModel= new GameModel();
-        ai=new AI(gameModel);
-        gameModel.setPlayers(new AI(gameModel), ai);
-        gameView= new GameView(layoutManager,gameModel);   
+       
+        
+      
+         
     }
 
     private void createScreens(){
         guiStats= new GUI_Stats(layoutManager, stats);
-        guiMainMenu= new GUI_MainMenu(layoutManager,humanPlayer,fileHandler,gameModel,humanPlayerFactory);
-        guiGame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser, humanPlayerFactory);
+        guiMainMenu= new GUI_MainMenu(layoutManager, fileHandler, gameAdmin );
+        guiGame= new GUI_Game(layoutManager, gameModel, gameView,currentUser, fileHandler);
+        guiWelcome= new GUI_Welcome(layoutManager, currentUser);
 
     }
 

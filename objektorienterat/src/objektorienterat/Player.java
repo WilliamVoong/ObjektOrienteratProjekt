@@ -21,6 +21,10 @@ public class Player implements ViewListener, Playing {
 		this.gamesPlayed = this.gamesWon + this.gamesLost + this.gamesDrawn;
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public Player(String username, int gamesWon, int gamesLost, int gamesDrawn, GameModel model, GameView view) {
 		this(username, gamesWon, gamesLost, gamesDrawn);
 		this.model = model;

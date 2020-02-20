@@ -14,21 +14,19 @@ import javax.swing.JOptionPane;
 
 /*
  * 
- * The gui of the Welcomescreen. 
- * Has the responsiblity of the userinterface of the welcome screen. 
+ * Welcome screen: responsibility is to display the mainMenu screen and its textfields
+ * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  * 
  */
 public class GUI_Welcome extends DisplayScreen {
 	Player currentUser;
-	Stats stats; 
 	LayoutManager layoutManager;
 	
-	HumanPlayerFactory playerFactory;
+
 	
-	GUI_Welcome(SwappableScreen layoutManager, Player currentUser, HumanPlayerFactory playerFactory){
+	GUI_Welcome(SwappableScreen layoutManager, Player currentUser){
 		
 		super(layoutManager);
-		this.stats=stats;
 		this.currentUser=currentUser; 
 		
 		JPanel buttonPanel=new JPanel();
@@ -38,7 +36,7 @@ public class GUI_Welcome extends DisplayScreen {
 		buttonPanel.setBackground(this.getBackground());
 		
 		JLabel treirad= new JLabel("Tre i rad");
-		JLabel username= new JLabel("Enter your username:   "); 
+		JLabel username= new JLabel("Enter your username: "); 
 		treirad.setForeground(Color.WHITE);
 		username.setForeground(Color.WHITE);
 		
@@ -73,13 +71,11 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				Player player2Play; 
+				 
 				try{
 					StringInputChecker s= new StringInputChecker();
 					String username = s.Check(text.getText());
-					Player user=playerFactory.create(username);
-					setCurrentUser(user);
+					currentUser.setUsername(username);
 					layoutManager.swap(LayoutManager.MENUPANEL);
 				} catch (StringEmptyException e1) {
 					e1.printStackTrace();

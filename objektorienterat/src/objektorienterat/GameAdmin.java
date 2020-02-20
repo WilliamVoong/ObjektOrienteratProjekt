@@ -53,6 +53,30 @@ public class GameAdmin implements ModelListener {
 		this.model.gameInit();
 	}
 
+	public Player getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(Player currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	public Playing getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(Playing player1) {
+		this.player1 = player1;
+	}
+
+	public Playing getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(Playing player2) {
+		this.player2 = player2;
+	}
+
 	@Override
 	public void modelWasUpdated() {
 		if(!this.model.isGameOver()) {
