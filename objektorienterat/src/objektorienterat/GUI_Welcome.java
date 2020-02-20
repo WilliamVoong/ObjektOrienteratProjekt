@@ -26,24 +26,18 @@ public class GUI_Welcome extends DisplayScreen {
 	HumanPlayerFactory playerFactory;
 	
 	GUI_Welcome(SwappableScreen layoutManager, HumanPlayer currentUser, HumanPlayerFactory playerFactory){
-		
 		super(layoutManager);
 		this.stats=stats;
-		this.currentUser=currentUser; 
-		
+		this.currentUser=currentUser;
 		JPanel buttonPanel=new JPanel();
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); 
-		
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		buttonPanel.setBackground(this.getBackground());
-		
 		JLabel treirad= new JLabel("Tre i rad");
 		JLabel username= new JLabel("Enter your username:   "); 
 		treirad.setForeground(Color.WHITE);
 		username.setForeground(Color.WHITE);
-		
 		JTextField text = new JTextField(10);
-		
 		treirad.setFont(new Font("Helvetica", Font.PLAIN,60));
 		text.setMaximumSize(new Dimension(130,30));
 		treirad.setAlignmentX(CENTER_ALIGNMENT);

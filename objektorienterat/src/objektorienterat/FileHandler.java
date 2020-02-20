@@ -80,15 +80,16 @@ public class FileHandler   {
     public void Save(Player player)
     {
         //Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model25",player);
+        Save_game(gamemodel,"Save_model26",player);
 
     }
 
-    public void Load(Player player)
+    public GameModel Load(Player player)
     {
         //gameview=load_game("Save_Gui22",player);
-       gamemodel=load_game("Save_model25",player);
-       gameview.fullUpdate(gamemodel);
+       gamemodel=load_game("Save_model26",player);
+       return  gameview.fullUpdate(gamemodel);
+
 
     }
 

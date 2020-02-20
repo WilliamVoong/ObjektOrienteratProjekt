@@ -69,14 +69,16 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 			Change_color(coord,new Color(0x80CEB9));
 	}
 	
-	public void fullUpdate(GameModel gameModel) {
+	public GameModel fullUpdate(GameModel gameModel) {
 		this.model=gameModel;
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				Coordinate coord = new Coordinate(i, j);
 				setCellState(new Move(this.model.getMark(coord), coord));
+
 			}
 		}
+		return gameModel;
 	}
 	
 	public void addListener(ViewListener listener) {

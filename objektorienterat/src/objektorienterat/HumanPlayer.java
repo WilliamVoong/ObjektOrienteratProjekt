@@ -25,5 +25,12 @@ public class HumanPlayer extends Player implements Playing, ViewListener, Serial
 			this.model.makeMark(coord);
 		}
 	}
+
+
+	public void UpdateModel(GameModel gameModel)
+	{
+		this.model=gameModel;
+	}
+
 	
 }

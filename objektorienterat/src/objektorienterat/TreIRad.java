@@ -14,7 +14,7 @@ public class TreIRad {
     private DisplayScreen guiGame;
     private DisplayScreen guiMainMenu;
    // private DisplayScreen guiloadgame ;
-    private HumanPlayer currentUser;
+    private Player currentUser;
     private FileHandler fileHandler;
     private HumanPlayer humanPlayer;
     private AI ai;
@@ -22,9 +22,8 @@ public class TreIRad {
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
-
+        currentUser= new Player("bashar",0,0,0);
         createGameModelViewControler();
-        currentUser= new HumanPlayer( new Player("bashar",0,0,0),gameModel,gameView);
         humanPlayer= new HumanPlayer(currentUser,gameModel,gameView);
         humanPlayerFactory= new HumanPlayerFactory(gameView,gameModel,stats);
         fileHandler=new FileHandler(gameModel,gameView);
@@ -46,7 +45,7 @@ public class TreIRad {
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
 
        // guiloadgame= new GUI_Game(layoutManager, gameModel, gameView,humanPlayer, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser, humanPlayerFactory);
+        guiWelcome= new GUI_Welcome(layoutManager, humanPlayer, humanPlayerFactory);
 
 
     }

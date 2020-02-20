@@ -134,7 +134,8 @@ public class GUI_MainMenu extends DisplayScreen {
 				// controller.clearGame(); -> TODO
 
 
-				filehandler.Load(player1);
+				UpdateModel(filehandler.Load(player1));
+				player1.UpdateModel(gameModel);
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 
 			}
@@ -166,6 +167,12 @@ public class GUI_MainMenu extends DisplayScreen {
 		button.setForeground(Color.white);
 		button.setPreferredSize(new Dimension(200, 200));
 		button.setUI(new StyledButtonUI());
+
+	}
+
+	public void UpdateModel(GameModel gameModel)
+	{
+		this.gameModel=gameModel;
 
 	}
 
