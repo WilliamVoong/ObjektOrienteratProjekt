@@ -75,18 +75,23 @@ public class FileHandler   {
        return null;
     }
 
+    public void setGamemodel(GameModel gamemodel)
+    {
+        this.gamemodel=gamemodel;
+
+    }
 
     public void Save(Player player)
     {
         //Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model30",player);
+        Save_game(gamemodel,"Save_model33",player);
 
     }
 
     public GameModel Load(Player player)
     {
         //gameview=load_game("Save_Gui22",player);
-       gamemodel=load_game("Save_model30",player);
+       gamemodel=load_game("Save_model33",player);
       return gamemodel;
 
 

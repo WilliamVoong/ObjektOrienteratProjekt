@@ -1,5 +1,6 @@
 package src.objektorienterat;
 
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		this.listeners.add(listener);
 	}
 
+
+
 	public void removeListener(ModelListener listener) {
 		this.listeners.remove(listener);
 	}
@@ -45,6 +48,8 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		}
 	}
 
+
+
 	public Move getLastMove() {
 		return this.lastMove;
 	}
@@ -53,9 +58,14 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		if(this.gameOver) {
 			return;
 		}
-		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
+		//this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
+		if(currentlyPlaying==player1)
+			this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] =  Mark.X, coord);
+		else
+			this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] =  Mark.O, coord);
 		this.markCount++;
 		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
+		Sound_effect.playSound("buttonclick.wav");
 		if(this.markCount > 4 && isWinner()) {
 			System.out.println("Someone won! Let's add a way to make something appropriate happen");
 			this.gameOver = true;
@@ -135,6 +145,20 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		return this.markCount;
 	}
 
+	public void setMarkCount(int markCount)
+	{
+		this.markCount=markCount;
+	}
+
+	public Move getlastmove()
+	{
+		return lastMove;
+	}
+
+	public void setLastMove(Move lastMove)
+	{
+		this.lastMove=lastMove;
+	}
 	public void setMarks(Mark[][] marks) {
 		for(int i=0;i<3;i++)
 			for(int j=0;j<3;j++)
@@ -146,11 +170,26 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		this.player2 = player2;
 	}
 
-	public void gameInit() {
-		Random random = new Random();
-		this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
+	public void gameInit(boolean loadgame) {
+		if(loadgame)
+		{
+			this.currentlyPlaying=player1;
+		}
+		else
+		{
+			Random random = new Random();
+			this.currentlyPlaying = (random.nextInt(2) == 0) ? player1 : player2;
+
+		}
+
 		this.gameOver = false;
 		notifyListeners();
+	}
+
+	public void setCurrentlyPlaying(Playing player)
+	{
+		this.currentlyPlaying=player;
+
 	}
 
 	public Playing getCurrentlyPlaying() {

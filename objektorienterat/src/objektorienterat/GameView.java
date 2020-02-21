@@ -79,9 +79,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		}
 	}
 
-	public void setModel(GameModel model) {
-		this.model = model;
-	}
+
 
 	public void addListener(ViewListener listener) {
 		this.listeners.add(listener);

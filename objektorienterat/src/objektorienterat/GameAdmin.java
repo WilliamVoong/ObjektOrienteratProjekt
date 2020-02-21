@@ -50,7 +50,7 @@ public class GameAdmin implements ModelListener, Serializable {
 		}
 		//this.model.reset();
 		this.view.fullUpdate();
-		this.model.gameInit();
+		//this.model.gameInit();
 	}
 
 	public Player getCurrentUser() {

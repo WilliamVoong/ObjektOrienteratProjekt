@@ -83,6 +83,7 @@ public class GUI_MainMenu extends DisplayScreen {
 		goToGamePVC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameAdmin.newGame(GameAdmin.PVC);
+				gameAdmin.getModel().gameInit(false);
 				System.out.println("Currently Player 1: " + gameAdmin.getCurrentUser().getUsername());
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 			}
@@ -120,26 +121,25 @@ public class GUI_MainMenu extends DisplayScreen {
 
 		gotoloadgame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                // i created loadgame in game model to avoid that AI starting playing alwyays after loading
+				//because after loading it is always user turn so i dont need to do random in this way , so when i creates new game the paramter in
+				//gameinit false to let random process and when it is loading it is True.
+ 				try
+				{GameModel temp=filehandler.Load(gameAdmin.getCurrentUser());
+					gameAdmin.getModel().setMarks(temp.getMarks());
+					gameAdmin.getModel().setMarkCount(temp.getMarkCount());
+					gameAdmin.getModel().setLastMove(temp.getLastMove());
+					gameAdmin.newGame(GameAdmin.PVC);
+					gameAdmin.getModel().gameInit(true);
+					layoutManager.swap(LayoutManager.GAMEPANEL);
 
+				}catch (NullPointerException ex)
+				{
+					Sound_effect.playSound("WS.wav");
+					JOptionPane.showMessageDialog(null,"OBS! There is no Data saved for this player name !!"," ****************** ERROR *****************",JOptionPane.ERROR_MESSAGE);
 
-/*				GameModel temp=filehandler.Load(gameAdmin.getCurrentUser());
-				GameView temp2=gameAdmin.getView();
-				gameAdmin.setModel(temp);
-				gameAdmin.getView().setModel(temp);
-				gameAdmin.setCurrentUser((Player) temp.getCurrentlyPlaying());
-				gameAdmin.newGame(GameAdmin.PVC);
-				layoutManager.swap(LayoutManager.GAMEPANEL);*/
-
-				GameModel temp=filehandler.Load(gameAdmin.getCurrentUser());
-				gameAdmin.getModel().setMarks(temp.getMarks());
-				gameAdmin.newGame(GameAdmin.PVC);
-				layoutManager.swap(LayoutManager.GAMEPANEL);
-
-
-
-
+				}
 			}
-
 		});
 
 
