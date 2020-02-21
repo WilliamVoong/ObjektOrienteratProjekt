@@ -63,7 +63,9 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		Mark mark = move.getMark();
 		Coordinate coord = move.getCoord();
 		this.cells[coord.getX()][coord.getY()].setText(move.getMark().toString());
-		if(mark == Mark.X)
+		if(mark == Mark.NULL)
+			Change_color(coord,Color.GRAY);
+		else if(mark == Mark.X)
 			Change_color(coord,new Color(0xCE5F86));
 		else if(mark == Mark.O)
 			Change_color(coord,new Color(0x80CEB9));

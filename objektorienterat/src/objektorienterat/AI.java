@@ -174,17 +174,31 @@ public class AI implements Playing, ModelListener {
 
 	@Override
 	public void win() {
-		this.model.removeListener(this);
+		stopListening();
 	}
 
 	@Override
 	public void lose() {
-		this.model.removeListener(this);
+		stopListening();
 	}
 
 	@Override
 	public void draw() {
-		this.model.removeListener(this);
+		stopListening();
+	}
+	
+	private AI getSelf() {
+		return this;
+	}
+	
+	private void stopListening() {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				model.removeListener(getSelf());
+			}
+		}, 500);
 	}
 
 }
