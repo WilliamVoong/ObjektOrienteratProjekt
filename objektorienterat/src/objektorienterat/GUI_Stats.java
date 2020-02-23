@@ -137,7 +137,7 @@ public class GUI_Stats extends DisplayScreen {
 		scorePanel= screenswapper.getCards(); 
 		scorePanel.setMaximumSize((new Dimension(600,500)));
 		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);		
-		Integer counter=11; 
+		Integer counter=1; 
 		
 		JPanel score= new JPanel();
 		score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
@@ -157,25 +157,23 @@ public class GUI_Stats extends DisplayScreen {
 				createItemsPanel(score);
 				screenswapper.addNewScreen(score, counter.toString());
 			}
-			Integer counterToPlacement=counter-10; 
+			Integer counterToPlacement=counter; 
 			
-			/*
+			
 			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
 			panelUser.add(new CenteredJLabel(p.getUsername()));
 			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
 			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
 			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
 			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
-				*/
+				
 			
 			counter++;
 		}
 		
 		paneltoTo.add(scorePanel);
 		
-
 	}
-	
 	/*
 	 * creates the button panel.
 	 * @paneltoAddto adds the buttonPanel that should be displayed. 
