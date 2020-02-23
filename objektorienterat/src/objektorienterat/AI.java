@@ -1,18 +1,19 @@
 package src.objektorienterat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AI implements Playing, ModelListener {
+public class AI implements Playing, ModelListener, Serializable {
 	private GameModel model;
-	
+
 	public AI(GameModel model) {
 		this.model = model;
 	}
-	
+
 	@Override
 	public void makeMove() {
 		Coordinate AIcoord = null;
@@ -25,7 +26,7 @@ public class AI implements Playing, ModelListener {
 		}
 
 	}
-	
+
 	private void makeMark(Coordinate coord) {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -35,7 +36,7 @@ public class AI implements Playing, ModelListener {
 			}
 		}, 1000);
 	}
-	
+
 	public static Coordinate smartMove(Mark[][] marks, int markCount) {
 		int rowOffenseCount;
 		int rowDefenseCount;
@@ -136,7 +137,7 @@ public class AI implements Playing, ModelListener {
 
 		return null;
 	}
-	
+
 	private static int markProperty(Mark mark, int markCount) {
 		if(mark.equals(Mark.NULL)) {
 			return 0;

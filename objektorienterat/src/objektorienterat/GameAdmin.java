@@ -1,6 +1,8 @@
 package src.objektorienterat;
 
-public class GameAdmin implements ModelListener {
+import java.io.Serializable;
+
+public class GameAdmin implements ModelListener, Serializable {
 	private Player currentUser;
 	private GameModel model;
 	private GameView view;
@@ -8,14 +10,14 @@ public class GameAdmin implements ModelListener {
 	static final int PVC = 0x1337;
 	static final int PVP = 0x1338;
 	static final int CVC = 0x1339;
-	
+
 	public GameAdmin(Player currentUser, GameModel model, GameView view) {
 		this.currentUser = currentUser;
 		this.model = model;
 		this.model.addListener(this);
 		this.view = view;
 	}
-	
+
 	public void newGame(int gameType) {
 		if(!(	gameType == GameAdmin.PVC ||
 				gameType == GameAdmin.PVP ||
@@ -46,9 +48,22 @@ public class GameAdmin implements ModelListener {
 			this.model.addListener(ai1);
 			this.model.addListener(ai2);
 		}
-		this.model.reset();
+		//this.model.reset();
 		this.view.fullUpdate();
-		this.model.gameInit();
+		//this.model.gameInit();
+	}
+
+
+	public void setModel(GameModel model) {
+		this.model = model;
+	}
+
+	public GameModel getModel() {
+		return model;
+	}
+
+	public GameView getView() {
+		return view;
 	}
 
 	public Player getCurrentUser() {
@@ -93,5 +108,5 @@ public class GameAdmin implements ModelListener {
 			this.player2.draw();
 		}
 	}
-	
+
 }

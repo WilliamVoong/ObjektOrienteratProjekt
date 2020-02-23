@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 /*
- * MainWindow has the responsiblity to display the main screen. 
+ * MainWindow has the responsiblity to display the main screen.
  */
 public class MainWindow extends JFrame implements Runnable {
 	private LayoutManager screenSwapper;
@@ -17,7 +17,7 @@ public class MainWindow extends JFrame implements Runnable {
 
 	@Override
 	public void run() {
-	
+
 		setVisible(true);
 		screenSwapper.addComponentToPane(getContentPane());
 		pack();

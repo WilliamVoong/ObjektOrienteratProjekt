@@ -1,9 +1,10 @@
 package src.objektorienterat;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Player implements ViewListener, Playing {
+public class Player implements ViewListener, Playing , Serializable {
 
 	private String username;
 	private int gamesPlayed;
@@ -12,15 +13,15 @@ public class Player implements ViewListener, Playing {
 	private int gamesDrawn;
 	private GameModel model;
 	private GameView view;
-	
+
 	public Player(String username, int gamesWon, int gamesLost, int gamesDrawn) {
-		this.username = username;		
+		this.username = username;
 		this.gamesWon = gamesWon;
 		this.gamesLost = gamesLost;
 		this.gamesDrawn = gamesDrawn;
 		this.gamesPlayed = this.gamesWon + this.gamesLost + this.gamesDrawn;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -30,17 +31,17 @@ public class Player implements ViewListener, Playing {
 		this.model = model;
 		this.view = view;
 	}
-	
+
 	public Player(String username) {
 		this(username, 0, 0, 0);
 	}
-	
+
 	public Player(String username, GameModel model, GameView view) {
 		this(username);
 		this.model = model;
 		this.view = view;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,37 +66,37 @@ public class Player implements ViewListener, Playing {
 			return false;
 		return true;
 	}
-	
+
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public int getGamesPlayed() {
 		return this.gamesPlayed;
 	}
-	
+
 	public int getGamesWon() {
 		return this.gamesWon;
 	}
-	
+
 	public int getGamesLost() {
 		return this.gamesLost;
 	}
-	
+
 	public int getGamesDrawn() {
 		return this.gamesDrawn;
 	}
-	
+
 	public void incrementGamesWon() {
 		this.gamesPlayed++;
 		this.gamesWon++;
 	}
-	
+
 	public void incrementGamesLost() {
 		this.gamesPlayed++;
 		this.gamesLost++;
 	}
-	
+
 	public void incrementGamesDrawn() {
 		this.gamesPlayed++;
 		this.gamesDrawn++;
@@ -131,19 +132,19 @@ public class Player implements ViewListener, Playing {
 		stopListening();
 		incrementGamesDrawn();
 	}
-	
+
 	public void setGameModel(GameModel model) {
 		this.model = model;
 	}
-	
+
 	public void setGameView(GameView view) {
 		this.view = view;
 	}
-	
+
 	private Player getSelf() {
 		return this;
 	}
-	
+
 	private void stopListening() {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {

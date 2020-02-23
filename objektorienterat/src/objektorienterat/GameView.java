@@ -20,7 +20,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 	private Cell lastClickedCell = null;
 	private List<ViewListener> listeners = new ArrayList<>();
 	private GameModel model;
-	
+
 	public GameView(SwappableScreen screen, GameModel model) {
 		super();
 		this.model = model;
@@ -47,10 +47,11 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
 				this.cells[i][j].setText("");
+				cells[i][j].setBackground(new Color(0x4988CE));
 			}
 		}
 	}
-	
+
 	@Override
 	public void modelWasUpdated() {
 		Move move = this.model.getLastMove();
@@ -58,7 +59,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 			setCellState(move);
 		}
 	}
-	
+
 	private void setCellState(Move move) {
 		Mark mark = move.getMark();
 		Coordinate coord = move.getCoord();
@@ -70,7 +71,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 		else if(mark == Mark.O)
 			Change_color(coord,new Color(0x80CEB9));
 	}
-	
+
 	public void fullUpdate() {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
@@ -79,21 +80,23 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 			}
 		}
 	}
-	
+
+
+
 	public void addListener(ViewListener listener) {
 		this.listeners.add(listener);
 	}
-	
+
 	public void removeListener(ViewListener listener) {
 		this.listeners.remove(listener);
 	}
-	
+
 	private void notifyListeners() {
 		for(ViewListener listener : this.listeners) {
 			listener.viewWasUpdated();
 		}
 	}
-	
+
 	public Cell getLastClickedCell() {
 		return this.lastClickedCell;
 	}
@@ -105,7 +108,7 @@ public class GameView extends JPanel implements Serializable, FileHandlerInterfa
 	public Cell getCorrdinate(Coordinate coordinate) {
 		return cells[coordinate.getX()][coordinate.getY()];
 	}
-	
+
 	public void Change_color(Coordinate coordinate, Color color) {
 		cells[coordinate.getX()][coordinate.getY()].setBackground(color);
 	}

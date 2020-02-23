@@ -5,17 +5,16 @@ import java.io.*;
 
 
 public class FileHandler   {
-    FileHandlerInterface gameview;
-    FileHandlerInterface gamemodel;
+    GameView gameview;
+    GameModel gamemodel;
 
-
-    public FileHandler(FileHandlerInterface gamemodel,FileHandlerInterface gameview)
+    public FileHandler(GameModel gamemodel,GameView gameview)
     {
         this.gamemodel=gamemodel;
         this.gameview=gameview;
 
     }
-    private   void Save_game(FileHandlerInterface game, String file_name,Player player)  {
+    private   void Save_game(GameModel game, String file_name,Player player)  {
 
         try {
             File file = new File(file_name);
@@ -40,21 +39,22 @@ public class FileHandler   {
 
     }
 
-    private FileHandlerInterface load_game(String file_name,Player player) {
+    private GameModel load_game(String file_name,Player player) {
         try {
             FileInputStream fis = new FileInputStream(file_name);
             AppendableObjectInputStream load_file = new AppendableObjectInputStream(fis);
-            FileHandlerInterface test=null;
+            GameModel test=null;
             while(fis.available()>0)
             {
                 if(load_file.readUTF().equals(player.getUsername())) {
-                    test = (FileHandlerInterface) load_file.readObject();
+                    test = (GameModel) load_file.readObject();
                 }
                 else
                     load_file.readObject();
             }
 
             load_file.close();
+            return test;
 
 
         }catch (FileNotFoundException e)
@@ -75,18 +75,26 @@ public class FileHandler   {
        return null;
     }
 
-
-    public void Save(Player player)
+    public void setGamemodel(GameModel gamemodel)
     {
-        Save_game(gameview,"Save_Gui18",player);
-        Save_game(gamemodel,"Save_model18",player);
+        this.gamemodel=gamemodel;
 
     }
 
-    public void Load(Player player)
+    public void Save(Player player)
     {
-        gameview=load_game("Save_Gui18",player);
-        gamemodel=load_game("Save_model18",player);
+        //Save_game(gameview,"Save_Gui22",player);
+        Save_game(gamemodel,"Save_model33",player);
+
+    }
+
+    public GameModel Load(Player player)
+    {
+        //gameview=load_game("Save_Gui22",player);
+       gamemodel=load_game("Save_model33",player);
+      return gamemodel;
+
+
     }
 
 }
