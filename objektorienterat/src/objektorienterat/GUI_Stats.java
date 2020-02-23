@@ -31,10 +31,17 @@ import java.awt.GridBagConstraints;
 
 
 /*
+<<<<<<< HEAD
  *
  * Welcome screen: responsibility is to display the Stats screen and its textfields
  * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  *
+=======
+ * 
+ * Welcome screen: responsibility is to display the Stats screen and its textfields
+ * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
+ * 
+>>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class GUI_Stats extends DisplayScreen {
 	Stats stats;
@@ -66,7 +73,6 @@ public class GUI_Stats extends DisplayScreen {
 		holderPanel.add(scoreText);
 		ScorePanel(holderPanel);
 		ButtonPanel(holderPanel);
-
 		backToMenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,9 +117,7 @@ public class GUI_Stats extends DisplayScreen {
 			screenswapper.addNewScreen(score, a.toString());
 		}
 
-
 		paneltoTo.add(scorePanel);
-
 
 	}
 	private void ButtonPanel(JPanel paneltoTo) {
@@ -156,44 +160,44 @@ public class GUI_Stats extends DisplayScreen {
 	private void Stats(JPanel paneltoTo)
 	{
 
-		JPanel scorePanel=new JPanel();
-		scorePanel.setBackground(Color.black);
-		scorePanel.setAlignmentX(CENTER_ALIGNMENT);
-		scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
-		scorePanel= screenswapper.getCards();
-		scorePanel.setMaximumSize((new Dimension(600,500)));;
-
-
-		int counter=1;
-		int numberOfPlayersToDrawOnEachPanel=13;
-		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
-
-		JPanel score= new JPanel();
-		score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-		score.setAlignmentX(CENTER_ALIGNMENT);
-		score.setBackground(new Color(0x00AAF0CD) );
-
-		for(String username : listOfPlayers.keySet()) {
-			Player p=listOfPlayers.get(username);
-			if(counter > numberOfPlayersToDrawOnEachPanel) {
-				score= new JPanel();
-				screenswapper.addNewScreen(score, p.toString());
-			}else {
-				JLabel s= new JLabel("example score");
-				s.setAlignmentX(Component.CENTER_ALIGNMENT);
-				score.add(s);
+			JPanel scorePanel=new JPanel();	
+			scorePanel.setBackground(Color.black);
+			scorePanel.setAlignmentX(CENTER_ALIGNMENT);
+			scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
+			scorePanel= screenswapper.getCards(); 
+			scorePanel.setMaximumSize((new Dimension(600,500)));;
+	    
+			
+			int counter=1; 
+			int numberOfPlayersToDrawOnEachPanel=13; 
+			Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
+			
+			JPanel score= new JPanel();
+			score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
+			score.setAlignmentX(CENTER_ALIGNMENT);
+			score.setBackground(new Color(0x00AAF0CD) );
+			
+			for(String username : listOfPlayers.keySet()) {
+				Player p=listOfPlayers.get(username);
+				if(counter > numberOfPlayersToDrawOnEachPanel) {
+					score= new JPanel();	
+					screenswapper.addNewScreen(score, p.toString());
+				}else { 	
+						JLabel s= new JLabel("example score");
+						s.setAlignmentX(Component.CENTER_ALIGNMENT);
+						score.add(s);
+				}
+	
 			}
-
-		}
 		paneltoTo.add(scorePanel);
 	}
-
+		
 	private void LabelForScore(JPanel paneltoTo){
 		JPanel labelPanel= new JPanel();
-
+	
 		labelPanel.setBackground(Color.white);
 		labelPanel.setMaximumSize((new Dimension(600,50)));;
-		labelPanel.setLayout(new GridLayout(1,5));
+		labelPanel.setLayout(new GridLayout(1,5)); 
 		labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		List<JLabel> labels= new ArrayList<JLabel>();
 		labels.add(new JLabel(" User "));

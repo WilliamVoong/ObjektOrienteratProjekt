@@ -13,11 +13,10 @@ class StyledButtonUI extends BasicButtonUI {
         super.installUI(c);
         AbstractButton button = (AbstractButton) c;
         button.setOpaque(false);
-        //button.setBorder(new EmptyBorder(5, 15, 5, 15));
     	button.setFont(new Font("Calibri", Font.PLAIN, 20));
 		button.setBackground(new Color(0x788BCE));
 		button.setForeground(Color.white);
-		//button.setPreferredSize(new Dimension(200, 200));
+
 		
     }
 

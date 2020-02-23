@@ -13,22 +13,25 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 
 /*
+<<<<<<< HEAD
  *
  * Welcome screen: responsibility is to display the mainMenu screen and its textfields
  * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  *
+=======
+ * 
+ * Welcome screen: responsibility is to display the mainMenu screen and its textfields
+ * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
+ * 
+>>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class GUI_Welcome extends DisplayScreen {
 	Player currentUser;
 	LayoutManager layoutManager;
-
-
-
 	GUI_Welcome(SwappableScreen layoutManager, Player currentUser){
 
 		super(layoutManager);
 		this.currentUser=currentUser;
-
 		JPanel buttonPanel=new JPanel();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -71,7 +74,6 @@ public class GUI_Welcome extends DisplayScreen {
 		text.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				try{
 					StringInputChecker s= new StringInputChecker();
 					String username = s.Check(text.getText());

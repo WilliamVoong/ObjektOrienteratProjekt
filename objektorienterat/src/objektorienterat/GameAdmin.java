@@ -53,6 +53,19 @@ public class GameAdmin implements ModelListener, Serializable {
 		//this.model.gameInit();
 	}
 
+
+	public void setModel(GameModel model) {
+		this.model = model;
+	}
+
+	public GameModel getModel() {
+		return model;
+	}
+
+	public GameView getView() {
+		return view;
+	}
+
 	public Player getCurrentUser() {
 		return currentUser;
 	}
@@ -71,18 +84,6 @@ public class GameAdmin implements ModelListener, Serializable {
 
 	public Playing getPlayer2() {
 		return player2;
-	}
-
-	public void setModel(GameModel model) {
-		this.model = model;
-	}
-
-	public GameModel getModel() {
-		return model;
-	}
-
-	public GameView getView() {
-		return view;
 	}
 
 	public void setPlayer2(Playing player2) {
