@@ -72,8 +72,6 @@ public class GUI_Stats extends DisplayScreen {
 		JButton backToMenu= new JButton("Go Back To Menu");
 		backToMenu.setUI(new StyledButtonUI());
 
-
-
 		JPanel holderPanel= new JPanel();
 		holderPanel.setLayout(new BoxLayout(holderPanel,BoxLayout.Y_AXIS));
 		holderPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -140,12 +138,19 @@ public class GUI_Stats extends DisplayScreen {
 		scorePanel.setMaximumSize((new Dimension(600,500)));
 		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);		
 		Integer counter=11; 
+		
+		JPanel score= new JPanel();
+		score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+		LabelForScore(score);	
+		score.setBackground(Color.black);		
+		createItemsPanel(score);
+		screenswapper.addNewScreen(score, counter.toString());
 		for(String username : listOfPlayers.keySet()) { 
 		
 			int numberOfPlayersToDrawOnEachPanel=10; 
 			Player p=listOfPlayers.get(username);
 			if(counter % 12 > numberOfPlayersToDrawOnEachPanel){
-				JPanel score= new JPanel();
+				score= new JPanel();
 				score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
 				LabelForScore(score);	
 				score.setBackground(Color.black);		
@@ -154,14 +159,14 @@ public class GUI_Stats extends DisplayScreen {
 			}
 			Integer counterToPlacement=counter-10; 
 			
-			
+			/*
 			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
 			panelUser.add(new CenteredJLabel(p.getUsername()));
 			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
 			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
 			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
 			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
-				//panelWins.add(new JLabel(p.getGamesWon));
+				*/
 			
 			counter++;
 		}
@@ -226,7 +231,6 @@ public class GUI_Stats extends DisplayScreen {
 
 		labels.add(new JLabel(" Placement "));
 		labels.add(new JLabel(" User ")); 
-
 		labels.add(new JLabel(" # Games "));
 		labels.add(new JLabel(" Losts "));
 		labels.add(new JLabel(" Wins "));
