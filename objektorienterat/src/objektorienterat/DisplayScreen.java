@@ -22,8 +22,10 @@ import java.util.*;
  */
 
 
-public class DisplayScreen extends JPanel {
-	SwappableScreen layoutManager = new LayoutManager();
+
+public abstract class DisplayScreen extends JPanel {
+	SwappableScreen layoutManager = new LayoutManager(); 
+	
 
 	DisplayScreen(SwappableScreen layoutManager){
 		this.layoutManager=layoutManager;

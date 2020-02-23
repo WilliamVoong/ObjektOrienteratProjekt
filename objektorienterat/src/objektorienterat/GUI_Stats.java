@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import java.awt.GridBagLayout;
@@ -44,11 +45,18 @@ import java.awt.GridBagConstraints;
 >>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class GUI_Stats extends DisplayScreen {
-	Stats stats;
-	JPanel mainPanel= new JPanel();
-	SwappableScreen screenswapper= new LayoutManagerStats();
+
+	Stats stats; 
+	SwappableScreen screenswapper= new LayoutManagerStats(); 
 	final static int SCOREPANEL_WIDTH=600;
 	final static int SCOREPANEL_SPACING=10;
+	JPanel panelPlacement= new JPanel();
+	JPanel panelUser= new JPanel();
+	JPanel panelWins= new JPanel();
+	JPanel panelLost= new JPanel();
+	JPanel panelNoGames= new JPanel();
+	JPanel panelDraws= new JPanel();
+	
 
 	GUI_Stats(LayoutManager manager, Stats stats){
 		super(manager);
@@ -95,32 +103,80 @@ public class GUI_Stats extends DisplayScreen {
 
 
 	}
+	
+	
+	private void createItemsPanel(JPanel panelToDisplayTo) {
+		JPanel panelHolderItems= new JPanel();
+		List<JPanel> list= new ArrayList<JPanel>();
+		panelHolderItems.setLayout(new GridLayout(1,6));
+		panelPlacement= new JPanel();
+		panelUser= new JPanel();
+		panelWins= new JPanel();
+		panelLost= new JPanel();
+		panelNoGames= new JPanel();
+		panelDraws= new JPanel();
+		list.add(panelPlacement);
+		list.add(panelUser); 
+		list.add(panelWins); 
+		list.add(panelLost); 
+		list.add(panelNoGames); 
+		list.add(panelDraws);
+		for(JPanel panel: list) {
+			panel.setBorder(BorderFactory.createLineBorder(Color.black));
+			panel.setBackground(Color.WHITE);
+			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+			panelHolderItems.add(panel);
+			
+		}
+		panelToDisplayTo.add(panelHolderItems);
+		
+	}
 	private void ScorePanel(JPanel paneltoTo) {
 		JPanel scorePanel=new JPanel();
 		scorePanel.setBackground(Color.black);
 		scorePanel.setAlignmentX(CENTER_ALIGNMENT);
-		scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
-		scorePanel= screenswapper.getCards();
-		scorePanel.setMaximumSize((new Dimension(600,500)));;
 
-		for(int i =0 ; i < 10; i++) {
-			JPanel score= new JPanel();
-			score.setBackground(new Color(0x00AAF0CD) );
-			score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
-			LabelForScore(score);
-			for(int j =0 ; j < 10; j++) {
-				JLabel s= new JLabel("example score " + j+i);
-				s.setAlignmentX(Component.CENTER_ALIGNMENT);
-				score.add(s);
+		scorePanel= screenswapper.getCards(); 
+		scorePanel.setMaximumSize((new Dimension(600,500)));
+		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);		
+		Integer counter=11; 
+		for(String username : listOfPlayers.keySet()) { 
+		
+			int numberOfPlayersToDrawOnEachPanel=10; 
+			Player p=listOfPlayers.get(username);
+			if(counter % 12 > numberOfPlayersToDrawOnEachPanel){
+				JPanel score= new JPanel();
+				score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+				LabelForScore(score);	
+				score.setBackground(Color.black);		
+				createItemsPanel(score);
+				screenswapper.addNewScreen(score, counter.toString());
 			}
-			Integer a= i;
-			screenswapper.addNewScreen(score, a.toString());
+			Integer counterToPlacement=counter-10; 
+			
+			
+			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
+			panelUser.add(new CenteredJLabel(p.getUsername()));
+			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
+			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
+			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
+			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
+				//panelWins.add(new JLabel(p.getGamesWon));
+			
+			counter++;
 		}
-
+		
 		paneltoTo.add(scorePanel);
+		
 
 	}
-	private void ButtonPanel(JPanel paneltoTo) {
+	
+	/*
+	 * creates the button panel.
+	 * @paneltoAddto adds the buttonPanel that should be displayed. 
+	 * 
+	 */
+	private void ButtonPanel(JPanel panelToAddTo) {
 		JPanel buttonPanel=new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 
@@ -150,69 +206,41 @@ public class GUI_Stats extends DisplayScreen {
 		});
 		buttonPanel.add(prev);
 		buttonPanel.add(next);
-		paneltoTo.add(buttonPanel);
+		panelToAddTo.add(buttonPanel);
 	}
 
-	/*	NOT DONE!!!!!!!!!!!!!!
-	 * creates panel for every 10 stats added to the screen.
-	 *  TODOOOO
-	 */
-	private void Stats(JPanel paneltoTo)
-	{
-
-			JPanel scorePanel=new JPanel();	
-			scorePanel.setBackground(Color.black);
-			scorePanel.setAlignmentX(CENTER_ALIGNMENT);
-			scorePanel.setLayout(new BoxLayout(scorePanel,BoxLayout.Y_AXIS));
-			scorePanel= screenswapper.getCards(); 
-			scorePanel.setMaximumSize((new Dimension(600,500)));;
-	    
-			
-			int counter=1; 
-			int numberOfPlayersToDrawOnEachPanel=13; 
-			Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
-			
-			JPanel score= new JPanel();
-			score.setLayout(new BoxLayout(score, BoxLayout.Y_AXIS));
-			score.setAlignmentX(CENTER_ALIGNMENT);
-			score.setBackground(new Color(0x00AAF0CD) );
-			
-			for(String username : listOfPlayers.keySet()) {
-				Player p=listOfPlayers.get(username);
-				if(counter > numberOfPlayersToDrawOnEachPanel) {
-					score= new JPanel();	
-					screenswapper.addNewScreen(score, p.toString());
-				}else { 	
-						JLabel s= new JLabel("example score");
-						s.setAlignmentX(Component.CENTER_ALIGNMENT);
-						score.add(s);
-				}
 	
-			}
-		paneltoTo.add(scorePanel);
-	}
-		
+	/*
+	 * 
+	 * adds the header of all the headings i.e Placement games etc. 
+	 */
+
 	private void LabelForScore(JPanel paneltoTo){
 		JPanel labelPanel= new JPanel();
 	
 		labelPanel.setBackground(Color.white);
-		labelPanel.setMaximumSize((new Dimension(600,50)));;
-		labelPanel.setLayout(new GridLayout(1,5)); 
+		labelPanel.setMaximumSize((new Dimension(900,50)));;
+		labelPanel.setLayout(new GridLayout(1,6)); 
 		labelPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		List<JLabel> labels= new ArrayList<JLabel>();
-		labels.add(new JLabel(" User "));
+
+		labels.add(new JLabel(" Placement "));
+		labels.add(new JLabel(" User ")); 
+
 		labels.add(new JLabel(" # Games "));
 		labels.add(new JLabel(" Losts "));
 		labels.add(new JLabel(" Wins "));
 		labels.add(new JLabel(" Draws "));
 
+		
+		
 		for(JLabel label: labels) {
-			//label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			label.setFont(new Font("Helvetica", Font.PLAIN,20));
+		//label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			label.setFont(new Font("Helvetica", Font.PLAIN,15));
 			label.setBorder(new LineBorder(Color.BLACK));
 			label.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-			labelPanel.add(label,CENTER_ALIGNMENT);
+			
+			labelPanel.add(label);
 			//labelPanel.add(Box.createRigidArea(new Dimension(SCOREPANEL_SPACING,SCOREPANEL_SPACING)));
 
 		}
