@@ -21,26 +21,12 @@ import java.awt.*;
  */
 
 public class GUI_MainMenu extends DisplayScreen {
-
-<<<<<<< Updated upstream
-
-
 	private FileHandler filehandler;
 	private GameAdmin gameAdmin;
 	private List<JButton> buttons;
 
 
 	GUI_MainMenu(SwappableScreen layoutManager ,  FileHandler filehandler, GameAdmin gameAdmin) {
-=======
-	
-	GameController controller;  
-	FileHandler filehandler; 
-	Player player; 
-	
-	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player controller) {
->>>>>>> Stashed changes
-
 		super(layoutManager);
 		this.filehandler=filehandler;
 		this.gameAdmin=gameAdmin;
@@ -89,9 +75,7 @@ public class GUI_MainMenu extends DisplayScreen {
 
 		goToGamePVC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameAdmin.newGame(GameAdmin.PVC);
-				gameAdmin.getModel().gameInit(false);
-
+				gameAdmin.newGamePVC(false);
 				System.out.println("Currently Player 1: " + gameAdmin.getCurrentUser().getUsername());
 				layoutManager.swap(LayoutManager.GAMEPANEL);
 			}
@@ -106,14 +90,11 @@ public class GUI_MainMenu extends DisplayScreen {
 		goToGamePVP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StringInputChecker checker= new StringInputChecker();
-
 				try {
-					String playerName = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
-					gameAdmin.setPlayer2(new Player(playerName,0,0,0));
+					String p2name = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
+					gameAdmin.newGamePVP(p2name, false);
 					layoutManager.swap(LayoutManager.GAMEPANEL);
-
 				}catch (StringEmptyException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null,"Please insert a nonempty String"," ****************** ERROR *****************",JOptionPane.ERROR_MESSAGE);
 				}
@@ -136,7 +117,7 @@ public class GUI_MainMenu extends DisplayScreen {
 					gameAdmin.getModel().setMarks(temp.getMarks());
 					gameAdmin.getModel().setMarkCount(temp.getMarkCount());
 					gameAdmin.getModel().setLastMove(temp.getLastMove());
-					gameAdmin.newGame(GameAdmin.PVC);
+					//gameAdmin.newGame(GameAdmin.PVC);
 					gameAdmin.getModel().gameInit(true);
 					layoutManager.swap(LayoutManager.GAMEPANEL);
 
