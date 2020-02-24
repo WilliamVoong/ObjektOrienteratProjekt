@@ -36,8 +36,6 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		this.listeners.add(listener);
 	}
 
-
-
 	public void removeListener(ModelListener listener) {
 		this.listeners.remove(listener);
 	}
@@ -48,8 +46,6 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		}
 	}
 
-
-
 	public Move getLastMove() {
 		return this.lastMove;
 	}
@@ -58,11 +54,7 @@ public class GameModel implements Serializable,FileHandlerInterface {
 		if(this.gameOver) {
 			return;
 		}
-		//this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
-		if(currentlyPlaying==player1)
-			this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] =  Mark.X, coord);
-		else
-			this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] =  Mark.O, coord);
+		this.lastMove = new Move(this.marks[coord.getX()][coord.getY()] = (this.markCount % 2 == 0) ? Mark.X : Mark.O, coord);
 		this.markCount++;
 		this.currentlyPlaying = (this.currentlyPlaying == player1) ? player2 : player1;
 		Sound_effect.playSound("buttonclick.wav");

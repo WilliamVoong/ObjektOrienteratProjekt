@@ -7,9 +7,6 @@ public class GameAdmin implements ModelListener, Serializable {
 	private GameModel model;
 	private GameView view;
 	private Playing player1, player2;
-	static final int PVC = 0x1337;
-	static final int PVP = 0x1338;
-	static final int CVC = 0x1339;
 
 	public GameAdmin(Player currentUser, GameModel model, GameView view) {
 		this.currentUser = currentUser;
@@ -17,40 +14,27 @@ public class GameAdmin implements ModelListener, Serializable {
 		this.model.addListener(this);
 		this.view = view;
 	}
-
-	public void newGame(int gameType) {
-		if(!(	gameType == GameAdmin.PVC ||
-				gameType == GameAdmin.PVP ||
-				gameType == GameAdmin.CVC))
-		{
-			return;
-		}
-		if(gameType == GameAdmin.PVC) {
-			AI ai = new AI(this.model);
-			this.model.setPlayers(
-					this.player1 = currentUser,
-					this.player2 = ai);
-			this.view.addListener(this.currentUser);
-			this.model.addListener(ai);
-		} else if(gameType == GameAdmin.PVP) {
-			Player p2 = new Player("dummy", this.model, this.view);
-			this.model.setPlayers(
-					this.player1 = this.currentUser,
-					this.player2 = p2);
-			this.view.addListener(this.currentUser);
-			this.view.addListener(p2);
-		} else if(gameType == GameAdmin.CVC) {
-			AI ai1 = new AI(this.model);
-			AI ai2 = new AI(this.model);
-			this.model.setPlayers(
-					this.player1 = ai1,
-					this.player2 = ai2);
-			this.model.addListener(ai1);
-			this.model.addListener(ai2);
-		}
-		//this.model.reset();
+	
+	public void newGamePVC(boolean loadGame) {
+		AI ai = new AI(this.model);
+		this.model.setPlayers(
+				this.player1 = currentUser,
+				this.player2 = ai);
+		this.view.addListener(this.currentUser);
+		this.model.addListener(ai);
 		this.view.fullUpdate();
-		//this.model.gameInit();
+		this.model.gameInit(loadGame);
+	}
+	
+	public void newGamePVP(String p2name, boolean loadGame) {
+		Player p2 = new Player(p2name, this.model, this.view);
+		this.model.setPlayers(
+				this.player1 = this.currentUser,
+				this.player2 = p2);
+		this.view.addListener(this.currentUser);
+		this.view.addListener(p2);
+		this.view.fullUpdate();
+		this.model.gameInit(loadGame);
 	}
 
 
@@ -59,8 +43,10 @@ public class GameAdmin implements ModelListener, Serializable {
 		model.setMarks(gameModel.getMarks());
 		model.setMarkCount(gameModel.getMarkCount());
 		model.setLastMove(gameModel.getLastMove());
-		newGame(GameAdmin.PVC);
-		model.gameInit(true);
+		if(model.getPlayer2() instanceof  AI )
+			newGamePVC(true);
+		else
+			newGamePVP(((Player)gameModel.getPlayer2()).getUsername(),true);
 	}
 	public void setModel(GameModel model) {
 		this.model = model;
