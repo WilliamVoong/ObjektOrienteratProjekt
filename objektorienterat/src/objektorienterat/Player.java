@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Player implements ViewListener, Playing , Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private int gamesPlayed;
 	private int gamesWon;

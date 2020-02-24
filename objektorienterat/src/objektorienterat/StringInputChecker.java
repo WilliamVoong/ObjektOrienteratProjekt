@@ -1,7 +1,5 @@
 package src.objektorienterat;
 
-import java.io.IOException;
-
 public class StringInputChecker{
 	String string;
 	

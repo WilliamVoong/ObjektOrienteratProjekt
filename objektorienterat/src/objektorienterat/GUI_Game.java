@@ -2,14 +2,12 @@ package src.objektorienterat;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class GUI_Game extends DisplayScreen {
-
-    Player player;
+	private static final long serialVersionUID = 1L;
+	Player player;
     FileHandler filehandler;
     GameModel gameModel;
     GameView gameView;

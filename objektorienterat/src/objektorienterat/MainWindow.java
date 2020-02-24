@@ -1,14 +1,12 @@
 package src.objektorienterat;
 
-
-import java.io.IOException;
-
 import javax.swing.*;
 
 /*
  * MainWindow has the responsiblity to display the main screen.
  */
 public class MainWindow extends JFrame implements Runnable {
+	private static final long serialVersionUID = 1L;
 	private LayoutManager screenSwapper;
 	MainWindow(LayoutManager screenSwapper){
 		super();

@@ -1,7 +1,4 @@
 package src.objektorienterat;
-import java.awt.BorderLayout;
-
-
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -20,32 +17,18 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.GridBagConstraints;
-
-
-
 
 /*
-<<<<<<< HEAD
  *
- * Welcome screen: responsibility is to display the Stats screen and its textfields
+ * Stats screen: responsibility is to display the Stats screen and its textfields
  * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  *
-=======
- * 
- * Welcome screen: responsibility is to display the Stats screen and its textfields
- * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
- * 
->>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class GUI_Stats extends DisplayScreen {
-
+	private static final long serialVersionUID = 1L;
 	Stats stats; 
 	SwappableScreen screenswapper= new LayoutManagerStats(); 
 	final static int SCOREPANEL_WIDTH=600;

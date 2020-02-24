@@ -7,10 +7,5 @@ public class Main {
 		backgroundSound.start();
 		TreIRad t= new TreIRad();
 		t.startGame();
-	//	FileHandler.print();
-
-
-		StringInputChecker b= new StringInputChecker(new String(""));
-
 	}
 }

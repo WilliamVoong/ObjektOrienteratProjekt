@@ -3,7 +3,6 @@ package src.objektorienterat;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.OutputStream;
 
 public class AppendableObjectInputStream extends ObjectInputStream {
 

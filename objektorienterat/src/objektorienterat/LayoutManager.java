@@ -13,6 +13,7 @@ import java.awt.*;
  *
  */
 public class LayoutManager implements SwappableScreen{
+	private static final long serialVersionUID = 1L;
 	public final static String MENUPANEL = "MenuPanel";
 	public final static String WELCOMEPANEL = "Welcome";
 	public final static String GAMEPANEL = "GamePlay";

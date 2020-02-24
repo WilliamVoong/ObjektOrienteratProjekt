@@ -1,26 +1,19 @@
 package src.objektorienterat;
 
-import javax.swing.border.Border;
 import javax.swing.*;
 import java.util.*;
 import java.util.List;
 import java.awt.event.*;
 import java.awt.*;
 /*
-<<<<<<< HEAD
  *
  * Main Menu screen: responsibility is to display the mainMenu
  * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
  *
-=======
- * 
- * Main Menu screen: responsibility is to display the mainMenu
- * extends displayScreen, which its only purpose is the create a common baseline for the design, and be able to swap to other screens
- * 
->>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 
 public class GUI_MainMenu extends DisplayScreen {
+	private static final long serialVersionUID = 1L;
 	private FileHandler filehandler;
 	private GameAdmin gameAdmin;
 	private List<JButton> buttons;

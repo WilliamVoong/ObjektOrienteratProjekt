@@ -3,6 +3,7 @@ package src.objektorienterat;
 import java.io.Serializable;
 
 public class GameAdmin implements ModelListener, Serializable {
+	private static final long serialVersionUID = 1L;
 	private Player currentUser;
 	private GameModel model;
 	private GameView view;

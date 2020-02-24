@@ -1,20 +1,11 @@
 package src.objektorienterat;
 
-import java.awt.Color;
-
 import javax.swing.*;
 /*
-<<<<<<< HEAD
  *
  * The purpose of this class to create all the references of the treIrad game and create all the compositions.
  *
  *
-=======
- * 
- * The purpose of this class to create all the references of the treIrad game and create all the compositions. 
- *
- * 
->>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class TreIRad {
     private GameView gameView;
@@ -28,7 +19,6 @@ public class TreIRad {
     private Player currentUser;
     private FileHandler fileHandler;
     private GameAdmin gameAdmin;
-    private AI ai;
 
     TreIRad(){
         layoutManager= new LayoutManager();
