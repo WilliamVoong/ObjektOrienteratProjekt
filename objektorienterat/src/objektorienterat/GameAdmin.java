@@ -54,6 +54,14 @@ public class GameAdmin implements ModelListener, Serializable {
 	}
 
 
+	public void loadgame(GameModel gameModel)
+	{
+		model.setMarks(gameModel.getMarks());
+		model.setMarkCount(gameModel.getMarkCount());
+		model.setLastMove(gameModel.getLastMove());
+		newGame(GameAdmin.PVC);
+		model.gameInit(true);
+	}
 	public void setModel(GameModel model) {
 		this.model = model;
 	}

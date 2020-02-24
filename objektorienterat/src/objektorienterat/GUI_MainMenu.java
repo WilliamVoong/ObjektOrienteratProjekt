@@ -22,7 +22,7 @@ import java.awt.*;
 
 public class GUI_MainMenu extends DisplayScreen {
 
-<<<<<<< Updated upstream
+
 
 
 	private FileHandler filehandler;
@@ -31,15 +31,7 @@ public class GUI_MainMenu extends DisplayScreen {
 
 
 	GUI_MainMenu(SwappableScreen layoutManager ,  FileHandler filehandler, GameAdmin gameAdmin) {
-=======
-	
-	GameController controller;  
-	FileHandler filehandler; 
-	Player player; 
-	
-	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player controller) {
->>>>>>> Stashed changes
+
 
 		super(layoutManager);
 		this.filehandler=filehandler;
@@ -110,6 +102,8 @@ public class GUI_MainMenu extends DisplayScreen {
 				try {
 					String playerName = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
 					gameAdmin.setPlayer2(new Player(playerName,0,0,0));
+					gameAdmin.newGame(GameAdmin.PVP);
+					gameAdmin.getModel().gameInit(false);
 					layoutManager.swap(LayoutManager.GAMEPANEL);
 
 				}catch (StringEmptyException e1) {
@@ -133,12 +127,14 @@ public class GUI_MainMenu extends DisplayScreen {
 				//gameinit false to let random process and when it is loading it is True.
  				try
 				{GameModel temp=filehandler.Load(gameAdmin.getCurrentUser());
-					gameAdmin.getModel().setMarks(temp.getMarks());
+				gameAdmin.loadgame(temp);
+					layoutManager.swap(LayoutManager.GAMEPANEL);
+				/*	gameAdmin.getModel().setMarks(temp.getMarks());
 					gameAdmin.getModel().setMarkCount(temp.getMarkCount());
 					gameAdmin.getModel().setLastMove(temp.getLastMove());
 					gameAdmin.newGame(GameAdmin.PVC);
 					gameAdmin.getModel().gameInit(true);
-					layoutManager.swap(LayoutManager.GAMEPANEL);
+					layoutManager.swap(LayoutManager.GAMEPANEL);*/
 
 				}catch (NullPointerException ex)
 				{
