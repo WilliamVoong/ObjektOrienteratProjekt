@@ -184,6 +184,10 @@ public class GameModel implements Serializable,FileHandlerInterface {
 
 	}
 
+	public Playing getPlayer2() {
+		return player2;
+	}
+
 	public Playing getCurrentlyPlaying() {
 		return this.currentlyPlaying;
 	}

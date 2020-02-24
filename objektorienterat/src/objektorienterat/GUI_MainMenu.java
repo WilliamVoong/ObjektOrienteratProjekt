@@ -91,6 +91,7 @@ public class GUI_MainMenu extends DisplayScreen {
 			public void actionPerformed(ActionEvent e) {
 				StringInputChecker checker= new StringInputChecker();
 				try {
+
 					String p2name = checker.Check(JOptionPane.showInputDialog(null,"Insert the username of p2"));
 					gameAdmin.newGamePVP(p2name, false);
 					layoutManager.swap(LayoutManager.GAMEPANEL);
@@ -114,12 +115,14 @@ public class GUI_MainMenu extends DisplayScreen {
 				//gameinit false to let random process and when it is loading it is True.
  				try
 				{GameModel temp=filehandler.Load(gameAdmin.getCurrentUser());
-					gameAdmin.getModel().setMarks(temp.getMarks());
+				gameAdmin.loadgame(temp);
+					layoutManager.swap(LayoutManager.GAMEPANEL);
+				/*	gameAdmin.getModel().setMarks(temp.getMarks());
 					gameAdmin.getModel().setMarkCount(temp.getMarkCount());
 					gameAdmin.getModel().setLastMove(temp.getLastMove());
 					//gameAdmin.newGame(GameAdmin.PVC);
 					gameAdmin.getModel().gameInit(true);
-					layoutManager.swap(LayoutManager.GAMEPANEL);
+					layoutManager.swap(LayoutManager.GAMEPANEL);*/
 
 				}catch (NullPointerException ex)
 				{

@@ -26,17 +26,6 @@ public class MainWindow extends JFrame implements Runnable {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e){
-				System.out.println("Uncomment following to open another window!");
-				//MainPage m = new MainPage();
-				//m.setVisible(true);
-
-
-				//GameController.save_game("Save_Gui16");
-				//GameController.save_game_model("Save_model16");
-
-				JOptionPane.showMessageDialog(null,"saving","saving",JOptionPane.INFORMATION_MESSAGE);
-				e.getWindow().dispose();
-				System.out.println("JFrame Closed!");
 				System.exit(0);
 			}
 		});

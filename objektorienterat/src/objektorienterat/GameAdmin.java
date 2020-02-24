@@ -38,6 +38,16 @@ public class GameAdmin implements ModelListener, Serializable {
 	}
 
 
+	public void loadgame(GameModel gameModel)
+	{
+		model.setMarks(gameModel.getMarks());
+		model.setMarkCount(gameModel.getMarkCount());
+		model.setLastMove(gameModel.getLastMove());
+		if(model.getPlayer2() instanceof  AI )
+			newGamePVC(true);
+		else
+			newGamePVP(((Player)gameModel.getPlayer2()).getUsername(),true);
+	}
 	public void setModel(GameModel model) {
 		this.model = model;
 	}
