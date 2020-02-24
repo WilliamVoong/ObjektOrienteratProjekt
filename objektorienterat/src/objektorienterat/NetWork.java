@@ -19,17 +19,26 @@ import java.util.Properties;
 
 public class NetWork {
 	private Connection conn;
+	private Stats stats;
+	private boolean connected;
 
-	public NetWork() {
+	public NetWork(Stats stats) {
+		this.stats = stats;
 		Properties props = new Properties();
 		try {
 			InputStream inStream = new FileInputStream("database.config");
 			props.load(inStream);
-			props.list(System.out);
-			conn = DriverManager.getConnection(
-					props.getProperty("url"),
-					props.getProperty("username"),
-					props.getProperty("password"));
+			if(	props.getProperty("url") != null &&
+				props.getProperty("username") != null &&
+				props.getProperty("password") != null &&
+				!props.getProperty("url").equals("enter_url_here"))
+			{
+				this.connected = true;
+				conn = DriverManager.getConnection(
+						props.getProperty("url"),
+						props.getProperty("username"),
+						props.getProperty("password"));
+			}
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 			try {
@@ -47,15 +56,19 @@ public class NetWork {
 			e4.printStackTrace();
 		} catch(SQLException e5) {
 			System.out.println(e5);
+			this.connected = false;
 		}
 	}
 
-	public void getData(Stats stats) {
+	public void getData() {
+		if(!this.connected) {
+			return;
+		}
 		try {
 			Statement s = this.conn.createStatement();
 			ResultSet rs = s.executeQuery("SELECT * FROM Stats");
 			while(rs.next()) {
-				stats.put(
+				this.stats.put(
 						new Player(
 								rs.getString("username"),
 								rs.getInt("gamesWon"),
@@ -67,8 +80,11 @@ public class NetWork {
 		}
 	}
 
-	public void putData(Stats stats) {
-		List<Map.Entry<String, Player>> listOfEntries = new ArrayList<>(stats.getPlayers().entrySet());
+	public void putData() {
+		if(!this.connected) {
+			return;
+		}
+		List<Map.Entry<String, Player>> listOfEntries = new ArrayList<>(this.stats.getPlayers().entrySet());
 		for(Map.Entry<String, Player> entry : listOfEntries) {
 			putPlayer(entry.getValue());
 		}
@@ -108,4 +124,5 @@ public class NetWork {
 			System.out.println(e);
 		}
 	}
+	
 }

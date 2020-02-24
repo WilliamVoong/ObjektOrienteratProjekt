@@ -18,6 +18,10 @@ public class Stats {
 	public Stats() {
 		this.players = new HashMap<>();
 	}
+	
+	public Player getPlayer(String username) {
+		return this.players.get(username);
+	}
 
 	public Map<String, Player> getPlayers() {
 		return this.players;
