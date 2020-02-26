@@ -61,8 +61,10 @@ public class Stats {
 	}
 
 	public Player findUser(String username){
-				players.get(username).incrementGamesWon();
 		     return players.get(username);
+	}
+	public boolean PlayerExists(String username) {
+		return players.get(username)!=null; 
 	}
 
 }

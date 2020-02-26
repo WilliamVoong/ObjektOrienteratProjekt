@@ -22,7 +22,7 @@ import java.awt.*;
 
 public class GUI_MainMenu extends DisplayScreen {
 
-<<<<<<< Updated upstream
+
 
 
 	private FileHandler filehandler;
@@ -31,15 +31,6 @@ public class GUI_MainMenu extends DisplayScreen {
 
 
 	GUI_MainMenu(SwappableScreen layoutManager ,  FileHandler filehandler, GameAdmin gameAdmin) {
-=======
-	
-	GameController controller;  
-	FileHandler filehandler; 
-	Player player; 
-	
-	
-	GUI_MainMenu(SwappableScreen layoutManager ,Player player controller) {
->>>>>>> Stashed changes
 
 		super(layoutManager);
 		this.filehandler=filehandler;

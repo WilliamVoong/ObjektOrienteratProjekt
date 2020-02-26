@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Player implements ViewListener, Playing , Serializable {
+public class Player implements ViewListener, Playing , Serializable, Cloneable {
 
 	private String username;
 	private int gamesPlayed;
@@ -154,12 +154,26 @@ public class Player implements ViewListener, Playing , Serializable {
 			}
 		}, 500);
 	}
-
-
-	public void copyValues(Player player){
-		this.gamesDrawn=player.gamesDrawn;
-		this.gamesLost=player.gamesLost;
-		this.gamesWon=player.gamesWon;
-		this.gamesPlayed=player.gamesPlayed;
-	}
+	
+	/*
+	 * Gör en djup kopia av spelaren då fälten är av primitiva typer
+	 * returnerar en kopia av detta objekt, men om det inte går att klona så returnerar den null
+	 */
+	public Player clone() 
+	{ 
+		try {
+			return (Player) super.clone(); 
+		}catch(CloneNotSupportedException e){
+			e.printStackTrace();
+			return null; 
+		}
+	} 
+	public void cloneScore(Player p){
+	   this.gamesDrawn=p.gamesDrawn;
+	   this.gamesLost=p.gamesLost;
+	   this.gamesWon=p.gamesWon;
+	   this.gamesPlayed=p.gamesPlayed;
+    	
+    }
+		
 }

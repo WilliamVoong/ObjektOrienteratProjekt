@@ -59,11 +59,11 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 	JPanel panelNoGames= new JPanel();
 	JPanel panelDraws= new JPanel();
 	JPanel score= new JPanel();
-
-	GUI_Stats(LayoutManager manager, Stats stats){
-
+	ScoreManager scoreManager;
+	GUI_Stats(LayoutManager manager,  Stats stats, ScoreManager scoreManager){
 		super(manager);
-		this.stats=stats;
+		this.scoreManager=scoreManager;
+		this.stats=stats; 
 		this.addComponentListener(this);
 		updateScreen();
 	}
@@ -77,7 +77,6 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 		scoreText.setBackground(Color.black);
 		JButton backToMenu= new JButton("Go Back To Menu");
 		backToMenu.setUI(new StyledButtonUI());
-
 		JPanel holderPanel= new JPanel();
 		holderPanel.setLayout(new BoxLayout(holderPanel,BoxLayout.Y_AXIS));
 		holderPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -117,9 +116,10 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 		panelDraws= new JPanel();
 		list.add(panelPlacement);
 		list.add(panelUser); 
-		list.add(panelWins); 
-		list.add(panelLost); 
 		list.add(panelNoGames); 
+	 
+		list.add(panelLost); 
+		list.add(panelWins);
 		list.add(panelDraws);
 		for(JPanel panel: list) {
 			panel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -164,15 +164,12 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 			}
 			Integer counterToPlacement=counter;
 
-
 			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
 			panelUser.add(new CenteredJLabel(p.getUsername()));
-			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
-			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
 			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
+			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
+			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
 			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
-
-
 			counter++;
 		}
 
@@ -267,7 +264,8 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 
 	@Override
 	public void componentShown(ComponentEvent e) {
-		updateScore();
+		scoreManager.updateScoreStats();
+		drawScore();
 		revalidate();
 		System.out.println("updating screen");
 	}
@@ -276,7 +274,7 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 	public void componentHidden(ComponentEvent e) {
 
 	}
-	public void updateScore(){
+	public void drawScore(){
 		panelPlacement.removeAll();
 		panelUser.removeAll();
 		panelWins.removeAll();
@@ -303,9 +301,9 @@ public class GUI_Stats extends DisplayScreen implements ComponentListener {
 
 			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
 			panelUser.add(new CenteredJLabel(p.getUsername()));
-			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
-			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
 			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
+			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
+			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
 			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
 
 
