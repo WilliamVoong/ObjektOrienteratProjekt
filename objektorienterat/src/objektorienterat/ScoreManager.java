@@ -20,6 +20,7 @@ public class ScoreManager {
         	stats.findUser(currentUser.getUsername()).cloneScore(currentUser);; 
         }
         else {
+        	currentUser.resetScore();
         	stats.put(currentUser.clone()); 
         }
     }

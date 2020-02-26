@@ -177,5 +177,13 @@ public class Player implements ViewListener, Playing , Serializable, Cloneable {
 	   this.gamesPlayed=p.gamesPlayed;
     	
     }
+	
+	public void resetScore() {
+		  this.gamesDrawn=0;
+		  this.gamesLost=0;
+		  this.gamesWon=0;
+		  this.gamesPlayed=0;
+		
+	}
 		
 }
