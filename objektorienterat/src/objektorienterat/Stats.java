@@ -60,4 +60,9 @@ public class Stats {
 		return sortedByGamesWon;
 	}
 
+	public Player findUser(String username){
+				players.get(username).incrementGamesWon();
+		     return players.get(username);
+	}
+
 }

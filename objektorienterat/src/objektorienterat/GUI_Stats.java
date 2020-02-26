@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +46,7 @@ import java.awt.GridBagConstraints;
  * 
 >>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
-public class GUI_Stats extends DisplayScreen {
+public class GUI_Stats extends DisplayScreen implements ComponentListener {
 
 	Stats stats; 
 	SwappableScreen screenswapper= new LayoutManagerStats(); 
@@ -56,14 +58,18 @@ public class GUI_Stats extends DisplayScreen {
 	JPanel panelLost= new JPanel();
 	JPanel panelNoGames= new JPanel();
 	JPanel panelDraws= new JPanel();
-	
+	JPanel score= new JPanel();
 
 	GUI_Stats(LayoutManager manager, Stats stats){
+
 		super(manager);
 		this.stats=stats;
+		this.addComponentListener(this);
+		updateScreen();
+	}
+
+	private void updateScreen(){
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-
 		JLabel scoreText=new JLabel("Score");
 		scoreText.setForeground(Color.WHITE);
 		scoreText.setFont(new Font("Helvetica", Font.PLAIN,60));
@@ -83,6 +89,7 @@ public class GUI_Stats extends DisplayScreen {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				layoutManager.swap(LayoutManager.MENUPANEL);
+				System.out.println(stats.findUser("william").getGamesWon());
 			}
 		});
 
@@ -94,11 +101,6 @@ public class GUI_Stats extends DisplayScreen {
 		add(Box.createRigidArea(new Dimension(100,100)));
 		add(backToMenu);
 		add(Box.createHorizontalGlue());
-
-
-
-
-
 
 	}
 	
@@ -124,7 +126,7 @@ public class GUI_Stats extends DisplayScreen {
 			panel.setBackground(Color.WHITE);
 			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 			panelHolderItems.add(panel);
-			
+
 		}
 		panelToDisplayTo.add(panelHolderItems);
 		
@@ -136,43 +138,46 @@ public class GUI_Stats extends DisplayScreen {
 
 		scorePanel= screenswapper.getCards(); 
 		scorePanel.setMaximumSize((new Dimension(600,500)));
-		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);		
-		Integer counter=1; 
+
+
 		
-		JPanel score= new JPanel();
+		score= new JPanel();
 		score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
 		LabelForScore(score);	
 		score.setBackground(Color.black);		
 		createItemsPanel(score);
+
+		Integer counter=1;
 		screenswapper.addNewScreen(score, counter.toString());
-		for(String username : listOfPlayers.keySet()) { 
-		
-			int numberOfPlayersToDrawOnEachPanel=10; 
+		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
+		for(String username : listOfPlayers.keySet()) {
+
+			int numberOfPlayersToDrawOnEachPanel=10;
 			Player p=listOfPlayers.get(username);
 			if(counter % 12 > numberOfPlayersToDrawOnEachPanel){
 				score= new JPanel();
 				score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
-				LabelForScore(score);	
-				score.setBackground(Color.black);		
+				LabelForScore(score);
+				score.setBackground(Color.black);
 				createItemsPanel(score);
 				screenswapper.addNewScreen(score, counter.toString());
 			}
-			Integer counterToPlacement=counter; 
-			
-			
+			Integer counterToPlacement=counter;
+
+
 			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
 			panelUser.add(new CenteredJLabel(p.getUsername()));
 			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
 			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
 			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
 			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
-				
-			
+
+
 			counter++;
 		}
-		
+
 		paneltoTo.add(scorePanel);
-		
+
 	}
 	/*
 	 * creates the button panel.
@@ -249,7 +254,66 @@ public class GUI_Stats extends DisplayScreen {
 		paneltoTo.add(labelPanel);
 
 	}
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		updateScore();
+		revalidate();
+		System.out.println("updating screen");
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+
+	}
+	public void updateScore(){
+		panelPlacement.removeAll();
+		panelUser.removeAll();
+		panelWins.removeAll();
+		panelLost.removeAll();
+		panelNoGames.removeAll();
+		panelDraws.removeAll();
+		Integer counter=1;
+		screenswapper.addNewScreen(score, counter.toString());
+		Map<String, Player> listOfPlayers=stats.getPlayersSort(Stats.SORTBYGAMESWON);
+		for(String username : listOfPlayers.keySet()) {
+
+			int numberOfPlayersToDrawOnEachPanel=10;
+			Player p=listOfPlayers.get(username);
+			if(counter % 12 > numberOfPlayersToDrawOnEachPanel){
+				score= new JPanel();
+				score.setLayout(new BoxLayout(score,BoxLayout.Y_AXIS));
+				LabelForScore(score);
+				score.setBackground(Color.black);
+				createItemsPanel(score);
+				screenswapper.addNewScreen(score, counter.toString());
+			}
+			Integer counterToPlacement=counter;
+
+
+			panelPlacement.add( new CenteredJLabel(counterToPlacement.toString() + " ."));
+			panelUser.add(new CenteredJLabel(p.getUsername()));
+			panelWins.add(new CenteredJLabel(String.valueOf(p.getGamesWon())));
+			panelLost.add(new CenteredJLabel(String.valueOf(p.getGamesLost())));
+			panelNoGames.add(new CenteredJLabel(String.valueOf(p.getGamesPlayed())));
+			panelDraws.add(new CenteredJLabel(String.valueOf(p.getGamesDrawn())));
+
+
+			counter++;
+		}
+	}
 }
+
 
 
 

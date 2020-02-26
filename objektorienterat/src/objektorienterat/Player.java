@@ -154,4 +154,12 @@ public class Player implements ViewListener, Playing , Serializable {
 			}
 		}, 500);
 	}
+
+
+	public void copyValues(Player player){
+		this.gamesDrawn=player.gamesDrawn;
+		this.gamesLost=player.gamesLost;
+		this.gamesWon=player.gamesWon;
+		this.gamesPlayed=player.gamesPlayed;
+	}
 }
