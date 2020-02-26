@@ -53,10 +53,7 @@ public class LayoutManager implements SwappableScreen{
 
 	}
 	@Override
-	public JPanel getPanel() {
-		// TODO Auto-generated method stub
-		return cards;
-	}
+
 	public void addNewScreen(JPanel panel, String string) {
 		cards.add(panel,string);
 	}

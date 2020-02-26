@@ -20,13 +20,19 @@ public class TreIRad {
     private FileHandler fileHandler;
     private GameAdmin gameAdmin;
 
+    private ScoreManager scoreManager; 
+    
+
+
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
+        stats.put(new Player ("william",3,2,1));
         gameModel= new GameModel();
         gameView= new GameView(layoutManager,gameModel);
         currentUser= new Player("nameNotCurrentltlyDetermined",0,0,0,gameModel,gameView);
         gameAdmin= new GameAdmin(currentUser, gameModel, gameView);
+        scoreManager= new ScoreManager(currentUser,stats);
         createGameModelViewControler();
         fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
@@ -38,10 +44,10 @@ public class TreIRad {
     }
 
     private void createScreens(){
-        guiStats= new GUI_Stats(layoutManager, stats);
+        guiStats= new GUI_Stats(layoutManager, stats, scoreManager);
         guiMainMenu= new GUI_MainMenu(layoutManager, fileHandler, gameAdmin );
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,currentUser, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser);
+        guiWelcome= new GUI_Welcome(layoutManager, currentUser,scoreManager);
 
     }
 

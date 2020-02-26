@@ -13,13 +13,16 @@ import java.awt.*;
  */
 
 public class GUI_MainMenu extends DisplayScreen {
+
 	private static final long serialVersionUID = 1L;
+
 	private FileHandler filehandler;
 	private GameAdmin gameAdmin;
 	private List<JButton> buttons;
 
 
 	GUI_MainMenu(SwappableScreen layoutManager ,  FileHandler filehandler, GameAdmin gameAdmin) {
+
 		super(layoutManager);
 		this.filehandler=filehandler;
 		this.gameAdmin=gameAdmin;
