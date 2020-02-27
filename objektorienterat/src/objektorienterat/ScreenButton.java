@@ -1,15 +1,10 @@
 package src.objektorienterat;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class ScreenButton extends JButton {
-
-
+	private static final long serialVersionUID = 1L;
 
 	ScreenButton(String text, DisplayScreen panel) {
 		super(text);

@@ -84,14 +84,14 @@ public class FileHandler   {
     public void Save(Player player)
     {
         //Save_game(gameview,"Save_Gui22",player);
-        Save_game(gamemodel,"Save_model35",player);
+        Save_game(gamemodel,"Save_model37",player);
 
     }
 
     public GameModel Load(Player player)
     {
         //gameview=load_game("Save_Gui22",player);
-       gamemodel=load_game("Save_model35",player);
+       gamemodel=load_game("Save_model37",player);
       return gamemodel;
 
 

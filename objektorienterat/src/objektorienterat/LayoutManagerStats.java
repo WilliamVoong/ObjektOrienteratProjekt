@@ -8,6 +8,7 @@ import javax.swing.JPanel;
  *
  */
 public class LayoutManagerStats implements SwappableScreen{
+	private static final long serialVersionUID = 1L;
 	JPanel cards = new JPanel(new CardLayout());
 	CardLayout c1= (CardLayout) (cards.getLayout());
 	@Override
@@ -16,10 +17,7 @@ public class LayoutManagerStats implements SwappableScreen{
 	}
 
 	@Override
-	public JPanel getPanel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public void addNewScreen(JPanel panel, String string) {
 		cards.add(panel,string);

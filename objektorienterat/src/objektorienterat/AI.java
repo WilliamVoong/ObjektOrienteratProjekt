@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class AI implements Playing, ModelListener, Serializable {
+	private static final long serialVersionUID = 1L;
 	private GameModel model;
 
 	public AI(GameModel model) {

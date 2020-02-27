@@ -1,10 +1,8 @@
 package src.objektorienterat;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
-import java.io.Serializable;
 
 class StyledButtonUI extends BasicButtonUI {
 

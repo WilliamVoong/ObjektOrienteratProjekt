@@ -64,4 +64,11 @@ public class Stats {
 		return sortedByGamesWon;
 	}
 
+	public Player findUser(String username){
+		     return players.get(username);
+	}
+	public boolean PlayerExists(String username) {
+		return players.get(username)!=null; 
+	}
+
 }

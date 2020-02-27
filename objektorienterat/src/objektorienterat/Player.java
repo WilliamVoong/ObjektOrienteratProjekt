@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Player implements ViewListener, Playing , Serializable {
 
+public class Player implements ViewListener, Playing , Serializable, Cloneable {
+
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private int gamesPlayed;
 	private int gamesWon;
@@ -154,4 +156,34 @@ public class Player implements ViewListener, Playing , Serializable {
 			}
 		}, 500);
 	}
+	
+	/*
+	 * Gör en djup kopia av spelaren då fälten är av primitiva typer
+	 * returnerar en kopia av detta objekt, men om det inte går att klona så returnerar den null
+	 */
+	public Player clone() 
+	{ 
+		try {
+			return (Player) super.clone(); 
+		}catch(CloneNotSupportedException e){
+			e.printStackTrace();
+			return null; 
+		}
+	} 
+	public void cloneScore(Player p){
+	   this.gamesDrawn=p.gamesDrawn;
+	   this.gamesLost=p.gamesLost;
+	   this.gamesWon=p.gamesWon;
+	   this.gamesPlayed=p.gamesPlayed;
+    	
+    }
+	
+	public void resetScore() {
+		  this.gamesDrawn=0;
+		  this.gamesLost=0;
+		  this.gamesWon=0;
+		  this.gamesPlayed=0;
+		
+	}
+		
 }

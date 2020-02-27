@@ -2,13 +2,10 @@ package src.objektorienterat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.Serializable;
 
 public class Clock extends PropertyChangeSupport implements ActionListener {
-    private final int perioad=10;
+	private static final long serialVersionUID = 1L;
     private  int Second;
     javax.swing.Timer timer=new javax.swing.Timer(1000,this);
 

@@ -1,20 +1,11 @@
 package src.objektorienterat;
 
-import java.awt.Color;
-
 import javax.swing.*;
 /*
-<<<<<<< HEAD
  *
  * The purpose of this class to create all the references of the treIrad game and create all the compositions.
  *
  *
-=======
- * 
- * The purpose of this class to create all the references of the treIrad game and create all the compositions. 
- *
- * 
->>>>>>> c74f384db83641e3d5c38d9ee6c9487be56b5392
  */
 public class TreIRad {
     private GameView gameView;
@@ -28,15 +19,20 @@ public class TreIRad {
     private Player currentUser;
     private FileHandler fileHandler;
     private GameAdmin gameAdmin;
-    private AI ai;
+
+    private ScoreManager scoreManager; 
+    
+
 
     TreIRad(){
         layoutManager= new LayoutManager();
         stats = new Stats();
+        stats.put(new Player ("william",3,2,1));
         gameModel= new GameModel();
         gameView= new GameView(layoutManager,gameModel);
         currentUser= new Player("nameNotCurrentltlyDetermined",0,0,0,gameModel,gameView);
         gameAdmin= new GameAdmin(currentUser, gameModel, gameView);
+        scoreManager= new ScoreManager(currentUser,stats);
         createGameModelViewControler();
         fileHandler=new FileHandler(gameModel,gameView);
         createScreens();
@@ -48,10 +44,10 @@ public class TreIRad {
     }
 
     private void createScreens(){
-        guiStats= new GUI_Stats(layoutManager, stats);
+        guiStats= new GUI_Stats(layoutManager, stats, scoreManager);
         guiMainMenu= new GUI_MainMenu(layoutManager, fileHandler, gameAdmin );
         guiGame= new GUI_Game(layoutManager, gameModel, gameView,currentUser, fileHandler);
-        guiWelcome= new GUI_Welcome(layoutManager, currentUser);
+        guiWelcome= new GUI_Welcome(layoutManager, currentUser,scoreManager);
 
     }
 
