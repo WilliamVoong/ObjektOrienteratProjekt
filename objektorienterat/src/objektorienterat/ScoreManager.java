@@ -2,7 +2,7 @@ package src.objektorienterat;
 
 import java.util.Map;
 /*
- * Ansvaret för scoreManager är att hantera uppdateringen av poängräkning. 
+ * Ansvaret fï¿½r scoreManager ï¿½r att hantera uppdateringen av poï¿½ngrï¿½kning. 
  * author: William voong
  * Ver: 1.0
  * 
@@ -20,7 +20,7 @@ public class ScoreManager {
         	stats.findUser(currentUser.getUsername()).cloneScore(currentUser);; 
         }
         else {
-        	currentUser.resetScore();
+
         	stats.put(currentUser.clone()); 
         }
     }
@@ -29,7 +29,7 @@ public class ScoreManager {
     }
     
     /*
-     * hittar spelaren i statsen, och clonar poängräkning från statsen
+     * hittar spelaren i statsen, och clonar poï¿½ngrï¿½kning frï¿½n statsen
      * 
      */
     public void updateScorePlayer(){
@@ -37,6 +37,7 @@ public class ScoreManager {
     		 Player currentScoreData= stats.findUser(currentUser.getUsername()); 
     		 currentUser.cloneScore(currentScoreData);
     	 }
+        currentUser.resetScore();
     }
     
 }
