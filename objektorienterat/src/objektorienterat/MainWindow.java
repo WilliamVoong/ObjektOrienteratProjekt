@@ -24,7 +24,16 @@ public class MainWindow extends JFrame implements Runnable {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent e){
-				System.exit(0);
+				Sound_effect.playSound("WS.wav");
+				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					    System.exit(0);
+
+				} else {
+					// no option
+				}
+
+
 			}
 		});
 	}
